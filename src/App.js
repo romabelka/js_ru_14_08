@@ -1,5 +1,5 @@
 import React from 'react'
-import Article from './Article'
+import ArticleList from './ArticleList'
 
 export default function App(props) {
     return (
@@ -7,7 +7,7 @@ export default function App(props) {
             <h2>Menu</h2>
             <div>
                 <h1>News App</h1>
-                <Article article = {props.articles[0]}/>
+                <ArticleList articles = {props.articles}/>
             </div>
         </div>
     )
