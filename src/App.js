@@ -3,7 +3,7 @@ import ArticleList from './ArticleList'
 
 export default function App(props) {
     return (
-        <div>
+        <div style={{ width: '80%', margin: '0 auto' }}>
             <h2>Menu</h2>
             <div>
                 <h1>News App</h1>

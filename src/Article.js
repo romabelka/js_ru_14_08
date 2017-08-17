@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
+import CommentList from './CommentList'
 
 class Article extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            isOpen: true
+            isOpen: false
         }
     }
 
@@ -14,8 +15,8 @@ class Article extends Component {
 
         return (
             <div>
-                <h3 onClick = {this.handleClick}>{article.title}</h3>
-                {this.getBody()}
+                <h3 style={{ cursor: 'pointer' }} onClick = {this.handleClick}>{article.title}</h3>
+                {this.getBody(article.comments)}
             </div>
         )
     }
@@ -26,8 +27,8 @@ class Article extends Component {
         })
     }
 
-    getBody() {
-        return this.state.isOpen && <p>{this.props.article.text}</p>
+    getBody(comments) {
+        return this.state.isOpen && <div><p>{this.props.article.text}</p><CommentList comments={comments}/></div>
     }
 }
 
