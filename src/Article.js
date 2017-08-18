@@ -1,34 +1,48 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
+import Comments from './Comments'
 
 class Article extends Component {
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props)
 
-        this.state = {
-            isOpen: true
+    this.state = {
+      isOpen: true,
+      isOpenComment: true
+    }
+  }
+
+  render() {
+    const { article } = this.props
+
+    return (
+      <div>
+        <h3 onClick={this.handleClick}>{article.title}</h3>
+        {this.getBody()}
+        {article.comments && <div>
+          <button onClick={this.handleClickComment} style={{padding: '6px 12px', borderRadius: '3px', border: '1px solid grey', color: 'white', background: 'grey'}}>
+          {this.state.isOpenComment ? 'Hide' : 'Open'}</button>
+          {this.state.isOpenComment && <Comments comments={article.comments} />}
+          </div>
         }
-    }
+      </div>
+    )
+  }
 
-    render() {
-        const {article} = this.props
+  handleClick = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    })
+  }
 
-        return (
-            <div>
-                <h3 onClick = {this.handleClick}>{article.title}</h3>
-                {this.getBody()}
-            </div>
-        )
-    }
+  handleClickComment = () => {
+    this.setState({
+      isOpenComment: !this.state.isOpenComment
+    })
+  }
 
-    handleClick = () => {
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
-    }
-
-    getBody() {
-        return this.state.isOpen && <p>{this.props.article.text}</p>
-    }
+  getBody() {
+    return this.state.isOpen && <p>{this.props.article.text}</p>
+  }
 }
 
 export default Article
