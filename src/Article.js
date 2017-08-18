@@ -13,14 +13,14 @@ class Article extends Component {
 
   render() {
     const { article } = this.props
-
+    const buttonText = this.state.isOpenComment ? 'Hide' : 'Open'
     return (
       <div>
         <h3 onClick={this.handleClick}>{article.title}</h3>
         {this.getBody()}
         {article.comments && <div>
           <button onClick={this.handleClickComment} style={{padding: '6px 12px', borderRadius: '3px', border: '1px solid grey', color: 'white', background: 'grey'}}>
-          {this.state.isOpenComment ? 'Hide' : 'Open'}</button>
+          {buttonText}</button>
           {this.state.isOpenComment && <Comments comments={article.comments} />}
           </div>
         }
