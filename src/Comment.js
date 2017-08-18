@@ -5,8 +5,8 @@ class Comment extends Component {
         super(props);
 
         this.state = {
-            isOpen: false,
-            openComment: false,
+            isOpen: false
+
 
         }
 
@@ -33,14 +33,14 @@ class Comment extends Component {
     getEl() {
         let obj = this.props.comments;
 
-        function objEmpty(res) {
+        function objNotEmpty(res) {
             for (let i in obj) {
                 return true;
             }
             return false;
         }
 
-        if (objEmpty(obj)) {
+        if (objNotEmpty(obj)) {
             const el = obj.map(i => {
                 return this.state.isOpen && <div key={i.id}>
                     <p>{i.user}</p>
