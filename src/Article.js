@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 
 class Article extends Component {
     constructor(props) {
-        super(props)
+
+        super(props);
 
         this.state = {
             isOpen: true
@@ -10,7 +11,8 @@ class Article extends Component {
     }
 
     render() {
-        const {article} = this.props
+
+        const {article} = this.props;
 
         return (
             <div>
@@ -24,7 +26,7 @@ class Article extends Component {
         this.setState({
             isOpen: !this.state.isOpen
         })
-    }
+    };
 
     getBody() {
         return this.state.isOpen && <p>{this.props.article.text}</p>
@@ -32,14 +34,3 @@ class Article extends Component {
 }
 
 export default Article
-
-/*
-export default function Article(props) {
-    const {article} = props
-    return (
-        <div>
-            <h3>{article.title}</h3>
-            <p>{article.text}</p>
-        </div>
-    )
-}*/
