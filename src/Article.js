@@ -1,21 +1,24 @@
 import React, {Component} from 'react'
+import Comment from './Comment'
 
 class Article extends Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
-            isOpen: true
+            isOpen: false
         }
     }
 
     render() {
-        const {article} = this.props
+        const {article} = this.props;
 
         return (
             <div>
                 <h3 onClick = {this.handleClick}>{article.title}</h3>
+
                 {this.getBody()}
+                {this.getComments()}
             </div>
         )
     }
@@ -28,6 +31,9 @@ class Article extends Component {
 
     getBody() {
         return this.state.isOpen && <p>{this.props.article.text}</p>
+    }
+    getComments(){
+        return this.state.isOpen && <Comment comments={this.props.article.comments}/>
     }
 }
 
