@@ -4,14 +4,37 @@ import Comment from './Comment'
 class CommentList extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      commentsSwitch: false
+    }
   }
+
   render() {
-    const commentsArray = this.getComments(this.props.comments)
+    var commentsArray = this.props.comments;
+
     return (
-      <ul>
-        {commentsArray}
-      </ul>
+      <div>
+        {this.getArrayComments()}
+        <button onClick = {this.switchStateComments}>
+          {this.getTextForSwitchButton()}
+        </button>
+      </div>
     )
+  }
+
+  switchStateComments = () => {
+    this.setState({
+        commentsSwitch: !this.state.commentsSwitch
+    })
+  }
+
+  getArrayComments = () => {
+      return this.state.commentsSwitch && <ul>{this.getComments(this.props.comments)}</ul>
+  }
+
+  getTextForSwitchButton(){
+    const textButton = this.state.commentsSwitch ?  "Hide comments" : "Show comments"
+    return textButton
   }
 
   getComments(comments){

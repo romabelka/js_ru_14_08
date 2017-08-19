@@ -9,7 +9,7 @@ class Comment extends Component {
       return (
           <div>
               <h5>{comment.user}</h5>
-              <p> <i>{comment.text}</i></p>
+              <p><i>{comment.text}</i></p>
           </div>
       )
   }
