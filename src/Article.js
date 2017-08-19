@@ -5,19 +5,9 @@ class Article extends Component {
         super(props)
 
         this.state = {
-            isOpen: true
+            isOpen: true,
+            isShown: true
         }
-    }
-
-    render() {
-        const {article} = this.props
-
-        return (
-            <div>
-                <h3 onClick = {this.handleClick}>{article.title}</h3>
-                {this.getBody()}
-            </div>
-        )
     }
 
     handleClick = () => {
@@ -26,8 +16,40 @@ class Article extends Component {
         })
     }
 
+    toggleComments = () => {
+        this.setState({
+            isShown: !this.state.isShown
+        })
+    }
+
+    getComments(article) {
+        return this.state.isShown && article.comments.map(item => <p key={item.id}><b>{`${item.user}: `}</b>{item.text}</p>);
+    }
+
     getBody() {
         return this.state.isOpen && <p>{this.props.article.text}</p>
+    }
+
+    render() {
+        const {article} = this.props
+        let buttonText = this.state.isShown ? 'Hide' : 'Show'
+
+        let button = null;
+        let comments = null;
+
+        if (article.comments) {
+            button = <button onClick={this.toggleComments}>{buttonText}</button>
+            comments = this.getComments(article);
+        }
+
+        return (
+            <div>
+                <h3 onClick = {this.handleClick}>{article.title}</h3>
+                {this.getBody()}
+                {button}
+                {comments}
+            </div>
+        )
     }
 }
 
