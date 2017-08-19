@@ -1,11 +1,17 @@
 import React, {Component} from 'react'
+import ArticleCommentsList from './ArticleCommentsList'
 
 class Article extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            isOpen: true
+            isOpen: true,
+            showComments: false
+        }
+
+        this.commentsWrapStyle = {
+            display: this.state.showComments ? 'block' : 'none'
         }
     }
 
@@ -16,6 +22,10 @@ class Article extends Component {
             <div>
                 <h3 onClick = {this.handleClick}>{article.title}</h3>
                 {this.getBody()}
+                <button onClick = {this.handleCommentsBtnClick}>
+                    {this.state.showComments ? 'Hide' : 'Show'} comments
+                </button>
+                {this.getComments()}
             </div>
         )
     }
@@ -26,9 +36,21 @@ class Article extends Component {
         })
     }
 
+    handleCommentsBtnClick = () => {
+        this.setState({
+            showComments: !this.state.showComments
+        })
+    }
+
     getBody() {
         return this.state.isOpen && <p>{this.props.article.text}</p>
     }
+
+    getComments() {
+        return this.state.showComments && <ArticleCommentsList comments = {this.props.article.comments} />
+    }
+
+
 }
 
 export default Article
