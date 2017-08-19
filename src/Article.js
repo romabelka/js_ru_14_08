@@ -8,6 +8,7 @@ class Article extends Component {
         this.state = {
             isOpen: true
         }
+
     }
 
     render() {

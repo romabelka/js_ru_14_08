@@ -1,14 +1,53 @@
 import React, {Component} from 'react'
 import Comment from './Comment'
+import Button from './Button'
 
-export default function CommentList(props) {
-    const commentElements = props.comments.map(comment => <li key={comment.id}>
-                                                            <Comment comment={comment} />
-                                                        </li>)
+class CommentList extends Component {
 
-    return (
-        <ul>
-            {commentElements}
-        </ul>
-    )
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            isOpen: true
+        }
+
+        this.handleClick = this.handleClick.bind(this)
+        
+    }
+
+    handleClick() {
+        this.setState({
+            isOpen: !this.state.isOpen
+        })
+    }
+
+    render() {
+        const commentElements = this.props.comments.map(comment => <li key={comment.id}>
+            <Comment comment={comment} />
+        </li>)
+
+        return (
+            <div>
+                {this.props.comments.length ? 
+                    <Button 
+                        onClick={this.handleClick}
+                        caption={this.state.isOpen ? "Скрыть комментарии" : "Показать комментарии"} 
+                    />
+                    :
+                    null
+                }
+
+                { this.state.isOpen ?
+                    <ul>
+                        {commentElements}
+                    </ul>
+                    :
+                    null
+                }
+            </div>
+        )
+    }
+
 }
+
+export default CommentList;
