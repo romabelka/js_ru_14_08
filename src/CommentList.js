@@ -32,6 +32,12 @@ class CommentList extends Component {
     changeValue() {
         return (this.state.isOpen ? "Hide" : "Open")
     }
+
+    /*
+    handleComment() {
+        return (this.state.isOpen ? commentElements : [])   //не смог добраться до const commentElements, не видит ее
+    }
+    */
 }
 
 export default CommentList
