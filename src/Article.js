@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import CommentsBlock from './CommentsBlock';
 
 class Article extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class Article extends Component {
             <div>
                 <h3 onClick = {this.handleClick}>{article.title}</h3>
                 {this.getBody()}
+                {this.CommentsBlock}
             </div>
         )
     }
@@ -28,6 +30,10 @@ class Article extends Component {
 
     getBody() {
         return this.state.isOpen && <p>{this.props.article.text}</p>
+    }
+
+    get CommentsBlock() {
+        return <CommentsBlock data={this.props.article.comments}/>
     }
 }
 
