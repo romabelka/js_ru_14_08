@@ -8,7 +8,7 @@ class Article extends Component {
     }
 
     render() {
-        const {article} = this.props
+        const {article} = this.props //зачем переменную брать в {}?
 
         return (
             <div>

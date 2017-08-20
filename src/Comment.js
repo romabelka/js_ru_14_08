@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from './Button'
 
 class Comment extends React.Component {
     render() {
@@ -6,6 +7,7 @@ class Comment extends React.Component {
             <div>
                 <p>{this.props.comment.text}</p>
                 <p><i>{this.props.comment.user}</i></p>
+                <Button/>
             </div>
         )
     }
