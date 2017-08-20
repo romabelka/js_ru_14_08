@@ -1,37 +1,51 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import CommentsList from './CommentsList';
 
-class Article extends Component {
+export default class Article extends Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
-            isOpen: true
+            isOpen: true,
+            showComments: false,
         }
     }
 
     render() {
-        const {article} = this.props
+        const {article} = this.props;
 
         return (
             <div>
-                <h3 onClick = {this.handleClick}>{article.title}</h3>
+                <h3 onClick = {this.handleArticleClick}>{article.title}</h3>
                 {this.getBody()}
+                <button onClick={this.handleButtonClick} >
+                    {this.state.showComments ? "Hide comments" : "Show comments"}
+                </button>
+                {this.getComments()}
             </div>
-        )
+        );
     }
 
-    handleClick = () => {
+    handleArticleClick = () => {
         this.setState({
             isOpen: !this.state.isOpen
-        })
+        });
+    }
+    
+    handleButtonClick = () => {
+        this.setState({
+            showComments: !this.state.showComments
+        });
     }
 
     getBody() {
         return this.state.isOpen && <p>{this.props.article.text}</p>
     }
-}
 
-export default Article
+    getComments() {
+        return this.state.showComments && <CommentsList comments={this.props.article.comments} />
+    }
+}
 
 /*
 export default function Article(props) {

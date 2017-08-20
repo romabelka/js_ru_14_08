@@ -1,13 +1,26 @@
-import React from 'react'
+import React, {Component} from 'react';
 import Article from './Article'
 
-function ArticleList(props) {
-    const articleElements = props.articles.map(article => <li key={article.id}><Article article={article}/></li>)
-    return (
-        <ul>
-            {articleElements}
-        </ul>
-    )
-}
+export default class ArticleList extends Component {
+    constructor(props) {
+        super(props);
+    }
 
-export default ArticleList
+    render() {
+        return (
+            <ul>
+                {this.getElements()}
+            </ul>
+        );
+    }
+    
+    getElements() {
+        return this.props.articles.map(article => {
+            return(
+                <li key={article.id}>
+                    <Article article={article}/>
+                </li>
+            );
+        });
+    }
+}
