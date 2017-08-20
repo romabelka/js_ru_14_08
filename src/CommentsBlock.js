@@ -36,7 +36,12 @@ class CommentsBlock extends React.Component{
         return (
             <div>
                 <p>
-                    <a href="javascript:void(0)" onClick={this.toggleCommentsView}>Показать комментарии</a>
+                    <a href="javascript:void(0)" onClick={this.toggleCommentsView}>
+                        {this.state.isCommentsOpen
+                            ? 'Скрыть'
+                            : 'Показать'
+                        } комментарии
+                    </a>
                 </p>
                 {
                     this.state.isCommentsOpen &&
