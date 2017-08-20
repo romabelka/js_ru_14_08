@@ -1,23 +1,11 @@
 import React, {Component} from 'react'
 
-class Button extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {caption:'Open'}
-
-        }
-
+class Button extends React.Component {
     render() {
         return(
-            <button onClick={this.changeValue()}>{this.props.caption}</button>
+            <button onClick={this.props.onClick}>{this.props.caption}</button>
         )
     }
-
-    changeValue = () => {
-        this.setState({caption:'Close'})
-    }
 }
-
 
 export default Button

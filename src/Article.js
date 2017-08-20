@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import CommentList from "./CommentList";
 
 class Article extends Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class Article extends Component {
             <div>
                 <h3 onClick = {this.handleClick}>{article.title}</h3>
                 {this.getBody()}
+                <CommentList comments={article.comments ? article.comments : [] } />
             </div>
         )
     }

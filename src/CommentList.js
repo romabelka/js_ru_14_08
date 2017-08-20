@@ -3,66 +3,35 @@ import Comment from './Comment'
 import Button from './Button'
 
 class CommentList extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {isOpen: true}
+        this.handleClick = this.handleClick.bind(this)
+    }
+
     render() {
-        const {article} = this.props;
-
-        const commentElements = article.map (comment =>
-            if (comments in article) {
-                return (
-                    <ul>
-                        {commentElements}
-                        <Button/>
-                    </ul>
-                )
-            } else return [];
-        )
-
-
-
-        function ArticleList(props) {
-            const articleElements = props.articles.map(
-                if(comments in article){
-                    this.props.comments.map(comment =>
-                        <li key={comment.id}><Comment comment={comment} /></li>)
-                }else {
-                    <li key={article.id}><Article article={article}/></li>)
-                }
-            )
-
-            return (
-                <ul>
-                    {articleElements}
-                </ul>
-            )
-        }
-
-
-
-
 
         const commentElements = this.props.comments.map(comment =>
             <li key={comment.id}><Comment comment={comment} /></li>)
 
-
-
-
-
-
-        if(comments in this.props) {
-            return(
+        return(
+            <div>
+                <Button onClick={this.handleClick} caption={this.state.isOpen ? "Close" : "Hide"}/>
                 <ul>
-                    {commentElements}
-                    <Button/>
+                    {this.state.isOpen ? commentElements : []}
                 </ul>
-            )
-        } else {
-            return this.props
-        }
-
-
-
-
+            </div>
+        )
     }
+
+    handleClick() {
+        this.setState({
+            isOpen: !this.state.isOpen
+        })
+    }
+
+    
 }
 
 export default CommentList
