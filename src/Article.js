@@ -15,7 +15,7 @@ class Article extends Component {
             <div>
                 <h3 onClick = {this.handleClick}>{article.title}</h3>
                 {this.getBody()}
-                <CommentList comments={article.comments ? article.comments : [] } />
+                <CommentList comments={this.checkArrComments()} />
             </div>
         )
     }
@@ -26,6 +26,10 @@ class Article extends Component {
 
     getBody() {
         return this.state.isOpen && <p>{this.props.article.text}</p>
+    }
+
+    checkArrComments() {
+        return (this.props.article.comments ? this.props.article.comments : [] )
     }
 }
 

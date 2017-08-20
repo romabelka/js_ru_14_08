@@ -6,7 +6,7 @@ class CommentList extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {isOpen: true}
+        this.state = {isOpen: false}
         this.handleClick = this.handleClick.bind(this)
     }
 
@@ -17,7 +17,7 @@ class CommentList extends Component {
 
         return(
             <div>
-                <Button onClick={this.handleClick} caption={this.state.isOpen ? "Close" : "Hide"}/>
+                <Button onClick={this.handleClick} value={this.changeValue()}/>
                 <ul>
                     {this.state.isOpen ? commentElements : []}
                 </ul>
@@ -26,12 +26,12 @@ class CommentList extends Component {
     }
 
     handleClick() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
+        this.setState({isOpen: !this.state.isOpen})
     }
 
-    
+    changeValue() {
+        return (this.state.isOpen ? "Hide" : "Open")
+    }
 }
 
 export default CommentList
