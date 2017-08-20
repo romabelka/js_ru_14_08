@@ -4,9 +4,7 @@ class Article extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-            isOpen: true
-        }
+        this.state = {isOpen: true}
     }
 
     render() {
@@ -21,9 +19,7 @@ class Article extends Component {
     }
 
     handleClick = () => {
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
+        this.setState({isOpen: !this.state.isOpen})
     }
 
     getBody() {
