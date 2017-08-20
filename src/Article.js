@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import Comments from './Comments'
 
 class Article extends Component {
     constructor(props) {
@@ -11,11 +12,13 @@ class Article extends Component {
 
     render() {
         const {article} = this.props
-
+		let commentsTpl
+		if(article.comments !== undefined) commentsTpl=<div><Comments comments={article.comments}/></div>;
         return (
             <div>
                 <h3 onClick = {this.handleClick}>{article.title}</h3>
                 {this.getBody()}
+				{commentsTpl}
             </div>
         )
     }
