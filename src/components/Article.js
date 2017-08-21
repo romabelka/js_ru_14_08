@@ -1,7 +1,16 @@
 import React, {Component} from 'react'
 import CommentList from './CommentList'
+import PropTypes from 'prop-types'
 
 class Article extends Component {
+    static propTypes = {
+        article: PropTypes.shape({
+            id: PropTypes.string,
+            title: PropTypes.string.isRequired,
+            text: PropTypes.string
+        }).isRequired
+    }
+
     constructor(props) {
         super(props)
 
@@ -15,7 +24,7 @@ class Article extends Component {
 
         return (
             <div>
-                <h3 onClick = {this.handleClick}>{article.title}</h3>
+                <h3 onClick = {this.handleClick}>{article.title}!!!!!!</h3>
                 {this.getBody()}
             </div>
         )
