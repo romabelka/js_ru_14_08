@@ -6,7 +6,6 @@ class Article extends Component {
         super(props)
 
         this.state = {
-            showComment: false,
             isOpen: true
         }
     }
@@ -18,8 +17,8 @@ class Article extends Component {
             <div>
                 <h3 onClick = {this.handleClick}>{article.title}</h3>
                 {this.getBody()}
-                {this.getComment()}
-                <button onClick= {this.showComment}>{this.state.showComment ? 'Скрыть' : 'Показать'}</button>
+                <CommentList comments = {this.props.article.comments}/>
+               
             </div>
         )
     }
@@ -28,16 +27,6 @@ class Article extends Component {
         this.setState({
             isOpen: !this.state.isOpen
         })
-    }
-
-    showComment = () => {
-        this.setState({
-            showComment: !this.state.showComment
-        })
-    }
-
-    getComment() {
-        return this.state.showComment && <CommentList comments = {this.props.article.comments}/>
     }
 
     getBody() {
