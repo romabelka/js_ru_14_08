@@ -15,7 +15,8 @@ class Article extends Component {
         super(props)
 
         this.state = {
-            isOpen: true
+            isOpen: props,
+            counter: 0
         }
     }
 
@@ -24,11 +25,16 @@ class Article extends Component {
 
         return (
             <div>
-                <h3 onClick = {this.handleClick}>{article.title}!!!!!!</h3>
+                <button onClick = {this.increment}>Increment</button>
+                <h3 onClick = {this.handleClick}>{article.title}</h3>
                 {this.getBody()}
             </div>
         )
     }
+
+    increment = () => this.setState({
+        count: this.state.count + 1
+    })
 
     handleClick = () => {
         this.setState({
