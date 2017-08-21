@@ -1,5 +1,6 @@
 import React from 'react'
 import ArticleList from './components/ArticleList'
+import PropTypes from 'prop-types'
 
 export default function App(props) {
     return (
@@ -12,3 +13,7 @@ export default function App(props) {
         </div>
     )
 }
+
+App.propTypes = {
+    articles: PropTypes.array.isRequired
+};
