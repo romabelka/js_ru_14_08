@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import CommentList from './CommentList'
 
 class Article extends Component {
     constructor(props) {
@@ -27,7 +28,12 @@ class Article extends Component {
     }
 
     getBody() {
-        return this.state.isOpen && <p>{this.props.article.text}</p>
+        return this.state.isOpen && (
+            <div>
+                <p>{this.props.article.text}</p>
+                <CommentList comments = {this.props.article.comments}/>
+            </div>
+        )
     }
 }
 
