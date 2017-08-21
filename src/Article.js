@@ -32,13 +32,10 @@ class Article extends Component {
             return null
         }
 
-        const article = this.props.article;
-        const comments = article.comments && !!article.comments.length && <CommentList comments={article.comments} />
-
         return (
             <div>
-                <p>{article.text}</p>
-                {comments}
+                <p>{this.props.article.text}</p>
+                <CommentList comments={this.props.article.comments} />
             </div>
         )
     }

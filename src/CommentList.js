@@ -33,6 +33,10 @@ class CommentList extends Component {
     }
 
     render() {
+        if (!this.props.comments || !this.props.comments.length) {
+            return null;
+        }
+
         const buttonText = `${this.state.isOpened ? 'Hide' : 'Show'} Comments`
 
         return (
