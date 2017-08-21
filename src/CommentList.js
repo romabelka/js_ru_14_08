@@ -22,13 +22,16 @@ class CommentList extends Component {
     }
 
     render() {
-        const commentElements = this.props.comments.map(comment => <li key={comment.id}>
-            <Comment comment={comment} />
-        </li>)
+        const commentElements = this.props.comments ? 
+            this.props.comments.map(comment => <li key={comment.id}> 
+                <Comment comment={comment} />
+            </li>) 
+            : 
+            null
 
         return (
             <div>
-                {this.props.comments.length ? 
+                {commentElements ? 
                     <Button 
                         onClick={this.handleClick}
                         caption={this.state.isOpen ? "Скрыть комментарии" : "Показать комментарии"} 

@@ -18,7 +18,7 @@ class Article extends Component {
             <div>
                 <h3 onClick = {this.handleClick}>{article.title}</h3>
                 {this.getBody()}
-                <CommentList comments={article.comments ? article.comments : [] } />
+                <CommentList comments={article.comments} />
             </div>
         )
     }
