@@ -5,9 +5,6 @@ class CommentsList extends Component {
     constructor(props) {
         super(props);
 
-        if (props.comments !== undefined) 
-            
-
         this.state = {
             isOpenCommentsBlock: true
         }
