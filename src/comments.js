@@ -6,9 +6,7 @@ class CommentsList extends Component {
         super(props);
 
         if (props.comments !== undefined) 
-            this.commentElements = props.comments.map(
-                comment => <li key={comment.id}><Comment comment={comment}/></li>
-            );
+            
 
         this.state = {
             isOpenCommentsBlock: true
@@ -17,14 +15,20 @@ class CommentsList extends Component {
     
     render() {
         //if we had no comments nothing to render
-        if (this.props.comments === undefined) return (null);
-        //else
-        return (
-            <ul>
-                <button onClick={this.toggleComments}>{this.getButtonName()}</button>
-                {this.getBody()}
-            </ul>
-        )
+        if (this.props.comments === undefined) 
+            return (null);
+        else {
+            this.commentElements = this.props.comments.map(
+                comment => <li key={comment.id}><Comment comment={comment}/></li>
+            );
+
+            return (
+                <ul>
+                    <button onClick={this.toggleComments}>{this.getButtonName()}</button>
+                    {this.getBody()}
+                </ul>
+            )
+        }
     }
 
     toggleComments = () => {
