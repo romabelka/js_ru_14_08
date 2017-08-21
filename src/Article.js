@@ -6,25 +6,18 @@ class Article extends Component {
         super(props)
 
         this.state = {
-            isOpen: true,
-            showComments: false
+            isOpen: true
         }
 
-        this.commentsWrapStyle = {
-            display: this.state.showComments ? 'block' : 'none'
-        }
     }
 
     render() {
         const {article} = this.props
-
+        console.log("Article render")
         return (
             <div>
                 <h3 onClick = {this.handleClick}>{article.title}</h3>
                 {this.getBody()}
-                <button onClick = {this.handleCommentsBtnClick}>
-                    {this.state.showComments ? 'Hide' : 'Show'} comments
-                </button>
                 {this.getComments()}
             </div>
         )
@@ -36,18 +29,12 @@ class Article extends Component {
         })
     }
 
-    handleCommentsBtnClick = () => {
-        this.setState({
-            showComments: !this.state.showComments
-        })
-    }
-
     getBody() {
         return this.state.isOpen && <p>{this.props.article.text}</p>
     }
 
     getComments() {
-        return this.state.showComments && <ArticleCommentsList comments = {this.props.article.comments} />
+        return <ArticleCommentsList comments = {this.props.article.comments} />
     }
 
 
