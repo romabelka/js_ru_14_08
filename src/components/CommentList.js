@@ -2,12 +2,12 @@ import React, {Component} from 'react'
 import Comment from './Comment'
 
 class CommentList extends Component {
-    constructor(props) {
-        super(props);
+    static defaultProps = {
+        comments: []
+    }
 
-        this.state = {
-            isOpened: false
-        }
+    state = {
+        isOpened: false
     }
 
     handleClick = () => {
@@ -21,22 +21,16 @@ class CommentList extends Component {
             return null;
         }
 
-        const commentElements = this.props.comments.map(comment => {
-            return <li key={comment.id}><Comment comment={comment} /></li>
-        })
+        const { comments } = this.props;
 
-        return (
+        return comments.length ? (
             <ul>
-                {commentElements}
+                {comments.map(comment => <li key={comment.id}><Comment comment={comment} /></li>)}
             </ul>
-        )
+        ) : <h3>No comments yet</h3>
     }
 
     render() {
-        if (!this.props.comments || !this.props.comments.length) {
-            return null;
-        }
-
         const buttonText = `${this.state.isOpened ? 'Hide' : 'Show'} Comments`
 
         return (
