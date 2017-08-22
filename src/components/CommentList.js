@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import Comment from './Comment'
 import toggleOpen from '../decorators/toggleOpen'
 
@@ -7,26 +8,9 @@ class CommentList extends Component {
         comments: []
     }
 
-    componentWillMount() {
-        console.log('---', 'mounting comment list')
+    static propTypes = {
+        comments: PropTypes.array
     }
-
-    componentDidMount() {
-        console.log('---', 'mounted')
-    }
-
-    componentWillReceiveProps() {
-        console.log('---', 'updating props')
-    }
-
-    componentWillUpdate() {
-        console.log('---', 'updating state or props')
-    }
-
-    componentWillUnmount() {
-        console.log('---', 'unmounting')
-    }
-
 
     render() {
         const {isOpen, toggleOpen} = this.props

@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import ArticleList from './components/ArticleList'
 
-export default function App(props) {
+function App(props) {
     return (
         <div>
             <h2>Menu</h2>
@@ -12,3 +13,9 @@ export default function App(props) {
         </div>
     )
 }
+
+App.propTypes = {
+    articles: PropTypes.array
+}
+
+export default App
