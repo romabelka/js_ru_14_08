@@ -1,5 +1,5 @@
 import React from 'react'
-import ArticleList from './ArticleList'
+import ArticleList from './components/ArticleList'
 
 export default function App(props) {
     return (

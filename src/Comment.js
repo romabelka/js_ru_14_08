@@ -34,7 +34,7 @@ class Comment extends Component {
         let obj = this.props.comments;
 
         function objNotEmpty(res) {
-            for (let i in obj) {
+            for (let i in res) {
                 return true;
             }
             return false;
