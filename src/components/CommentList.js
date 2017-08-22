@@ -7,27 +7,6 @@ class CommentList extends Component {
         comments: []
     }
 
-    componentWillMount() {
-        console.log('---', 'mounting comment list')
-    }
-
-    componentDidMount() {
-        console.log('---', 'mounted')
-    }
-
-    componentWillReceiveProps() {
-        console.log('---', 'updating props')
-    }
-
-    componentWillUpdate() {
-        console.log('---', 'updating state or props')
-    }
-
-    componentWillUnmount() {
-        console.log('---', 'unmounting')
-    }
-
-
     render() {
         const {isOpen, toggleOpen} = this.props
         const text = isOpen ? 'hide comments' : 'show comments'

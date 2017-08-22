@@ -7,7 +7,10 @@ export default (OriginalComponent) => class Accordion extends React.Component {
     }
 
     toggleOpenArticle = (openArticleId) => () => {
-        this.setState({ openArticleId })
+        this.state.openArticleId !== openArticleId ? 
+            this.setState({ openArticleId })
+            :
+            this.setState({ openArticleId: null })
     }
 
     render() {
