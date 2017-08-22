@@ -6,8 +6,7 @@ class CommentList extends Component {
         super(props)
 
         this.state = {
-            isOpen: false,
-            label:'Show commets'
+            isOpen: false
         }
     }
 
@@ -26,15 +25,14 @@ class CommentList extends Component {
     handleClick = () => {
         let state = this.state.isOpen ? 'Show' : 'Hide'
         this.setState({
-            isOpen: !this.state.isOpen,
-            label: `${state} commets` })
+            isOpen: !this.state.isOpen })
     }
     getBody=()=> {
          const commentsElements = (this.props.comments||[]).map(comment => <li key={comment.id}><Comment comment={comment}/></li>)
         return this.state.isOpen && <ul>{commentsElements}</ul>
     }
     getButton=()=> {
-        return this.props.comments && this.props.comments.length && <button onClick = {this.handleClick} >{this.state.label}</button>
+          return this.props.comments && this.props.comments.length && <button onClick = {this.handleClick} >{this.state.isOpen ? 'Hide comments':'Show comments'}</button>
     }
 }
 
