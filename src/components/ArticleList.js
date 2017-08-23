@@ -25,14 +25,11 @@ class ArticleList extends Component {
     }
 
     toggleOpenArticle(openArticleId) {
-        this.setState({ openArticleId })
+        let id = this.state.openArticleId != openArticleId ? openArticleId : null
+        this.setState({ openArticleId : id })
     }
 
-/*
-    toggleOpenArticle = (openArticleId) => () => {
-        this.setState({ openArticleId })
-    }
-*/
+
 }
 
 export default ArticleList
