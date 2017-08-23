@@ -1,30 +1,36 @@
 import React, {Component} from 'react'
 import Comment from './Comment'
+import PropTypes from 'prop-types'
 import toggleOpen from '../decorators/toggleOpen'
 
 class CommentList extends Component {
+    static propTypes = {
+        comments: PropTypes.array.isRequired,
+        isOpen: PropTypes.bool.isRequired
+    }
+
     static defaultProps = {
         comments: []
     }
 
     componentWillMount() {
-        console.log('---', 'mounting comment list')
+        //console.log('---', 'mounting comment list')
     }
 
     componentDidMount() {
-        console.log('---', 'mounted')
+        //console.log('---', 'mounted')
     }
 
     componentWillReceiveProps() {
-        console.log('---', 'updating props')
+        //console.log('---', 'updating props')
     }
 
     componentWillUpdate() {
-        console.log('---', 'updating state or props')
+        //console.log('---', 'updating state or props')
     }
 
     componentWillUnmount() {
-        console.log('---', 'unmounting')
+        //console.log('---', 'unmounting')
     }
 
 
