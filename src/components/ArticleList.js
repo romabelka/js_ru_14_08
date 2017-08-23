@@ -34,8 +34,8 @@ class ArticleList extends Component {
         )
     }
 
-    toggleOpenArticle = (openArticleId) => () => {
-        this.props.toggle(openArticleId);
+    toggleOpenArticle = (articleId) => () => {
+        this.props.toggle(articleId);
     };
 
 /*

@@ -5,15 +5,11 @@ import PropTypes from 'prop-types'
 
 class CommentList extends Component {
     static propTypes = {
-        comments: PropTypes.array,
-        isOpen: PropTypes.bool,
-        toggleOpen: PropTypes.func
+        comments: PropTypes.array
     };
 
     static defaultProps = {
-        comments: [],
-        isOpen: false,
-        toggleOpen: () => {}
+        comments: []
     };
 
     componentWillMount() {
