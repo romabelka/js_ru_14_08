@@ -6,15 +6,18 @@ import toggleOpen from '../decorators/toggleOpen'
 class Article extends Component {
     static propTypes = {
         article: PropTypes.shape({
-            id: PropTypes.string,
+            id: PropTypes.string.isRequired,
+            date: PropTypes.string,
             title: PropTypes.string.isRequired,
-            text: PropTypes.string
-        }).isRequired
+            text: PropTypes.string,
+            comments: PropTypes.array,
+        }).isRequired,
+        toggleOpen: PropTypes.func,
+        isOpen: PropTypes.bool.isRequired,
     }
 
     render() {
         const {article, toggleOpen} = this.props
-        console.log('---', toggleOpen)
 
         return (
             <div>
