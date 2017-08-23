@@ -18,7 +18,7 @@ class Article extends Component {
 
         return (
             <div>
-                <h3 onClick = {toggleOpen()}>{article.title}</h3>
+                <h3 onClick = {toggleOpen}>{article.title}</h3>
                 {this.getBody()}
             </div>
         )
