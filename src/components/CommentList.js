@@ -1,8 +1,13 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types';
 import Comment from './Comment'
 import toggleOpen from '../decorators/toggleOpen'
 
 class CommentList extends Component {
+    static propTypes = {
+        comments: PropTypes.arrayOf(PropTypes.object)
+    }
+
     static defaultProps = {
         comments: []
     }

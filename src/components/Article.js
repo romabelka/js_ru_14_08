@@ -9,12 +9,13 @@ class Article extends Component {
             id: PropTypes.string,
             title: PropTypes.string.isRequired,
             text: PropTypes.string
-        }).isRequired
+        }).isRequired,
+        toggleOpen: PropTypes.func,
+        isOpen: PropTypes.bool
     }
 
     render() {
         const {article, toggleOpen} = this.props
-        console.log('---', toggleOpen)
 
         return (
             <div>
