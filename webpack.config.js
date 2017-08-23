@@ -1,4 +1,6 @@
-var path = require('path')
+var path = require('path');
+var ProgressBarPlugin = require('progress-bar-webpack-plugin');
+
 
 module.exports = {
     devtool: 'source-map',

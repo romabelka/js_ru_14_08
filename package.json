@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/romabelka/js_ru_14_08"
   },
-  "author": "",
+  "author": "Samoylis_D",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/romabelka/js_ru_14_08"
@@ -24,11 +24,12 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
+    "progress-bar-webpack-plugin": "1.10.0",
+    "prop-types": "15.5.10",
     "webpack": "^3.0.0",
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
-    "prop-types": "^15.5.10",
     "react": "^15.5.0",
     "react-dom": "^15.5.0"
   }
