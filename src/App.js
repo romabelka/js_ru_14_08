@@ -1,14 +1,21 @@
-import React from 'react'
+import React, {Component, PropTypes} from 'react'
 import ArticleList from './components/ArticleList'
 
-export default function App(props) {
+class App extends Component {
+  static propTypes = {
+    articles: PropTypes.array.isRequired
+  }
+  render() {
     return (
-        <div style={{ width: '80%', margin: '0 auto' }}>
-            <h2>Menu</h2>
-            <div>
-                <h1>News App</h1>
-                <ArticleList articles = {props.articles}/>
-            </div>
+      <div style={{ width: '80%', margin: '0 auto' }}>
+        <h2>Menu</h2>
+        <div>
+          <h1>News App</h1>
+          <ArticleList articles = {this.props.articles}/>
         </div>
+      </div>
     )
+  }
 }
+
+export default App
