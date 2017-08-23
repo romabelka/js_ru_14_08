@@ -1,4 +1,3 @@
-//decorator === HOC === Higher Order Component
 import React from 'react'
 
 export default (OriginalComponent) => class WrappedComponent extends React.Component {
