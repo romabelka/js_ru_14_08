@@ -8,7 +8,6 @@ export default function App(props) {
             <div>
                 <h1>News App</h1>
                 <ArticleList articles = {props.articles}/>
-
             </div>
         </div>
     )
