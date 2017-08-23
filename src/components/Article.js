@@ -1,24 +1,38 @@
-import React, { Component } from 'react';
-import Comments from './Comments.jsx';
+import React, {Component} from 'react'
+import CommentList from './CommentList'
+import PropTypes from 'prop-types'
+
 
 class Article extends Component {
+    static propTypes = {
+        article: PropTypes.shape({
+            id: PropTypes.string,
+            title: PropTypes.string.isRequired,
+            text: PropTypes.string
+        }).isRequired,
+        toggleOpen: PropTypes.func,
+        isOpen: PropTypes.bool,
+    }
 
-  render() {
-    const { article, isShowComments } = this.props;
+    render() {
+        const {article, toggleOpen} = this.props
 
-    return (
-      <div>
-        <h3 onClick={this.handleClick}>{article.title}</h3>
-        <p>{article.text}</p>
-        {
-          isShowComments && <div>
-            <i>Comments:</i>
-            <Comments comments={article.comments} />
-          </div>
-        }
-      </div>
-    )
-  }
+        return (
+            <div>
+                <h3 onClick = {() => toggleOpen(article.id)}>{article.title}</h3>
+                {this.getBody()}
+            </div>
+        )
+    }
+
+    getBody() {
+        return this.props.isOpen && (
+            <div>
+                <p>{this.props.article.text}</p>
+                <CommentList comments = {this.props.article.comments}/>
+            </div>
+        )
+    }
 }
 
 export default Article

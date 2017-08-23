@@ -1,18 +1,35 @@
-import React from 'react'
+import React, {Component} from 'react'
 import Article from './Article'
+import PropTypes from 'prop-types'
+import toggleOpen from '../decorators/toggleOpen'
 
-function ArticleList(props) {
+class ArticleList extends Component {
 
-  const articleElements = props.articles.map(article => (
-    <li key={article.id}>
-      <Article article={article} isShowComments={props.isShowComments}/>
-    </li>));
+  static propTypes = {
+    articles: PropTypes.array,
+    isOpen: PropTypes.bool,
+    toggleOpenArticle: PropTypes.func,
+  };
 
-  return (
-    <ul>
-      {articleElements}
-    </ul>
-  )
+  render() {
+    const {articles, openArticleId, toggleOpenArticle} = this.props;
+    const articleElements = articles.map(article => (
+      <li key={article.id}>
+        <Article
+          article={article}
+          isOpen={article.id === openArticleId}
+          toggleOpen={toggleOpenArticle}
+        />
+      </li>
+    ));
+
+    return (
+      <ul>
+        {articleElements}
+      </ul>
+    )
+  }
+
 }
 
-export default ArticleList
+export default toggleOpen(ArticleList)

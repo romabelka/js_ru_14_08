@@ -1,21 +1,13 @@
 import React, { Component } from 'react'
 import ArticleList from './ArticleList'
+import PropTypes from 'prop-types'
 
 class App extends Component{
-  constructor(props){
-    super(props);
-
-    this.state = {
-      isShowComments: false
-    }
+  static propTypes = {
+    articles: PropTypes.array,
   }
 
-  handleToggleComments = () => {
-    this.setState({isShowComments: !this.state.isShowComments})
-  };
-
   render() {
-    const { isShowComments } = this.state;
     const { articles } = this.props;
 
     return (
@@ -23,8 +15,7 @@ class App extends Component{
         <h2>Menu</h2>
           <div>
           <h1>News App</h1>
-          <button onClick={this.handleToggleComments}>{isShowComments ? 'Hide' : 'Show'} comments</button>
-          <ArticleList articles={articles || []} isShowComments={isShowComments}/>
+          <ArticleList articles={articles || []} />
         </div>
       </div>
     )

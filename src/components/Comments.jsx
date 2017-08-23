@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 
 class Comments extends Component {
+  static propTypes = {
+    comments: PropTypes.array,
+  }
   render(){
     const { comments } = this.props;
     return(
