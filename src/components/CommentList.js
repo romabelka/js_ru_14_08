@@ -1,8 +1,16 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import Comment from './Comment'
 import toggleOpen from '../decorators/toggleOpen'
 
 class CommentList extends Component {
+  static propTypes = {
+        Article: PropTypes.shape({
+            id: PropTypes.string,
+            title: PropTypes.string.isRequired,
+            text: PropTypes.string
+        }).isRequired
+    }
 
   static defaultProps = {
     comments: []
@@ -11,7 +19,6 @@ class CommentList extends Component {
   render() {
     console.log(this.props)
     const {comments, isOpen} = this.props
-    console.log(isOpen);
     const textButton = !isOpen ?  "Hide comments" : "Show comments"
     return (
       <div>
