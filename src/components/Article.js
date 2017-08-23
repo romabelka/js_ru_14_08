@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import CommentList from './CommentList'
 import PropTypes from 'prop-types'
-import toggleOpen from '../decorators/toggleOpen'
+import toggleOpen from '../decorators/accordion'
 
 class Article extends Component {
     static propTypes = {
@@ -14,7 +14,6 @@ class Article extends Component {
 
     render() {
         const {article, toggleOpen} = this.props
-        console.log('---', toggleOpen)
 
         return (
             <div>
