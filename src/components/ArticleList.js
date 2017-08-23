@@ -1,7 +1,17 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import Article from './Article'
+import accordion from '../decorators/accordion'
 
 class ArticleList extends Component {
+    static propTypes = {
+        articles: PropTypes.array
+    };
+
+    static defaultProps = {
+        articles: []
+    };
+
     state = {
         openArticleId: null
     }
@@ -11,8 +21,8 @@ class ArticleList extends Component {
             <li key={article.id}>
                 <Article
                     article={article}
-                    isOpen={article.id === this.state.openArticleId}
-                    toggleOpen={this.toggleOpenArticle.bind(this, article.id)}
+                    isOpen={article.id === this.props.activeItemId}
+                    toggleOpen={this.toggleOpenArticle(article.id)}
                 />
             </li>
         ))
@@ -24,9 +34,9 @@ class ArticleList extends Component {
         )
     }
 
-    toggleOpenArticle(openArticleId) {
-        this.setState({ openArticleId })
-    }
+    toggleOpenArticle = (openArticleId) => () => {
+        this.props.toggle(openArticleId);
+    };
 
 /*
     toggleOpenArticle = (openArticleId) => () => {
@@ -35,4 +45,4 @@ class ArticleList extends Component {
 */
 }
 
-export default ArticleList
+export default accordion(ArticleList);
