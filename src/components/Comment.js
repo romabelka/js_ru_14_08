@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import propTypes from 'prop-types';
 
 function Comment({comment}) {
     return (
@@ -8,4 +9,12 @@ function Comment({comment}) {
     )
 }
 
-export default Comment
+export default Comment;
+
+Comment.propTypes = {
+    comment: propTypes.shape({
+        id: propTypes.string,
+        user: propTypes.string,
+        text: propTypes.string
+    })
+}

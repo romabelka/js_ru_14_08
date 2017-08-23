@@ -1,35 +1,42 @@
-import React, {Component} from 'react'
-import Comment from './Comment'
-import toggleOpen from '../decorators/toggleOpen'
+import React, {Component} from 'react';
+import Comment from './Comment';
+import toggleOpen from '../decorators/toggleOpen';
+
+import propTypes from 'prop-types';
+
 
 class CommentList extends Component {
+    static propTypes = {
+        comments: propTypes.array
+    }
     static defaultProps = {
         comments: []
     }
 
-    componentWillMount() {
-        console.log('---', 'mounting comment list')
-    }
+    // componentWillMount() {
+    //     console.log('---', 'mounting comment list')
+    // }
 
-    componentDidMount() {
-        console.log('---', 'mounted')
-    }
+    // componentDidMount() {
+    //     console.log('---', 'mounted')
+    // }
 
-    componentWillReceiveProps() {
-        console.log('---', 'updating props')
-    }
+    // componentWillReceiveProps() {
+    //     console.log('---', 'updating props')
+    // }
 
-    componentWillUpdate() {
-        console.log('---', 'updating state or props')
-    }
+    // componentWillUpdate() {
+    //     console.log('---', 'updating state or props')
+    // }
 
-    componentWillUnmount() {
-        console.log('---', 'unmounting')
-    }
+    // componentWillUnmount() {
+    //     console.log('---', 'unmounting')
+    // }
 
 
     render() {
         const {isOpen, toggleOpen} = this.props
+        console.log(this.props)
         const text = isOpen ? 'hide comments' : 'show comments'
         return (
             <div>
@@ -42,7 +49,6 @@ class CommentList extends Component {
     getBody() {
         const { comments, isOpen } = this.props
         if (!isOpen) return null
-
         return comments.length ? (
             <ul>
                 {comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)}
