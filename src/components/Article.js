@@ -24,11 +24,20 @@ class Article extends PureComponent {
         console.log('---', 'rendering article')
 
         return (
-            <div>
+            <div ref={this.setContainerRef}>
                 <h3 onClick = {toggleOpen}>{article.title}</h3>
                 {this.getBody()}
             </div>
         )
+    }
+
+    setContainerRef = (container) => {
+        console.log('---', container)
+        this.container = container
+    }
+
+    componentDidUpdate() {
+        console.log('---', this.container.getBoundingClientRect())
     }
 /*
 
