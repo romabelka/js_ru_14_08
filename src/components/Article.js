@@ -1,6 +1,7 @@
 import React, {Component, PureComponent} from 'react'
 import CommentList from './CommentList'
 import PropTypes from 'prop-types'
+import {findDOMNode} from 'react-dom'
 
 class Article extends PureComponent {
     static propTypes = {
@@ -51,9 +52,22 @@ class Article extends PureComponent {
         return this.props.isOpen && (
             <div>
                 <p>{this.props.article.text}</p>
-                <CommentList comments = {this.props.article.comments}/>
+                <CommentList comments = {this.props.article.comments} ref = {this.setCommentsRef}/>
             </div>
         )
+    }
+
+    setCommentsRef = (commentsRef) => {
+        this.commentsRef = commentsRef
+        console.log('---', findDOMNode(commentsRef))
+//        commentsRef.forceUpdate()
+/*
+        setTimeout(() => {
+            commentsRef.setState({
+                isOpen: true
+            })
+        }, 500)
+*/
     }
 }
 

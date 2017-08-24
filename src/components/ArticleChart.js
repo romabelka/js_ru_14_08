@@ -7,16 +7,23 @@ class ArticleChart extends Component {
     };
 
     render() {
-        return <div ref={this.setContainerRef}/>
+        return <div ref='container'/>
     }
 
+    componentDidMount() {
+        //do some drawing with d3 in this.refs.container
+//     this.refs.container
+    }
+
+/*
     setContainerRef = container => {
         this.container = container
         //do some drawing with d3 in container
     }
+*/
 
     componentDidUpdate() {
-        //update d3 chart in this.container
+        //update d3 chart in this.refs.container
     }
 }
 
