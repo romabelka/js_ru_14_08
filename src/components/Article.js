@@ -4,13 +4,17 @@ import CommentList from './CommentList'
 import toggleOpen from '../decorators/toggleOpen'
 
 class Article extends Component {
+
   static propTypes = {
         article: PropTypes.shape({
             id: PropTypes.string,
             title: PropTypes.string.isRequired,
             text: PropTypes.string
-        }).isRequired
+        }).isRequired,
+        isOpen: PropTypes.bool,
+        toggleOpen: PropTypes.func
     }
+
     render() {
         const {article, isOpen, toggleOpen} = this.props
         return (
@@ -22,14 +26,10 @@ class Article extends Component {
         )
     }
 
-
-
     getBody() {
         const {article, isOpen} = this.props
         return isOpen && <p>{this.props.article.text}</p>
     }
-
-
 }
 
 export default Article;

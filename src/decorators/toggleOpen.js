@@ -2,6 +2,7 @@
 import React from 'react'
 
 export default (WrappedComponent) => class extends React.Component {
+  
   state = {
       isOpen: true
   }
@@ -11,7 +12,6 @@ export default (WrappedComponent) => class extends React.Component {
           isOpen: !this.state.isOpen
       })
   }
-
 
    render() {
      // Wraps the input component in a container, without mutating it. Good!

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 
 export default (WrappedList) => class extends Component {
+  
   state = {
     openArticleId: null,
     accordionStatus: false
