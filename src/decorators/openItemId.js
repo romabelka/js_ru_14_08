@@ -1,13 +1,15 @@
 import React from 'react'
 
-export default (OriginalComponent) => class AccordionWrapper extends React.Component {
+export default (OriginalComponent) => class ArticleWrapper extends React.Component {
   state = {
-    openArticleId: null,
+    id: null,
   }
 
   toggleOpenArticle = (openArticleId) => () => {
+    console.log('openArticleId: ', openArticleId);
+    console.log('this.state.id: ', this.state.id);
       this.setState({ 
-        openArticleId: openArticleId === this.state.openArticleId ? null : openArticleId
+        id: openArticleId === this.state.id ? null : openArticleId
     })
   }
   render() {
