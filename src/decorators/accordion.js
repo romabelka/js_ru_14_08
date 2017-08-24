@@ -4,7 +4,7 @@ export default Component => class Accordion extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            openItemId: null
+            openItemId: props.defaultOpenId
         }
     }
 

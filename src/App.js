@@ -28,7 +28,7 @@ export default class App extends Component {
                             onChange = {this.handleSelectionChange}
                             multi
                     />
-                    <ArticleList articles = {articles}/>
+                    <ArticleList articles = {articles} defaultOpenId={articles[0].id} />
                     <ArticleChart articles = {articles} />
                 </div>
             </div>
