@@ -10,6 +10,18 @@ class CommentList extends Component {
         toggleOpen: PropTypes.func
     }
 
+    componentDidMount() {
+        console.log('---', 'mounted')
+    }
+
+    componentWillUnmount() {
+        console.log('---', 'unmounting')
+    }
+
+    componentDidUpdate() {
+        console.log('---', 'updated')
+    }
+
     render() {
         const {isOpen, toggleOpen} = this.props
         const text = isOpen ? 'hide comments' : 'show comments'
