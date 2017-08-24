@@ -6,7 +6,8 @@ export default (OriginalComponent) => class WrappedComponent extends React.Compo
         isOpen: false
     }
 
-    toggleOpen = () => {
+    toggleOpen = (e) => {
+        e.preventDefault()
         this.setState({
             isOpen: !this.state.isOpen
         })
