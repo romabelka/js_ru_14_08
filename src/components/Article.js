@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, {Component, PureComponent} from 'react'
 import CommentList from './CommentList'
 import PropTypes from 'prop-types'
 
-class Article extends Component {
+class Article extends PureComponent {
     static propTypes = {
         article: PropTypes.shape({
             id: PropTypes.string,
@@ -13,8 +13,15 @@ class Article extends Component {
         toggleOpen: PropTypes.func
     }
 
+/*
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.props.isOpen !== nextProps.isOpen
+    }
+*/
+
     render() {
         const {article, toggleOpen} = this.props
+        console.log('---', 'rendering article')
 
         return (
             <div>
@@ -23,6 +30,13 @@ class Article extends Component {
             </div>
         )
     }
+/*
+
+    deleteComment = () => {
+        this.props.article.comments.splice(0,1)
+        this.setState({})
+    }
+*/
 
     getBody() {
         return this.props.isOpen && (

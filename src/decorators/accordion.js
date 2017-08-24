@@ -9,7 +9,7 @@ export default Component => class Accordion extends React.Component {
     }
 
     render() {
-        return <Component {...this.props} toggleOpenItem = {this.toggleOpenItem} openItemId = {this.state.openItemId}/>
+        return <Component {...this.props} toggleOpenItem = {this.toggleOpenItemMemoized} openItemId = {this.state.openItemId}/>
     }
 
     toggleOpenItem = openItemId => ev => {
@@ -18,7 +18,6 @@ export default Component => class Accordion extends React.Component {
         })
     }
 
-/*
     toggleOpenItemMemoized = (openItemId) => {
         if (this.memoizedTogglers.get(openItemId)) return this.memoizedTogglers.get(openItemId)
         const toggler = this.toggleOpenItem(openItemId)
@@ -27,5 +26,4 @@ export default Component => class Accordion extends React.Component {
     }
 
     memoizedTogglers = new Map()
-*/
 }
