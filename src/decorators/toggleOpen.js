@@ -1,13 +1,12 @@
 //decorator === HOC === Higher Order Component
 import React from 'react'
 
-export default (OriginalComponent) => class WrappedComponent extends React.Component {
+export default (OriginalComponent) => class ToggleOpenDecorator extends React.Component {
     state = {
         isOpen: false
     }
 
-    toggleOpen = (e) => {
-        e.preventDefault()
+    toggleOpen = () => {
         this.setState({
             isOpen: !this.state.isOpen
         })
