@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Comment({comment}) {
+function Comment({comment}) {		
     return (
         <div>
             {comment.text} <b>by {comment.user}</b>

@@ -1,13 +1,25 @@
+import PropTypes from 'prop-types';
 import React, {Component} from 'react'
 import Comment from './Comment'
 import toggleOpen from '../decorators/toggleOpen'
 
+
 class CommentList extends Component {
+		
+	static propTypes = {
+		comments: PropTypes.shape({
+			id: PropTypes.string.isRequired,
+			text: PropTypes.string.isRequired,
+			user: PropTypes.string,
+		}).isRequired
+	}	
+			
+	
     static defaultProps = {
         comments: []
-    }
+	}
 
-    componentWillMount() {
+/*    componentWillMount() {
         console.log('---', 'mounting comment list')
     }
 
@@ -25,7 +37,7 @@ class CommentList extends Component {
 
     componentWillUnmount() {
         console.log('---', 'unmounting')
-    }
+    }*/
 
 
     render() {
