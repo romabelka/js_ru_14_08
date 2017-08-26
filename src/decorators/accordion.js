@@ -1,15 +1,13 @@
 import React, {Component} from 'react'
 
 export default (WrappedList) => class extends Component {
-  
+
   state = {
-    openArticleId: null,
-    accordionStatus: false
+    openArticleId: null
   }
 
-  toggleOpenArticle = (openArticleId) => () => {
-      this.setState({openArticleId: openArticleId})
-      this.setState({accordionStatus: !this.state.accordionStatus})
+  toggleOpenArticle = (openArticleId)  => (ev) => {
+      this.setState({openArticleId: this.state.openArticleId != openArticleId ? openArticleId : null})
   }
 
   render(){

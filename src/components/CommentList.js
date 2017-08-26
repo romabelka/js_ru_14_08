@@ -16,7 +16,6 @@ class CommentList extends Component {
   }
 
   render() {
-    console.log(this.props)
     const {comments, isOpen} = this.props
     const textButton = !isOpen ?  "Hide comments" : "Show comments"
     return (
@@ -28,7 +27,7 @@ class CommentList extends Component {
       </div>
     )
   }
-  
+
   getComments(isOpen){
     const {comments} = this.props
     if (isOpen) return null
