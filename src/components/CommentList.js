@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Comment from './Comment'
 import toggleOpen from '../decorators/toggleOpen'
 import PropTypes from 'prop-types'
+import AddComment from "./AddComment/index";
 
 class CommentList extends Component {
     static defaultProps = {
@@ -11,15 +12,15 @@ class CommentList extends Component {
     }
 
     componentDidMount() {
-        console.log('---', 'mounted')
+        // console.log('---', 'mounted')
     }
 
     componentWillUnmount() {
-        console.log('---', 'unmounting')
+        // console.log('---', 'unmounting')
     }
 
     componentDidUpdate() {
-        console.log('---', 'updated')
+        // console.log('---', 'updated')
     }
 
     render() {
@@ -40,6 +41,7 @@ class CommentList extends Component {
         return comments.length ? (
             <ul>
                 {comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)}
+                <AddComment/>
             </ul>
         ) : <h3>No comments yet</h3>
     }

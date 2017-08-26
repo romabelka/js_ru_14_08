@@ -1,0 +1,25 @@
+.input-wrap {
+  width: 100%;
+  max-width: 200px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+.textarea-wrap {
+  width: 100%;
+}
+.input-wrap input,
+.textarea-wrap textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 7px 20px;
+}
+.textarea-wrap textarea {
+  min-height: 100px;
+}
+.input-wrap input:focus,
+.textarea-wrap textarea:focus{
+  outline: none;
+}
+.error {
+  border-color: red;
+}
