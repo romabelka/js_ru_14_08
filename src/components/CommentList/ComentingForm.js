@@ -6,20 +6,23 @@ export default class ComentingForm extends Component {
       comment: ""
     }
     render() {
-      console.log(this.stage)
       return (
-        <form>
+        <form onSubmit={this.addComment}>
           <input type='text' value={this.state.user} name='user' placeholder='user' onChange={this.setValue} />
           <br />
           <textarea type='text' value={this.state.comment} name='comment' placeholder='comment' onChange={this.setValue} />
           <br />
-          <input type='submit' onClick={this.addComment} value='Add comment' />
+          <input type='submit' value='Add comment' />
         </form>
       )
     }
 
     addComment = (e) => {
-      console.log(e.target.value);
+      e.preventDefault();
+      this.setState({
+        user: "",
+        comment: ""
+      })
     }
 
     setValue = (e) => {
