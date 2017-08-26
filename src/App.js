@@ -4,16 +4,18 @@ import ArticleChart from './components/ArticleChart'
 import UserForm from './components/UserForm'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
+import Datepicker from './components/Datepicker'
 
 export default class App extends Component {
     state = {
-        selected: null
+        selected: null,
     }
 
     handleSelectionChange = selected => this.setState({ selected })
 
     render() {
-        const {articles} = this.props
+        const { from, to } = this.state;
+        const {articles} = this.props;
         const options = articles.map(article => ({
             label: article.title,
             value: article.id
@@ -30,9 +32,9 @@ export default class App extends Component {
                     />
                     <ArticleList articles = {articles} defaultOpenId={articles[0].id} />
                     <ArticleChart articles = {articles} />
+                    <Datepicker />
                 </div>
             </div>
         )
-
     }
 }
