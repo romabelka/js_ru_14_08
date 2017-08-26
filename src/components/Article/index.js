@@ -2,6 +2,8 @@ import React, {Component, PureComponent} from 'react'
 import CommentList from '../CommentList'
 import PropTypes from 'prop-types'
 import {findDOMNode} from 'react-dom'
+import moment from 'moment'
+
 import CSSTransion from 'react-addons-css-transition-group'
 import './style.css'
 
@@ -27,12 +29,15 @@ class Article extends PureComponent {
 */
 
     render() {
-        const {article, toggleOpen} = this.props
+        const
+            {article, toggleOpen} = this.props,
+            date = moment(article.date).format('Do MMMM YYYY, h:mm:ss a');
+
         console.log('---', 'rendering article')
 
         return (
             <div ref={this.setContainerRef}>
-                <h3 onClick = {toggleOpen}>{article.title}</h3>
+                <h3 onClick = {toggleOpen}>{article.title}</h3>{date}
                 {/*<button onClick={() => this.setState({commentsKey: Math.random()})}>increment</button>*/}
                 <CSSTransion
                     transitionName="article"
