@@ -1,9 +1,12 @@
 import React, {Component} from 'react'
 import Comment from './Comment'
-import toggleOpen from '../decorators/toggleOpen'
+import ComentingForm from './ComentingForm'
+import toggleOpen from '../../decorators/toggleOpen'
 import PropTypes from 'prop-types'
+import './style.css'
 
 class CommentList extends Component {
+
     static defaultProps = {
         comments: [],
         isOpen: PropTypes.bool,
@@ -11,15 +14,15 @@ class CommentList extends Component {
     }
 
     componentDidMount() {
-        console.log('---', 'mounted')
+      //  console.log('---', 'mounted')
     }
 
     componentWillUnmount() {
-        console.log('---', 'unmounting')
+      //  console.log('---', 'unmounting')
     }
 
     componentDidUpdate() {
-        console.log('---', 'updated')
+      //  console.log('---', 'updated')
     }
 
     render() {
@@ -28,20 +31,20 @@ class CommentList extends Component {
         return (
             <div>
                 <button onClick={toggleOpen}>{text}</button>
-                {this.getBody()}
+                <ul>
+                  {this.getBody()}
+                </ul>
+                <ComentingForm />
             </div>
         )
     }
 
     getBody() {
         const { comments, isOpen } = this.props
-        if (!isOpen) return null
-
-        return comments.length ? (
-            <ul>
-                {comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)}
-            </ul>
-        ) : <h3>No comments yet</h3>
+        if (!isOpen) return null;
+        return comments.length ?
+                comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)
+         : <li><b>No comments yet</b></li>
     }
 }
 

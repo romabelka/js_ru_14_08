@@ -2,7 +2,7 @@ import React, {Component, PureComponent} from 'react'
 import CommentList from '../CommentList'
 import PropTypes from 'prop-types'
 import {findDOMNode} from 'react-dom'
-import CSSTransion from 'react-addons-css-transition-group'
+import CSSTransion from 'react-transition-group/CSSTransitionGroup'
 import './style.css'
 
 class Article extends PureComponent {
@@ -28,7 +28,6 @@ class Article extends PureComponent {
 
     render() {
         const {article, toggleOpen} = this.props
-        console.log('---', 'rendering article')
 
         return (
             <div ref={this.setContainerRef}>

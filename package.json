@@ -30,9 +30,14 @@
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
+    "css-loader": "^0.28.5",
     "prop-types": "^15.5.10",
     "react": "^15.5.0",
+    "react-addons-css-transition-group": "^15.6.0",
+    "react-day-picker": "^6.1.0",
     "react-dom": "^15.5.0",
-    "react-select": "^1.0.0-rc.5"
+    "react-select": "^1.0.0-rc.5",
+    "react-transition-group": "^1.2.0",
+    "style-loader": "^0.18.2"
   }
 }
