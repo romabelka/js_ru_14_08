@@ -5,11 +5,15 @@ import accordion from '../decorators/accordion'
 
 class ArticleList extends Component {
     static propTypes = {
-        articles: PropTypes.array
+        articles: PropTypes.array,
+        // from accordion decorator
+        activeItemId: PropTypes.string,
+        toggleOpenArticle: PropTypes.func
     };
 
     static defaultProps = {
-        articles: []
+        articles: [],
+        toggleOpenArticle: () => {}
     };
 
     state = {
