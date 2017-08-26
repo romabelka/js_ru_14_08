@@ -5,9 +5,11 @@ import UserForm from './components/UserForm'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 
+import MyDayPicker from './components/MyDayPicker'
+
 export default class App extends Component {
     state = {
-        selected: null
+        selected: null,
     }
 
     handleSelectionChange = selected => this.setState({ selected })
@@ -25,14 +27,16 @@ export default class App extends Component {
                     <h1>News App</h1>
                     <UserForm />
                     <Select options = {options} value = {this.state.selected}
-                            onChange = {this.handleSelectionChange}
-                            multi
+                        onChange = {this.handleSelectionChange}
+                        multi
                     />
+
+                    <MyDayPicker/>
+
                     <ArticleList articles = {articles} defaultOpenId={articles[0].id} />
                     <ArticleChart articles = {articles} />
                 </div>
             </div>
         )
-
     }
 }

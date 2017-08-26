@@ -1,0 +1,12 @@
+.warning {
+  border: 1px solid red;
+}
+.error {
+  position: absolute;
+  top: -15px;
+  font-size: 75%;
+  color: red;
+}
+.input {
+  position: relative;
+}
