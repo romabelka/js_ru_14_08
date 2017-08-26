@@ -47,7 +47,7 @@ class CommentList extends Component {
             </div>
         )
     }
-
+ 
     getBody() {
         const { comments, isOpen } = this.props
         if (!isOpen) return null
