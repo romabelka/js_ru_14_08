@@ -10,10 +10,10 @@ class ArticleChart extends Component {
         return <div ref='container'/>
     }
 
-    componentDidMount() {
+    // componentDidMount() {
         //do some drawing with d3 in this.refs.container
 //     this.refs.container
-    }
+//     }
 
 /*
     setContainerRef = container => {
@@ -22,9 +22,9 @@ class ArticleChart extends Component {
     }
 */
 
-    componentDidUpdate() {
+    // componentDidUpdate() {
         //update d3 chart in this.refs.container
-    }
+    // }
 }
 
 export default ArticleChart
