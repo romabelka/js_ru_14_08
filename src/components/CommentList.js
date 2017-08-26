@@ -1,45 +1,49 @@
 import React, {Component} from 'react'
-import PropTypes from 'prop-types'
 import Comment from './Comment'
 import toggleOpen from '../decorators/toggleOpen'
+import PropTypes from 'prop-types'
 
 class CommentList extends Component {
+    static defaultProps = {
+        comments: [],
+        isOpen: PropTypes.bool,
+        toggleOpen: PropTypes.func
+    }
 
-  static defaultProps = {
-    comments: []
-  }
+    componentDidMount() {
+        console.log('---', 'mounted')
+    }
 
-  static propTypes = {
-    comments: PropTypes.array.isRequired,
-    isOpen: PropTypes.bool.isRequired,
-    handleClick: PropTypes.func.isRequired
-  }
+    componentWillUnmount() {
+        console.log('---', 'unmounting')
+    }
 
-  render() {
-    const {comments, isOpen} = this.props
-    const textButton = !isOpen ?  "Hide comments" : "Show comments"
-    return (
-      <div>
-        {this.getComments(isOpen)}
-        <button onClick = {this.props.handleClick}>
-          {textButton}
-        </button>
-      </div>
-    )
-  }
+    componentDidUpdate() {
+        console.log('---', 'updated')
+    }
 
-  getComments(isOpen){
-    const {comments} = this.props
-    if (isOpen) return null
-      return comments.length > 0 ?
-        (<ul>
-         {comments.map( comment =>
-            <li key={comment.id}>
-              <Comment user={comment.user} text={comment.text} />
-            </li>)}
-        </ul>)
-      : <h5><i>No comments yet</i></h5>
+    render() {
+        const {isOpen, toggleOpen} = this.props
+        const text = isOpen ? 'hide comments' : 'show comments'
+        return (
+            <div>
+                <button onClick={toggleOpen}>{text}</button>
+                {this.getBody()}
+            </div>
+        )
+    }
+
+    getBody() {
+        const { comments, isOpen } = this.props
+        if (!isOpen) return null
+
+        return comments.length ? (
+            <ul>
+                {comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)}
+            </ul>
+        ) : <h3>No comments yet</h3>
     }
 }
 
-export default toggleOpen(CommentList);
+
+export default toggleOpen(CommentList)

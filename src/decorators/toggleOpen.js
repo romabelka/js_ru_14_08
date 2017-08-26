@@ -1,20 +1,18 @@
-//write the HOC
+//decorator === HOC === Higher Order Component
 import React from 'react'
 
-export default (WrappedComponent) => class extends React.Component {
-  
-  state = {
-      isOpen: true
-  }
+export default (OriginalComponent) => class ToggleOpenDecorator extends React.Component {
+    state = {
+        isOpen: false
+    }
 
-  handleClick = () => {
-      this.setState({
-          isOpen: !this.state.isOpen
-      })
-  }
+    toggleOpen = () => {
+        this.setState({
+            isOpen: !this.state.isOpen
+        })
+    }
 
-   render() {
-     // Wraps the input component in a container, without mutating it. Good!
-     return <WrappedComponent {...this.props} {...this.state} handleClick={this.handleClick}/>
-   }
+    render() {
+        return <OriginalComponent {...this.props} {...this.state} toggleOpen = {this.toggleOpen}/>
+    }
 }

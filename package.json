@@ -1,7 +1,7 @@
 {
   "name": "react_course_js_ru_14_08",
   "version": "1.0.0",
-  "description": "##HT1.1 Реализовать список комментов внутри статьи, скрывать и показывать их по нажатию на копку ##HT1.2 менять текст на кнопке(open/hide)",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --hot --inline",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Zveroslav/js_ru_14_08.git"
+    "url": "git+https://github.com/romabelka/js_ru_14_08"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Zveroslav/js_ru_14_08"
+    "url": "https://github.com/romabelka/js_ru_14_08"
   },
-  "homepage": "https://github.com/Zveroslav/js_ru_14_08.git",
+  "homepage": "https://github.com/romabelka/js_ru_14_08",
   "devDependencies": {
     "babel-core": "^6.13.2",
     "babel-loader": "^6.2.4",
@@ -24,12 +24,15 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
+    "css-loader": "^0.28.5",
+    "style-loader": "^0.18.2",
     "webpack": "^3.0.0",
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
     "prop-types": "^15.5.10",
     "react": "^15.5.0",
-    "react-dom": "^15.5.0"
+    "react-dom": "^15.5.0",
+    "react-select": "^1.0.0-rc.5"
   }
 }
