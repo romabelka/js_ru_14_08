@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Article from './Article'
 import accordion from '../decorators/accordion'
 import PropTypes from 'prop-types'
+import DatePicker from './DatePicker/DatePicker.js'
 
 class ArticleList extends Component {
     static propTypes = {
@@ -24,9 +25,12 @@ class ArticleList extends Component {
         ))
 
         return (
-            <ul>
-                {articleElements}
-            </ul>
+            <div>
+                <DatePicker/>
+                <ul>
+                    {articleElements}
+                </ul>
+            </div>
         )
     }
 }
