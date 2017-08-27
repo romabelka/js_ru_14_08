@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Comment from './Comment'
+import CommentForm from './CommentForm'
 import toggleOpen from '../decorators/toggleOpen'
 import PropTypes from 'prop-types'
 
@@ -28,6 +29,7 @@ class CommentList extends Component {
         return (
             <div>
                 <button onClick={toggleOpen}>{text}</button>
+                <CommentForm/>
                 {this.getBody()}
             </div>
         )
