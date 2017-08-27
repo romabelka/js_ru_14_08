@@ -14,18 +14,18 @@ class UserForm extends Component {
         return (
             <div>
                 <label>Username: </label>
-                <input type="text" value={this.state.username} onChange={this.handleChange}/>
+                <input type="text" value={this.state.userName} onChange={this.handleChange}/>
             </div>
         )
     }
 
     handleChange = ev => {
         if (ev.target.value.length > 15) return this.setState({
-            username: ''
-        })
+            userName: ''
+        });
 
         this.setState({
-            username: ev.target.value
+            userName: ev.target.value
         })
     }
 
