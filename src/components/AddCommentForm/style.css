@@ -1,0 +1,20 @@
+.add-comment-form {
+    margin: 20px 0;
+}
+
+.add-comment-form-row {
+    margin: 10px 0;
+}
+
+.add-comment-form-row label {
+    display: inline-block;
+    width: 100px;
+}
+
+.add-comment-form-row .error {
+    border: 2px solid red;
+}
+
+.add-comment-form-row .error:focus {
+    outline-color: red;
+}
