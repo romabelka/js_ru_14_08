@@ -6,17 +6,20 @@ class CommentForm extends Component {
         username: PropTypes.string,
         comment: PropTypes.string,
         usernameValid: PropTypes.bool,
-        commentValid: PropTypes.bool
-    }
-
-    state = {
-        username: '',
-        comment: '',
-        usernameValid: true,
-        commentValid: true
+        commentValid: PropTypes.bool,
+        handleChange: PropTypes.func.isRequired,
+        resetForm: PropTypes.func.isRequired
     }
 
     render() {
+        const {
+            username,
+            comment,
+            usernameValid,
+            commentValid,
+            handleChange,
+            resetForm
+        } = this.props
         const invalidStyle = {
             borderColor: 'red'
         }
@@ -26,58 +29,30 @@ class CommentForm extends Component {
                     <label>Username:
                     </label>
                     <input
-                        style={this.state.usernameValid
+                        style={usernameValid
                         ? {}
                         : invalidStyle}
                         type="text"
                         name="username"
-                        value={this.state.username}
-                        onChange={this.handleChange}/>
+                        value={username}
+                        onChange={handleChange}/>
                 </div>
                 <div>
                     <label>Comment:
                     </label>
                     <textarea
-                        style={this.state.commentValid
+                        style={commentValid
                         ? {}
                         : invalidStyle}
                         name="comment"
-                        value={this.state.comment}
-                        onChange={this.handleChange}/>
+                        value={comment}
+                        onChange={handleChange}/>
                 </div>
-                <button onClick={this.resetForm}>Submit</button>
+                <button onClick={resetForm}>Submit</button>
             </div>
         )
     }
-    handleChange = event => {
-        const allowedInputs = {
-                username(length) {
-                    return length <= 20
-                },
-                comment(length) {
-                    return length <= 100
-                },
-                usernameValid(length) {
-                    return length >= 10
-                },
-                commentValid(length) {
-                    return length >= 30
-                }
-            }
-            let length = event.target.value.length,
-                name = event.target.name
-            if (!allowedInputs[name](length)) 
-                return false;
-            let valid = allowedInputs[name + 'Valid'](length)
-            this.setState({
-                [name]: event.target.value,
-                [name + 'Valid']: valid
-            })
-        }
 
-        resetForm = event => {
-            this.setState({username: '', comment: '', usernameValid: true, commentValid: true})
-        }
-    }
+}
 
-    export default CommentForm
+export default CommentForm
