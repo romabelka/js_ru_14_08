@@ -30,6 +30,9 @@
 .okInput {
     border: 1px solid green;
 }
+.blue {
+    border: 1px solid blue;
+}
 input {
     outline: none;
 }
