@@ -22,7 +22,7 @@ class UserForm extends Component {
     handleChange = ev => {
         if (ev.target.value.length > 15) return this.setState({
             username: ''
-        })
+        });
 
         this.setState({
             username: ev.target.value

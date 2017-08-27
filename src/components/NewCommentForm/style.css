@@ -1,4 +1,4 @@
-input_error {
+.input_error {
     outline: red auto 5px;
     outline-offset: -2px;
 }
