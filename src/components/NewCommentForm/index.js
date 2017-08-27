@@ -23,9 +23,9 @@ class NewCommentForm extends Component {
     render() {
         return (
             <div>
-                <label htmlFor="userName" >Username: </label>
+                <label>Username: </label>
                 <br/>
-                <input id="userName" type="text" className={this.state.userInputStatus}
+                <input type="text" className={this.state.userInputStatus}
                        value={this.state.userName}
                        onChange={this.handleUserNameChange}/>
                 <br/>
