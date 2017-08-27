@@ -1,0 +1,11 @@
+input {
+    outline: none;
+}
+
+textarea {
+    outline: none;
+}
+
+.error-border {
+    border: 1px solid red;
+}
