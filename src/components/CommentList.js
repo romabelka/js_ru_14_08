@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import Comment from './Comment'
 import toggleOpen from '../decorators/toggleOpen'
+import PropTypes from 'prop-types'
 
 class CommentList extends Component {
     static propTypes = {
@@ -9,29 +10,22 @@ class CommentList extends Component {
     }
 
     static defaultProps = {
-        comments: []
-    }
-
-    componentWillMount() {
-        console.log('---', 'mounting comment list')
+        comments: [],
+        isOpen: PropTypes.bool,
+        toggleOpen: PropTypes.func
     }
 
     componentDidMount() {
         console.log('---', 'mounted')
     }
 
-    componentWillReceiveProps() {
-        console.log('---', 'updating props')
-    }
-
-    componentWillUpdate() {
-        console.log('---', 'updating state or props')
-    }
-
     componentWillUnmount() {
         console.log('---', 'unmounting')
     }
 
+    componentDidUpdate() {
+        console.log('---', 'updated')
+    }
 
     render() {
         const {isOpen, toggleOpen} = this.props
