@@ -9,13 +9,3 @@ textarea {
 .error-border {
     border: 1px solid red;
 }
-
-.form-message {
-    height: 75px;
-    width: 240px;
-    border: 1px solid #554a58;
-    padding: 6px 6px;
-    resize: none;
-    outline: none;
-    box-shadow: 0 0 5px #554a58;
-}

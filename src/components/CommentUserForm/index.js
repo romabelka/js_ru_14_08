@@ -1,19 +1,17 @@
 import React, {Component} from 'react'
-import CSSTransion from 'react-addons-css-transition-group'
-import {findDOMNode} from 'react-dom'
 import './style.css'
 
 class CommentUserForm extends Component {
     static propTypes = {
 
-    }
+    };
 
     state = {
         username: '',
-        usererror: 'error-border',
+        usererror: '',
         message: '',
-        messageoneerror: 'error-border',
-    }
+        messageoneerror: '',
+    };
 
 
 
@@ -25,17 +23,19 @@ class CommentUserForm extends Component {
                 <input className={this.state.usererror} type="text" value={this.state.username} onChange={this.handleChangeUser} />
                 <label>Message</label>
                 <textarea className={this.state.messageoneerror} name="messageone" placeholder="Сообщение" value={this.state.message} onChange={this.handleChangeMessage}></textarea>
-                <input type="submit" value="Send"/>
+                <input type="submit" value="Send" onClick = {this.clearForm}/>
             </div>
         )
     }
 
 
     handleChangeUser = ev => {
-       if(ev.target.value.length > 10){
+       if (ev.target.value.length < 10){
+            this.setState({usererror: 'error-border'});
+        } if (ev.target.value.length > 10){
             this.setState({usererror: ''});
-        } if (ev.target.value.length > 20) {
-            return this.setState({username: 'Допустимый объем 20 символов'});
+        }if (ev.target.value.length > 20) {
+            return false;
         }
 
         this.setState({
@@ -44,16 +44,29 @@ class CommentUserForm extends Component {
     }
 
     handleChangeMessage = ev => {
-        if(ev.target.value.length > 30){
+        if(ev.target.value.length < 30){
+            this.setState({messageoneerror: 'error-border'});
+        } if(ev.target.value.length > 30){
              this.setState({messageoneerror: ''});
-        } if (ev.target.value.length > 40) {
-            return this.setState({message: 'Допустимый объем 100 символов'}); //как вывести сообщение и остановить правильно?
+        } if (ev.target.value.length > 100) {
+            return false;
         }
 
         this.setState({
             message: ev.target.value,
         })
     }
+
+    clearForm = () => {
+        this.setState({
+            username: '',
+            usererror: '',
+            message: '',
+            messageoneerror: '',
+        })
+    }
+
+
 
 }
 
