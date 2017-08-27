@@ -33,4 +33,6 @@ export default class App extends Component {
                     <ArticleChart articles = {articles} />
                 </div>
             </div>
+        )
+    }
 }
