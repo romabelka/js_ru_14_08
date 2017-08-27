@@ -1,13 +1,22 @@
 import React, {Component} from 'react'
 import Comment from './Comment'
+import CommentForm from './CommentForm'
 import toggleOpen from '../decorators/toggleOpen'
+import newComment from '../decorators/newComment'
 import PropTypes from 'prop-types'
 
 class CommentList extends Component {
     static defaultProps = {
         comments: [],
         isOpen: PropTypes.bool,
-        toggleOpen: PropTypes.func
+        toggleOpen: PropTypes.func,
+        //from newComment decorator
+        username: PropTypes.string,
+        newComment: PropTypes.string,
+        usernameValid: PropTypes.bool,
+        newCommentValid: PropTypes.bool,
+        handleCommentFormChange: PropTypes.func.isRequired,
+        resetCommentForm: PropTypes.func.isRequired
     }
 
     componentDidMount() {
@@ -24,7 +33,9 @@ class CommentList extends Component {
 
     render() {
         const {isOpen, toggleOpen} = this.props
-        const text = isOpen ? 'hide comments' : 'show comments'
+        const text = isOpen
+            ? 'hide comments'
+            : 'show comments'
         return (
             <div>
                 <button onClick={toggleOpen}>{text}</button>
@@ -34,16 +45,38 @@ class CommentList extends Component {
     }
 
     getBody() {
-        const { comments, isOpen } = this.props
-        if (!isOpen) return null
+        const {
+            comments,
+            isOpen,
+            username,
+            newComment,
+            usernameValid,
+            newCommentValid,
+            handleCommentFormChange,
+            resetCommentForm
+        } = this.props
+        if (!isOpen) 
+            return null
 
-        return comments.length ? (
-            <ul>
-                {comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)}
-            </ul>
-        ) : <h3>No comments yet</h3>
+        let commentsList = comments.length
+            ? (
+                <ul>
+                    {comments.map(comment => <li key={comment.id}><Comment comment={comment}/></li>)}
+                </ul>
+            )
+            : <h3>No comments yet</h3>
+
+        return <div>
+            {commentsList}
+            <CommentForm
+                username={username}
+                comment={newComment}
+                usernameValid={usernameValid}
+                commentValid={newCommentValid}
+                handleChange={handleCommentFormChange}
+                resetForm={resetCommentForm}/>
+        </div>
     }
 }
 
-
-export default toggleOpen(CommentList)
+export default toggleOpen(newComment(CommentList))
