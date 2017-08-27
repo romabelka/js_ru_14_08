@@ -33,7 +33,6 @@ class Article extends PureComponent {
         return (
             <div ref={this.setContainerRef}>
                 <h3 onClick = {toggleOpen}>{article.title}</h3>
-                <button onClick={() => this.setState({commentsKey: Math.random()})}>increment</button>
                 <CSSTransion
                     transitionName="article"
                     transitionEnterTimeout={500}
