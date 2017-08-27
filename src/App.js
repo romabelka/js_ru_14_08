@@ -23,11 +23,11 @@ export default class App extends Component {
                 <h2>Menu</h2>
                 <div>
                     <h1>News App</h1>
-                    <UserForm />
-                    <Select options = {options} value = {this.state.selected}
+                    {/*<UserForm />*/}
+                    {/*<Select options = {options} value = {this.state.selected}
                             onChange = {this.handleSelectionChange}
                             multi
-                    />
+                    />*/}
                     <ArticleList articles = {articles} defaultOpenId={articles[0].id} />
                     <ArticleChart articles = {articles} />
                 </div>

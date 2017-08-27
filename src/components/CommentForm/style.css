@@ -1,0 +1,12 @@
+.input-line {
+    padding-top: 10px;
+}
+
+.input-line input, .input-line textarea {
+    margin-left: 10px;
+}
+
+.input-line input.error, .input-line textarea.error {
+    border: 1px solid darkred;
+    color: darkred;
+}
