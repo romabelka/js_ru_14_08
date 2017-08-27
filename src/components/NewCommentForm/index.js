@@ -8,13 +8,16 @@ const MAX_USER_NAME_LENGTH = 20;
 const MIN_TEXT_LENGTH = 30;
 const MAX_TEXT_LENGTH = 100;
 
+const ERROR_STATUS = "input_error";
+const INIT_STATUS = "input_empty";
+
 class NewCommentForm extends Component {
 
     state = {
-        username: "",
+        userName: "",
         text: "",
-        userInputStatus : "",
-        textInputStatus : ""
+        userInputStatus : INIT_STATUS,
+        textInputStatus : INIT_STATUS
     };
 
     render() {
@@ -23,7 +26,7 @@ class NewCommentForm extends Component {
                 <label htmlFor="userName" >Username: </label>
                 <br/>
                 <input id="userName" type="text" className={this.state.userInputStatus}
-                       value={this.state.username}
+                       value={this.state.userName}
                        onChange={this.handleUserNameChange}/>
                 <br/>
                 <label>Text: </label>
@@ -32,7 +35,7 @@ class NewCommentForm extends Component {
                           value={this.state.text}
                           onChange={this.handleTextChange}/>
                 <br/>
-                <input type="submit" value="post"/>
+                <input type="submit" value="post" onClick={this.handleSubmit}/>
             </div>
         );
     }
@@ -41,10 +44,10 @@ class NewCommentForm extends Component {
         if(ev.target.value.length > MAX_USER_NAME_LENGTH) {
             return;
         }
-        let status = ev.target.value.length < MIN_USER_NAME_LENGTH ? "input_error" : "";
+        let status = ev.target.value.length < MIN_USER_NAME_LENGTH ? ERROR_STATUS : "";
         this.setState({
             userInputStatus : status,
-            username: ev.target.value
+            userName: ev.target.value
         })
     };
 
@@ -52,7 +55,7 @@ class NewCommentForm extends Component {
         if(ev.target.value.length > MAX_TEXT_LENGTH) {
             return;
         }
-        let status = ev.target.value.length < MIN_TEXT_LENGTH ? "input_error" : "";
+        let status = ev.target.value.length < MIN_TEXT_LENGTH ? ERROR_STATUS : "";
         this.setState({
             textInputStatus : status,
             text: ev.target.value
@@ -62,7 +65,21 @@ class NewCommentForm extends Component {
 
 
     handleSubmit = ev => {
+        if(this.state.userInputStatus === INIT_STATUS ||
+           this.state.textInputStatus === INIT_STATUS) {
+            alert("One of fields or both are empty. Please enter some data.");
+            return;
+        }
 
+        if(this.state.userInputStatus === ERROR_STATUS ||
+           this.state.textInputStatus === ERROR_STATUS) {
+            alert("Please enter valid data before posting a new comment.");
+            return;
+        }
+        this.setState({
+            userName: "",
+            text: ""
+         })
     };
 }
 
