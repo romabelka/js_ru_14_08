@@ -24,3 +24,15 @@
     opacity: 0.01;
     transition: opacity 300ms ease-in;
 }
+.errInput {
+    border: 1px solid red;
+}
+.okInput {
+    border: 1px solid green;
+}
+.blue {
+    border: 1px solid blue;
+}
+input {
+    outline: none;
+}
