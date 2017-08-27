@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Comment from './Comment'
+import CommentForm from './CommentForm'
 import toggleOpen from '../decorators/toggleOpen'
 import PropTypes from 'prop-types'
 
@@ -38,9 +39,12 @@ class CommentList extends Component {
         if (!isOpen) return null
 
         return comments.length ? (
-            <ul>
-                {comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)}
-            </ul>
+            <div>
+                <ul>
+                    {comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)}
+                    <CommentForm />
+                </ul>
+            </div>
         ) : <h3>No comments yet</h3>
     }
 }

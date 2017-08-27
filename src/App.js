@@ -3,6 +3,7 @@ import ArticleList from './components/ArticleList'
 import ArticleChart from './components/ArticleChart'
 import UserForm from './components/UserForm'
 import Select from 'react-select'
+import CustomDayPicker from './components/CustomDayPicker'
 import 'react-select/dist/react-select.css'
 
 export default class App extends Component {
@@ -21,6 +22,7 @@ export default class App extends Component {
         return (
             <div>
                 <h2>Menu</h2>
+                <CustomDayPicker />
                 <div>
                     <h1>News App</h1>
                     <UserForm />
