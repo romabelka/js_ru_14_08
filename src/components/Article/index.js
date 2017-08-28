@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import {findDOMNode} from 'react-dom'
 import CSSTransion from 'react-addons-css-transition-group'
 import './style.css'
+import {connect} from 'react-redux'
+import {deleteArticle} from '../../AC'
 
 class Article extends PureComponent {
     static propTypes = {
@@ -24,7 +26,6 @@ class Article extends PureComponent {
 
     render() {
         const {article, toggleOpen} = this.props
-        console.log('---', 'rendering article')
 
         return (
             <div ref={this.setContainerRef}>
@@ -83,8 +84,9 @@ class Article extends PureComponent {
     }
 
     handleDelete = () => {
-        console.log('---', 'implement me')
+        const {deleteArticle, article} = this.props
+        deleteArticle(article.id)
     }
 }
 
-export default Article
+export default connect(null, { deleteArticle })(Article)
