@@ -1,0 +1,11 @@
+.comment-form label {
+    display: block;
+}
+
+.form-field_valid {
+    border-color: green;
+}
+
+.form-field_not-valid {
+    border-color: red;
+}
