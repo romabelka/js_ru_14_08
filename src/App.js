@@ -3,22 +3,27 @@ import ArticleList from './components/ArticleList'
 import ArticleChart from './components/ArticleChart'
 import UserForm from './components/UserForm'
 import Filters from './components/Filters'
-import 'react-select/dist/react-select.css'
+import Counter from './components/Counter'
+import {Provider} from 'react-redux'
+import store from './store'
 
 export default class App extends Component {
     render() {
         const {articles} = this.props
         return (
-            <div>
-                <h2>Menu</h2>
+            <Provider store = {store}>
                 <div>
-                    <h1>News App</h1>
-                    <UserForm />
-                    <Filters articles={articles}/>
-                    <ArticleList articles = {articles} defaultOpenId={articles[0].id} />
-                    <ArticleChart articles = {articles} />
+                    <h2>Menu</h2>
+                    <div>
+                        <h1>News App</h1>
+                        <UserForm />
+                        <Counter />
+                        <Filters articles={articles}/>
+                        <ArticleList articles = {articles} defaultOpenId={articles[0].id} />
+                        <ArticleChart articles = {articles} />
+                    </div>
                 </div>
-            </div>
+            </Provider>
         )
 
     }
