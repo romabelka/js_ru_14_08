@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import Comment from './Comment'
 import toggleOpen from '../decorators/toggleOpen'
+import CommentForm from './CommentForm'
 import PropTypes from 'prop-types'
-import UserForm from "./UserForm";
 
 class CommentList extends Component {
     static defaultProps = {
@@ -38,20 +38,18 @@ class CommentList extends Component {
         const { comments, isOpen } = this.props
         if (!isOpen) return null
 
-        return comments.length ? (
+        const body = comments.length ? (
+            <ul>
+                {comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)}
+            </ul>
+        ) : <h3>No comments yet</h3>
+
+        return (
             <div>
-                <ul>
-                    {comments.map(comment =>
-                        <li key = {comment.id}>
-                            <Comment comment = {comment} />
-                        </li>)}
-                </ul>
-                <UserForm />
-                </div>
-        ) : (<div>
-              <h3>No comments yet</h3>
-              <UserForm />
-            </div>)
+                {body}
+                <CommentForm />
+            </div>
+        )
     }
 }
 
