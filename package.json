@@ -32,7 +32,10 @@
   "dependencies": {
     "prop-types": "^15.5.10",
     "react": "^15.5.0",
+    "react-day-picker": "^6.1.0",
     "react-dom": "^15.5.0",
-    "react-select": "^1.0.0-rc.5"
+    "react-redux": "^5.0.6",
+    "react-select": "^1.0.0-rc.5",
+    "redux": "^3.7.2"
   }
 }
