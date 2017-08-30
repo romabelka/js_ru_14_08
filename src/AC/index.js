@@ -1,4 +1,4 @@
-import {INCREMENT, DELETE_ARTICLE} from '../constants'
+import {INCREMENT, DELETE_ARTICLE, SELECT_ARTICLES, SELECT_RANGE, SET_VISIBILITY_FILTER} from '../constants'
 
 export function increment() {
     return {
@@ -12,3 +12,23 @@ export function deleteArticle(id) {
         payload: { id }
     }
 }
+
+export function selectArticles(selected) {
+    return {
+        type: SELECT_ARTICLES,
+        payload: { selected }
+    }
+}
+
+export function selectRange(range) {
+    return {
+        type: SELECT_RANGE,
+        payload: { range }
+    }
+}
+
+export const setVisibilityFilter = () => {
+    return {
+      type: SET_VISIBILITY_FILTER
+    }
+  }
