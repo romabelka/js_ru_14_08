@@ -4,6 +4,7 @@ import UserForm from './UserForm'
 import Filters from './Filters'
 import Counter from './Counter'
 
+
 export default class Root extends Component {
     render() {
         return (
@@ -13,7 +14,7 @@ export default class Root extends Component {
                     <h1>News App</h1>
                     <UserForm />
                     <Counter />
-                    <Filters articles={[]}/>
+                    <Filters />
                     <ArticleList />
                 </div>
             </div>

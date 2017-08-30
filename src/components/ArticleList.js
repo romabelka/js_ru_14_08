@@ -34,5 +34,5 @@ class ArticleList extends Component {
 
 export default connect(state => ({
     articles: state.articles,
-    defaultOpenId: state.articles[0].id
+    defaultOpenId: state.articles[0]?state.articles[0].id:null
 }))(accordion(ArticleList))
