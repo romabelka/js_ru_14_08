@@ -1,8 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 import Select from 'react-select'
-
 import 'react-select/dist/react-select.css'
-import {filterSelectArticle} from "../../AC/index";
 
 class SelectFilter extends Component {
     static propTypes = {

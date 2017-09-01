@@ -48,12 +48,6 @@ class Filters extends Component {
 }
 
 export default connect(state => ({
-    select: {
-        articles: state.filter.select.articles,
-        selected: state.filter.select.selected
-    },
-    dateRange: {
-        from: state.filter.dateRange.from,
-        to: state.filter.dateRange.to
-    }
+    select: state.filter.select,
+    dateRange: state.filter.dateRange
 }), {filter})(Filters)
