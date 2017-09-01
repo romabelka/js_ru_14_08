@@ -1,4 +1,4 @@
-import { DELETE_ARTICLE, FILTER_SELECT_ARTICLE, FILTER_DATE_RANGE, FILTER } from '../constants'
+import { DELETE_ARTICLE, FILTER } from '../constants'
 import {articles as defaultArticles} from '../fixtures'
 import moment from 'moment'
 

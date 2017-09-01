@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react'
 import Select from 'react-select'
-import {connect} from 'react-redux'
 
 import 'react-select/dist/react-select.css'
 import {filterSelectArticle} from "../../AC/index";

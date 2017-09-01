@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker'
 import PropTypes from 'prop-types'
-import {filterDateRange} from "../../AC"
 import 'react-day-picker/lib/style.css'
 
 class DateRange extends Component {
