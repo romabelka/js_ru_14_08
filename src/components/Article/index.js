@@ -29,7 +29,7 @@ class Article extends PureComponent {
 
         return (
             <div ref={this.setContainerRef}>
-                <h3 onClick = {toggleOpen}>{article.title}</h3>
+                <h3 onClick = {toggleOpen}>{article.title} ({new Date(this.props.article.date).toDateString()})</h3>
                 <button onClick={this.handleDelete}>delete me</button>
                 <CSSTransion
                     transitionName="article"
