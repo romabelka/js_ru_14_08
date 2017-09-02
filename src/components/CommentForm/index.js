@@ -1,62 +1,58 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import './style.css'
 
 class CommentForm extends Component {
-	state = {
-        textInputClass: 'invalid',
-        userNameInputClass: 'invalid',
+    static propTypes = {
+    };
+
+    state = {
+        user: '',
+        text: ''
     }
 
-	render() {
+    render() {
         return (
-            <div>
-                <label>Username: </label>
-                <input 
-                    className={this.state.userNameInputClass} 
-                    name="username" 
-                    type="text" 
-                    onChange={this.handleUserNameChange}
-                />
-                <label>Text: </label>
-                <input 
-                    className={this.state.textInputClass} 
-                    name="text" 
-                    type="text" 
-                    onChange={this.handleTextChange}
-                />
-            </div>
+            <form onSubmit = {this.handleSubmit}>
+                user: <input value = {this.state.user}
+                             onChange = {this.handleChange('user')}
+                             className = {this.getClassName('user')} />
+                comment: <input value = {this.state.text}
+                                onChange = {this.handleChange('text')}
+                                className = {this.getClassName('text')} />
+                <input type = "submit" value = "submit"/>
+            </form>
         )
     }
 
-    handleUserNameChange = ev => {
-    	if (
-    		ev.target.value.length < 10 ||
-    		ev.target.value.length > 20
-    	) {
-    		return this.setState({
-            	userNameInputClass: 'invalid'
-        	})
-    	}
-
+    handleSubmit = ev => {
+        ev.preventDefault()
         this.setState({
-            userNameInputClass: 'valid'
+            user: '',
+            text: ''
         })
     }
 
-    handleTextChange = ev => {
+    getClassName = type => this.state[type].length && this.state[type].length < limits[type].min
+        ? 'form-input__error' : ''
 
-    	if (
-    		ev.target.value.length < 30 ||
-    		ev.target.value.length > 100
-    	) {
-    		return this.setState({
-            	textInputClass: 'invalid'
-        	})
-    	}
-
-    	this.setState({
-            textInputClass: 'valid'
+    handleChange = type => ev => {
+        const {value} = ev.target
+        if (value.length > limits[type].max) return
+        this.setState({
+            [type]: value
         })
+    }
+}
+
+const limits = {
+    user: {
+        min: 10,
+        max: 20
+    },
+    text: {
+        min: 30,
+        max: 100
     }
 }
 
