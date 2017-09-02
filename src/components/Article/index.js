@@ -90,7 +90,11 @@ class Article extends PureComponent {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 export default Article
+=======
+export default connect(null, { deleteArticle })(Article)
+>>>>>>> upstream/master
 =======
 export default connect(null, { deleteArticle })(Article)
 >>>>>>> upstream/master
