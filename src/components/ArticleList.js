@@ -20,6 +20,7 @@ class ArticleList extends Component {
                     article={article}
                     isOpen={article.id === openItemId}
                     toggleOpen={toggleOpenItem(article.id)}
+                    selected
                 />
             </li>
         ))
@@ -34,5 +35,6 @@ class ArticleList extends Component {
 
 export default connect(state => ({
     articles: state.articles,
-    defaultOpenId: state.articles[0].id
+    defaultOpenId: state.articles[0].id,
+    selected: state.selected
 }))(accordion(ArticleList))

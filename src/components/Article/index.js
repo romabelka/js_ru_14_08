@@ -25,11 +25,12 @@ class Article extends PureComponent {
 */
 
     render() {
-        const {article, toggleOpen} = this.props
+        const {article, toggleOpen, selected} = this.props
+        console.log('selectesssd: ', selected);
 
         return (
             <div ref={this.setContainerRef}>
-                <h3 onClick = {toggleOpen}>{article.title}</h3>
+                {selected &&<h3 onClick = {toggleOpen}>{article.title}</h3>}
                 <button onClick={this.handleDelete}>delete me</button>
                 <CSSTransion
                     transitionName="article"
