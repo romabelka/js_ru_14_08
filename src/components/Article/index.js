@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import {findDOMNode} from 'react-dom'
 import CSSTransion from 'react-addons-css-transition-group'
 import './style.css'
+import {connect} from 'react-redux'
+import {deleteArticle} from '../../AC'
 
 class Article extends PureComponent {
     static propTypes = {
@@ -16,10 +18,6 @@ class Article extends PureComponent {
         toggleOpen: PropTypes.func
     }
 
-    state = {
-        commentsKey: 0
-    }
-
 /*
     shouldComponentUpdate(nextProps, nextState) {
         return this.props.isOpen !== nextProps.isOpen
@@ -28,12 +26,11 @@ class Article extends PureComponent {
 
     render() {
         const {article, toggleOpen} = this.props
-        console.log('---', 'rendering article')
 
         return (
             <div ref={this.setContainerRef}>
                 <h3 onClick = {toggleOpen}>{article.title}</h3>
-                <button onClick={() => this.setState({commentsKey: Math.random()})}>increment</button>
+                <button onClick={this.handleDelete}>delete me</button>
                 <CSSTransion
                     transitionName="article"
                     transitionEnterTimeout={500}
@@ -68,7 +65,7 @@ class Article extends PureComponent {
         return this.props.isOpen && (
             <div>
                 <p>{this.props.article.text}</p>
-                <CommentList comments = {this.props.article.comments} ref = {this.setCommentsRef} key={this.state.commentsKey}/>
+                <CommentList comments = {this.props.article.comments} ref = {this.setCommentsRef} />
             </div>
         )
     }
@@ -85,6 +82,15 @@ class Article extends PureComponent {
         }, 500)
 */
     }
+
+    handleDelete = () => {
+        const {deleteArticle, article} = this.props
+        deleteArticle(article.id)
+    }
 }
 
+<<<<<<< HEAD
 export default Article
+=======
+export default connect(null, { deleteArticle })(Article)
+>>>>>>> upstream/master
