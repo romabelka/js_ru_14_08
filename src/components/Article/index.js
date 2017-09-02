@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import {findDOMNode} from 'react-dom'
 import CSSTransion from 'react-transition-group/CSSTransitionGroup'
 import './style.css'
+import {connect} from 'react-redux'
+import {deleteArticle} from '../../AC'
 
 class Article extends PureComponent {
     static propTypes = {
@@ -32,7 +34,7 @@ class Article extends PureComponent {
         return (
             <div ref={this.setContainerRef}>
                 <h3 onClick = {toggleOpen}>{article.title}</h3>
-                <button onClick={() => this.setState({commentsKey: Math.random()})}>increment</button>
+                <button onClick={this.hendleDelete}>Delete Me</button>
                 <CSSTransion
                     transitionName="article"
                     transitionEnterTimeout={500}
@@ -47,8 +49,12 @@ class Article extends PureComponent {
         )
     }
 
+    hendleDelete = () => {
+      const {deleteArticle, article} = this.props
+      deleteArticle(article.id)
+    }
+
     setContainerRef = (container) => {
-        console.log('---', container)
         this.container = container
     }
 
@@ -74,7 +80,7 @@ class Article extends PureComponent {
 
     setCommentsRef = (commentsRef) => {
         this.commentsRef = commentsRef
-        console.log('---', findDOMNode(commentsRef))
+//        console.log('---', findDOMNode(commentsRef))
 //        commentsRef.forceUpdate()
 /*
         setTimeout(() => {
@@ -86,4 +92,4 @@ class Article extends PureComponent {
     }
 }
 
-export default Article
+export default connect(null, { deleteArticle })(Article)

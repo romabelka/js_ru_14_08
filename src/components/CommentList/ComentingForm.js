@@ -5,12 +5,13 @@ export default class ComentingForm extends Component {
       user: "",
       comment: ""
     }
+
     render() {
       return (
         <form onSubmit={this.addComment}>
-          <input type='text' value={this.state.user} name='user' placeholder='user' onChange={this.setValue} />
+          <input type='text' className={this.getClassName('user')} value={this.state.user} name='user' placeholder='user' onChange={this.setValue} />
           <br />
-          <textarea type='text' value={this.state.comment} name='comment' placeholder='comment' onChange={this.setValue} />
+          <textarea type='text' className={this.getClassName('comment')} value={this.state.comment} name='comment' placeholder='comment' onChange={this.setValue} />
           <br />
           <input type='submit' value='Add comment' />
         </form>
@@ -25,18 +26,27 @@ export default class ComentingForm extends Component {
       })
     }
 
+    getClassName = (type) => {
+      return this.state[type].length && this.state[type].length < limits[type].min ? 'red-input' : ''
+    }
+
     setValue = (e) => {
       this.setState({
           [e.target.name]: e.target.value
       })
-      let [maxColorInput, maxInput] = (e.target.name === 'user') ? [10, 20]
-                                    : (e.target.name === 'comment') ? [30, 100]
-                                    : 'Error'
-        if (e.target.value.length > maxColorInput) {
-          e.target.className = "red-input";
-        }
-        else if (e.target.value.length > maxInput) {
+       if (e.target.value.length > limits[e.target.name].max) {
           this.setState({[e.target.name]: ''})
         }
     }
-}
+  }
+
+  const limits = {
+      user: {
+        min: 10,
+        max: 20
+      },
+      comment: {
+        min: 30,
+        max: 100
+      }
+    }

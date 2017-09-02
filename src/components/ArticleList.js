@@ -16,9 +16,9 @@ class ArticleList extends Component {
         const articleElements = articles.map(article => (
             <li key={article.id}>
                 <Article
-                    article={article}
-                    isOpen={article.id === openItemId}
-                    toggleOpen={toggleOpenItem(article.id)}
+                    article = {article}
+                    isOpen = {article.id === openItemId}
+                    toggleOpen = {toggleOpenItem(article.id)}
                 />
             </li>
         ))
@@ -31,4 +31,4 @@ class ArticleList extends Component {
     }
 }
 
-export default accordion(ArticleList)
+export default (accordion(ArticleList))

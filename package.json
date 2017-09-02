@@ -36,8 +36,10 @@
     "react-addons-css-transition-group": "^15.6.0",
     "react-day-picker": "^6.1.0",
     "react-dom": "^15.5.0",
+    "react-redux": "^5.0.6",
     "react-select": "^1.0.0-rc.5",
     "react-transition-group": "^1.2.0",
+    "redux": "^3.7.2",
     "style-loader": "^0.18.2"
   }
 }

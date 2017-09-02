@@ -1,26 +1,19 @@
 import React from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker'
 import 'react-day-picker/lib/style.css'
+import {selectArticleDate} from '../../AC'
+import {connect} from 'react-redux'
 
 
-export default class Calendar extends React.Component {
+class Calendar extends React.Component {
   state = {
     from: null,
     to: null,
   };
-  handleDayClick = day => {
-    const range = DateUtils.addDayToRange(day, this.state);
-    this.setState(range);
-  };
-  handleResetClick = e => {
-    e.preventDefault();
-    this.setState({
-      from: null,
-      to: null,
-    });
-  };
+
   render() {
-    const { from, to } = this.state;
+    const { from, to } = this.state
+    const {selectArticleDate} = this.props
     return (
       <div className="RangeExample">
         {!from && !to && <p>Please select the <strong>first day</strong>.</p>}
@@ -32,11 +25,28 @@ export default class Calendar extends React.Component {
           numberOfMonths={2}
           selectedDays={[from, { from, to }]}
           onDayClick={this.handleDayClick}
+          month={new Date(2016, 4)}
           fixedWeeks
         />
       </div>
     );
   }
+
+  handleDayClick = day => {
+  //  console.dir(day);
+    const {selectArticleDate} = this.props
+    const range = DateUtils.addDayToRange(day, this.state);
+    this.setState(range);
+    selectArticleDate(range);
+  };
+
+  handleResetClick = e => {
+    e.preventDefault();
+    this.setState({
+      from: null,
+      to: null,
+    });
+  };
 
   moment(from, to) {
     let counterDay =  (((+to) - (+from)) / 1000 / 60 / 60 / 24) + 1;
@@ -48,6 +58,6 @@ export default class Calendar extends React.Component {
       return (date.getDate() + ' / ' + (date.getMonth() + 1) + " / " + date.getFullYear())
     }
   }
-
-
 }
+
+export default connect(null, {selectArticleDate})(Calendar)
