@@ -19,6 +19,8 @@ class DateRange extends Component {
         changeDateRange(DateUtils.addDayToRange(day, dateRange))
     };
 
+    resetDayPicker = () => this.props.changeDateRange({from: null, to: null});
+
     render() {
         const { from, to } = this.props.dateRange;
         const selectedRange = from && to && `${from.toDateString()} - ${to.toDateString()}`;
@@ -30,12 +32,11 @@ class DateRange extends Component {
                     onDayClick={ this.handleDayClick }
                 />
                 {selectedRange}
+                <button onClick={this.resetDayPicker}>reset</button>
             </div>
         );
     }
 
 }
 
-export default connect(state => ({
-    dateRange: state.dateRange
-}), { changeDateRange })(DateRange)
+export default connect(null, { changeDateRange })(DateRange)

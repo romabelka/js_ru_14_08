@@ -9,17 +9,18 @@ class Filters extends Component {
     };
 
     render() {
-        const {articles, selected} = this.props;
+        const {articles, selected, dateRange} = this.props;
         return (
             <div>
                 <SelectFilter articles={articles} selected={selected}/>
-                <DateRange />
+                <DateRange dateRange={dateRange} />
             </div>
         )
     }
 }
 
 export default connect(state => ({
-    articles : state.articles,
-    selected : state.selectedArticles
+    articles : state.filtersArticles,
+    selected : state.selectedArticles,
+    dateRange: state.dateRange
 }))(Filters)
