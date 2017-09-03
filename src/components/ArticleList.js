@@ -24,11 +24,12 @@ class ArticleList extends Component {
         const articleElements = articles
             /* по-умолчанию показываются все */
             .filter(article => {
-                return typeof selected === 'undefined'
+                return selected.length === 0
                     || selected
                         .map(item => item.value)
                         .indexOf(article.id) > -1
             })
+            /* по-умолчанию показываются от начала времен */
             .filter(article => {
                 let {from, to} = dateRange;
                 let articleDate = new Date(article.date);
