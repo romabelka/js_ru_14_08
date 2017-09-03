@@ -13,7 +13,7 @@ class ArticleList extends Component {
     }
 
     render() {
-        const {openItemId, toggleOpenItem, articles} = this.props
+        const {openItemId, toggleOpenItem, articles} = this.props;
         const articleElements = articles.map(article => (
             <li key={article.id}>
                 <Article
@@ -28,11 +28,39 @@ class ArticleList extends Component {
             <ul>
                 {articleElements}
             </ul>
-        )
+        );
     }
 }
 
+function filterArticles(articles, filters) {
+    // сортировка по выбоанным статьям в селекте
+    const selectedArticles = filters.selected;
+    const lenSelectedArticles = selectedArticles.length;
+
+    const selectArticle = articles.filter(article => {
+        if ( !selectedArticles || selectedArticles && !lenSelectedArticles) return true;
+
+        let flag = false;
+        for (let i = 0; i < lenSelectedArticles; i++) {
+            if ( selectedArticles[i].value === article.id ) {
+                flag = true;
+                continue;
+            }
+        }
+
+        return flag;
+    });
+
+    // сортировка по датам
+    const { from, to } = filters;
+    return selectArticle.filter(article => {
+        if ( !from || !to ) return true;
+
+        return (Date.parse(article.date) >= Date.parse(from)) && (Date.parse(article.date) <= Date.parse(to));
+    })
+}
+
 export default connect(state => ({
-    articles: state.articles,
+    articles: filterArticles(state.articles, state.filters),
     defaultOpenId: state.articles[0].id
 }))(accordion(ArticleList))
