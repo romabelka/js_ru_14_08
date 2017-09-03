@@ -8,7 +8,7 @@ class UserForm extends Component {
 
     state = {
         username: ''
-    }
+    };
 
     render() {
         return (
