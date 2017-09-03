@@ -13,16 +13,37 @@ class ArticleList extends Component {
     }
 
     render() {
-        const {openItemId, toggleOpenItem, articles} = this.props
-        const articleElements = articles.map(article => (
-            <li key={article.id}>
-                <Article
-                    article={article}
-                    isOpen={article.id === openItemId}
-                    toggleOpen={toggleOpenItem(article.id)}
-                />
-            </li>
-        ))
+        const {
+            openItemId,
+            toggleOpenItem,
+            articles,
+            selected,
+            dateRange
+        } = this.props;
+
+        const articleElements = articles
+            /* по-умолчанию показываются все */
+            .filter(article => {
+                return selected.length === 0
+                    || selected
+                        .map(item => item.value)
+                        .indexOf(article.id) > -1
+            })
+            /* по-умолчанию показываются от начала времен */
+            .filter(article => {
+                let {from, to} = dateRange;
+                let articleDate = new Date(article.date);
+                return articleDate >= new Date(from) && (to === null || articleDate <= new Date(to));
+            })
+            .map(article => (
+                <li key={article.id}>
+                    <Article
+                        article={article}
+                        isOpen={article.id === openItemId}
+                        toggleOpen={toggleOpenItem(article.id)}
+                    />
+                </li>
+            ));
 
         return (
             <ul>
@@ -34,5 +55,7 @@ class ArticleList extends Component {
 
 export default connect(state => ({
     articles: state.articles,
-    defaultOpenId: state.articles[0].id
+    defaultOpenId: state.articles[0].id,
+    dateRange: state.dateRange,
+    selected: state.articleSelect,
 }))(accordion(ArticleList))
