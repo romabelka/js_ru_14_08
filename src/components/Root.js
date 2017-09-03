@@ -11,9 +11,9 @@ export default class Root extends Component {
                 <h2>Menu</h2>
                 <div>
                     <h1>News App</h1>
-                    <UserForm />
-                    <Counter />
-                    <Filters articles={[]}/>
+
+
+                    <Filters />
                     <ArticleList />
                 </div>
             </div>
@@ -21,3 +21,6 @@ export default class Root extends Component {
 
     }
 }
+
+// <UserForm />
+// <Counter />

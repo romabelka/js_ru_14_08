@@ -13,8 +13,32 @@ class ArticleList extends Component {
     }
 
     render() {
-        const {openItemId, toggleOpenItem, articles} = this.props
-        const articleElements = articles.map(article => (
+        const {openItemId, toggleOpenItem, articles, filters} = this.props
+
+        let selected = filters.selected.map(item => item.value);
+
+        const articleElements = articles
+        .filter(item => (
+            selected.length > 0 ? selected.indexOf(item.id) > -1 : item
+        ))
+        .filter(item => {
+            let {from, to} = filters.range;
+
+            if (from && !to) {
+                return Date.parse(from) < Date.parse(item.date)
+            }
+
+            if (!from && to) {
+                return Date.parse(to) > Date.parse(item.date)
+            }
+
+            if (from && to) {
+                return Date.parse(from) < Date.parse(item.date) && Date.parse(to) > Date.parse(item.date)
+            }
+
+            return item;
+        })
+        .map(article => (
             <li key={article.id}>
                 <Article
                     article={article}
@@ -34,5 +58,6 @@ class ArticleList extends Component {
 
 export default connect(state => ({
     articles: state.articles,
-    defaultOpenId: state.articles[0].id
+    defaultOpenId: state.articles[0].id,
+    filters: state.filters
 }))(accordion(ArticleList))
