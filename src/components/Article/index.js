@@ -46,12 +46,10 @@ class Article extends PureComponent {
     }
 
     setContainerRef = (container) => {
-        console.log('---', container)
         this.container = container
     }
 
     componentDidUpdate() {
-        console.log('---', this.container.getBoundingClientRect())
     }
 /*
 

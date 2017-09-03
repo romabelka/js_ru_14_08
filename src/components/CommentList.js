@@ -34,7 +34,6 @@ class CommentList extends Component {
             <div>
                 <button onClick={toggleOpen}>{text}</button>
                 {this.getBody()}
-                <CommentForm/>
             </div>
         )
     }
