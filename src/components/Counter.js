@@ -20,8 +20,9 @@ class Counter extends Component {
     }
 
     handleIncrement = () => {
-        const action = increment()
-        this.props.dispatch(action)
+        const action = increment();
+      console.log(this.props);
+      this.props.dispatch(action)
     }
 }
 
