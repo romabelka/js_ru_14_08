@@ -1,4 +1,4 @@
-import {INCREMENT, DELETE_ARTICLE} from '../constants'
+import {INCREMENT, DELETE_ARTICLE, SELECTED_ARTICLE, SELECTED_DATE} from '../constants'
 
 export function increment() {
     return {
@@ -12,3 +12,21 @@ export function deleteArticle(id) {
         payload: { id }
     }
 }
+
+export function selectedArticle(selected){
+  return {
+    type: SELECTED_ARTICLE,
+    payload: { selected }
+  }
+}
+
+export function selectedDate(date){
+    
+    return {
+      type: SELECTED_DATE,
+      payload: { 
+        from: date.from,
+        to: date.to
+        }
+    }
+  }

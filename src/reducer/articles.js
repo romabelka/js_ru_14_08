@@ -1,4 +1,4 @@
-import { DELETE_ARTICLE } from '../constants'
+import { DELETE_ARTICLE, FILTER_ARTICLES } from '../constants'
 import {articles as defaultArticles} from '../fixtures'
 
 export default (articles = defaultArticles, action) => {

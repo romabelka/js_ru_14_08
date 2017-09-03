@@ -25,7 +25,7 @@ class Article extends PureComponent {
 */
 
     render() {
-        const {article, toggleOpen} = this.props
+        const {article, toggleOpen, selected} = this.props
 
         return (
             <div ref={this.setContainerRef}>
