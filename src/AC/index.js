@@ -1,8 +1,15 @@
-import {INCREMENT, DELETE_ARTICLE} from '../constants'
+import {INCREMENT, DELETE_ARTICLE, CHANGE_DATE_RANGE} from '../constants'
 
 export function increment() {
     return {
         type: INCREMENT
+    }
+}
+
+export function changeDateRange(dateRange) {
+    return {
+        type: CHANGE_DATE_RANGE,
+        payload: { newDateRange: dateRange }
     }
 }
 
