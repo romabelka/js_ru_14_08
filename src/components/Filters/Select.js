@@ -9,11 +9,6 @@ class SelectFilter extends Component {
         articles: PropTypes.array.isRequired
     };
 
-    // state = {
-    //     selected: null
-    // }
-
-   // handleSelectionChange = selected => this.setState({ selected })
     handleSelectionChange = selected => {      
       const {selectedArticle} = this.props
       selectedArticle(selected)

@@ -1,6 +1,6 @@
 import { SELECTED_ARTICLE } from '../constants'
 
-export default (state = null, action) => {
+export default (state = [], action) => {
   
     const {type, payload} = action
 

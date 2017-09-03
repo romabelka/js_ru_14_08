@@ -7,8 +7,6 @@ export default (articles = defaultArticles, action) => {
     switch (type) {
         case DELETE_ARTICLE:
             return articles.filter(article => article.id !== payload.id)
-        // case FILTER_ARTICLES:
-        //   return articles.filter()
     }
 
     return articles
