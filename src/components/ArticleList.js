@@ -18,20 +18,30 @@ class ArticleList extends Component {
         const toDate = +to;
         console.log('fromDate: ', fromDate);
         console.log('toDate: ', toDate);
-        
-        
+        const dateRangeArray = articles.map(article => {
+          if( Date.parse(article.date) > fromDate && Date.parse(article.date) < toDate) {
+            return article.id
+          }
+        })
+
+        console.log('dateRangeArray: ', dateRangeArray);
         const articlesSelected = selected.map(item =>{ return item.value })
 
         const filteredArticles = articles.filter(article => { 
-            if(articlesSelected.length === 0 || fromDate === 0 || toDate === 0){
+            if(articlesSelected.length > 0){
+              return articlesSelected.indexOf(article.id) != -1
+            }else if(dateRangeArray.length > 0){
+              dateRangeArray.indexOf(article.id) != -1
+            }
+            else if(articlesSelected.length === 0 || fromDate === 0 || toDate === 0){
                 return article
             }
-            if(fromDate > 0){
-                const articleDate = +article.date
-                console.log('articleDate: ', articleDate);
-                return article.indexOf(article.id) != -1 
-            }
-            return articlesSelected.indexOf(article.id) != -1 
+            // if(fromDate > 0){
+            //     const articleDate = +article.date
+            //     console.log('articleDate: ', articleDate);
+            //     return article.indexOf(article.id) != -1 
+            // }
+            
         })
         
         const articleElements = filteredArticles.map(article => (
