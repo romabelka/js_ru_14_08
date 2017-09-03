@@ -5,6 +5,10 @@ import CommentForm from './CommentForm'
 import PropTypes from 'prop-types'
 
 class CommentList extends Component {
+    static propTypes = {
+        comments: PropTypes.arrayOf(PropTypes.object)
+    }
+
     static defaultProps = {
         comments: [],
         isOpen: PropTypes.bool,

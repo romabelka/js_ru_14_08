@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {articles} from '../fixtures'
 import ArticleList from './ArticleList'
 import UserForm from './UserForm'
 import Filters from './Filters'
@@ -13,7 +14,7 @@ export default class Root extends Component {
                     <h1>News App</h1>
                     <UserForm />
                     <Counter />
-                    <Filters articles={[]}/>
+                    <Filters articles = {articles} />
                     <ArticleList />
                 </div>
             </div>

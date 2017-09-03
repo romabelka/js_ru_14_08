@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react'
 import Root from './components/Root'
 import {Provider} from 'react-redux'
@@ -10,6 +11,5 @@ export default class App extends Component {
                 <Root />
             </Provider>
         )
-
     }
 }
