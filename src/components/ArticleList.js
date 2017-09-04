@@ -33,6 +33,19 @@ class ArticleList extends Component {
 }
 
 export default connect(state => ({
-    articles: state.articles,
-    defaultOpenId: state.articles[0].id
+    articles: ((articles,filters)=>{
+        //filters={dateRange:{from:'', to:''}, selectedArticles:[]}
+        const ids = filters.selectedArticles.map(el => el.value)
+        const filteredSelect = articles.filter(article => ids && ids.length
+            ? ids.includes(article.id)
+            : article)
+        const to = Date.parse( filters.dateRange.to),
+            from = Date.parse( filters.dateRange.from)
+            const filteredRange = articles.filter(article => {
+                let result = from ? Date.parse(article.date) >= from : true;
+                return to ? result && Date.parse(article.date) <= to : result;
+            })
+            return filteredRange.filter(el=>filteredSelect.map(el=>el.id).includes(el.id))
+    })(state.articles, state.filters),
+    //defaultOpenId: state.articles[0].id
 }))(accordion(ArticleList))
