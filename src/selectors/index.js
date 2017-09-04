@@ -17,6 +17,5 @@ export const filtratedArticlesSelector = createSelector(articlesSelector, filter
 })
 
 export const createCommentSelector = () => createSelector(commentsSelector, idSelector, (comments, id) => {
-    console.log('---', 'find comment', id)
-    return comments.find(comment => comment.id === id)
+    return comments[id]
 })
