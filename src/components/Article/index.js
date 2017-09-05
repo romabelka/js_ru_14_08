@@ -91,20 +91,8 @@ class Article extends PureComponent {
 */
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-export default Article
-=======
-export default connect(null, { deleteArticle })(Article)
->>>>>>> upstream/master
-=======
-export default connect(null, { deleteArticle })(Article)
->>>>>>> upstream/master
-=======
 export default connect(null, (dispatch, ownProps) => ({
     deleteArticle: () => dispatch(deleteArticle(ownProps.article.id))
 }))(Article)
 
 //export default connect(null, { deleteArticle })(Article)
->>>>>>> upstream/master
