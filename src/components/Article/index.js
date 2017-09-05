@@ -25,12 +25,12 @@ class Article extends PureComponent {
 */
 
     render() {
-        const {article, toggleOpen} = this.props
+        const {article, toggleOpen, deleteArticle} = this.props
 
         return (
             <div ref={this.setContainerRef}>
                 <h3 onClick = {toggleOpen}>{article.title}</h3>
-                <button onClick={this.handleDelete}>delete me</button>
+                <button onClick={deleteArticle}>delete me</button>
                 <CSSTransion
                     transitionName="article"
                     transitionEnterTimeout={500}
@@ -83,10 +83,16 @@ class Article extends PureComponent {
 */
     }
 
+/*
     handleDelete = () => {
         const {deleteArticle, article} = this.props
         deleteArticle(article.id)
     }
+*/
 }
 
-export default connect(null, { deleteArticle })(Article)
+export default connect(null, (dispatch, ownProps) => ({
+    deleteArticle: () => dispatch(deleteArticle(ownProps.article.id))
+}))(Article)
+
+//export default connect(null, { deleteArticle })(Article)
