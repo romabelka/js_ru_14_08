@@ -46,12 +46,12 @@ class Article extends PureComponent {
     }
 
     setContainerRef = (container) => {
-        console.log('---', container)
+        // console.log('---', container)
         this.container = container
     }
 
     componentDidUpdate() {
-        console.log('---', this.container.getBoundingClientRect())
+        // console.log('---', this.container.getBoundingClientRect())
     }
 /*
 
@@ -72,7 +72,7 @@ class Article extends PureComponent {
 
     setCommentsRef = (commentsRef) => {
         this.commentsRef = commentsRef
-        console.log('---', findDOMNode(commentsRef))
+        // console.log('---', findDOMNode(commentsRef))
 //        commentsRef.forceUpdate()
 /*
         setTimeout(() => {

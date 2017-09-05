@@ -51,12 +51,13 @@ class CommentList extends Component {
     getBody() {
         const { comments, isOpen } = this.props
         if (!isOpen) return null
+        
         let {name, text} = this.state
         return (
             <div>
                 {comments.length ? (
                     <ul>
-                        {comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)}
+                        {comments.map(comment => <li key = {comment}><Comment comment = {comment} /></li>)}
                     </ul>
                     ) : <h3>No comments yet</h3>}
                 <form onSubmit={this.submit}>

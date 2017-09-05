@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import Datepicker from './Datepicker';
-
 class UserForm extends Component {
     static propTypes = {
 
@@ -15,7 +13,6 @@ class UserForm extends Component {
     render() {
         return (
             <div>
-                <Datepicker />
                 <label>Username: </label>
                 <input type="text" value={this.state.username} onChange={this.handleChange}/>
             </div>

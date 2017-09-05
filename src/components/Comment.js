@@ -21,9 +21,11 @@ Comment.propTypes = {
 const createMapStateToProps = () => {
     const commentSelector = createCommentSelector()
 
-    return (state, ownProps) => ({
-        comment: commentSelector(state, ownProps)
-    })
+    return (state, ownProps) => {
+        return {
+            comment: commentSelector(state, ownProps)
+        }
+    }
 }
 
 export default connect(createMapStateToProps)(Comment)

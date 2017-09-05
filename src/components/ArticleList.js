@@ -14,17 +14,19 @@ class ArticleList extends Component {
     }
 
     render() {
-        console.log('---', 'rendering article list')
+        // console.log('---', 'rendering article list')
         const {openItemId, toggleOpenItem, articles} = this.props
-        const articleElements = articles.map(article => (
-            <li key={article.id}>
-                <Article
-                    article={article}
-                    isOpen={article.id === openItemId}
-                    toggleOpen={toggleOpenItem(article.id)}
-                />
-            </li>
-        ))
+        const articleElements = articles.map(article => {
+            return (
+                <li key={article.id}>
+                    <Article
+                        article={article}
+                        isOpen={article.id === openItemId}
+                        toggleOpen={toggleOpenItem(article.id)}
+                    />
+                </li>
+            )
+        })
 
         return (
             <ul>
@@ -35,7 +37,7 @@ class ArticleList extends Component {
 }
 
 export default connect(state => {
-    console.log('---', 'connect')
+    // console.log('---', 'connect')
     return {
         articles: filtratedArticlesSelector(state)
     }
