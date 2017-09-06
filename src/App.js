@@ -1,14 +1,15 @@
-import React from 'react'
-import ArticleList from './components/ArticleList'
+import React, {Component} from 'react'
+import Root from './components/Root'
+import {Provider} from 'react-redux'
+import store from './store'
 
-export default function App(props) {
-    return (
-        <div>
-            <h2>Menu</h2>
-            <div>
-                <h1>News App</h1>
-                <ArticleList articles = {props.articles}/>
-            </div>
-        </div>
-    )
+export default class App extends Component {
+    render() {
+        return (
+            <Provider store = {store}>
+                <Root />
+            </Provider>
+        )
+
+    }
 }

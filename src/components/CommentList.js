@@ -1,32 +1,27 @@
 import React, {Component} from 'react'
 import Comment from './Comment'
 import toggleOpen from '../decorators/toggleOpen'
+import CommentForm from './CommentForm'
+import PropTypes from 'prop-types'
 
 class CommentList extends Component {
     static defaultProps = {
-        comments: []
-    }
-
-    componentWillMount() {
-        console.log('---', 'mounting comment list')
+        comments: [],
+        isOpen: PropTypes.bool,
+        toggleOpen: PropTypes.func
     }
 
     componentDidMount() {
         console.log('---', 'mounted')
     }
 
-    componentWillReceiveProps() {
-        console.log('---', 'updating props')
-    }
-
-    componentWillUpdate() {
-        console.log('---', 'updating state or props')
-    }
-
     componentWillUnmount() {
         console.log('---', 'unmounting')
     }
 
+    componentDidUpdate() {
+        console.log('---', 'updated')
+    }
 
     render() {
         const {isOpen, toggleOpen} = this.props
@@ -43,11 +38,18 @@ class CommentList extends Component {
         const { comments, isOpen } = this.props
         if (!isOpen) return null
 
-        return comments.length ? (
+        const body = comments.length ? (
             <ul>
                 {comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)}
             </ul>
         ) : <h3>No comments yet</h3>
+
+        return (
+            <div>
+                {body}
+                <CommentForm />
+            </div>
+        )
     }
 }
 
