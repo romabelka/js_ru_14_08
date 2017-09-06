@@ -7,7 +7,7 @@ import {filtratedArticlesSelector} from '../selectors'
 
 class ArticleList extends Component {
     static propTypes = {
-        articles: PropTypes.array.isRequired,
+        articles: PropTypes.object.isRequired,
         //from accordion decorator
         openItemId: PropTypes.string,
         toggleOpenItem: PropTypes.func.isRequired
@@ -24,7 +24,7 @@ class ArticleList extends Component {
                     toggleOpen={toggleOpenItem(article.id)}
                 />
             </li>
-        ))
+        )).toArray()
 
         return (
             <ul>

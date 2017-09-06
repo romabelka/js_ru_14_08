@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 class CommentList extends Component {
     static defaultProps = {
         comments: [],
+        articleId: PropTypes.number.isRequired,
         isOpen: PropTypes.bool,
         toggleOpen: PropTypes.func
     }
@@ -47,7 +48,7 @@ class CommentList extends Component {
         return (
             <div>
                 {body}
-                <CommentForm />
+                <CommentForm articleId = {this.props.articleId} />
             </div>
         )
     }
