@@ -13,7 +13,7 @@ export default class Root extends Component {
                     <h1>News App</h1>
                     <UserForm />
                     <Counter />
-                    <Filters articles={[]}/>
+                    <Filters />
                     <ArticleList />
                 </div>
             </div>
