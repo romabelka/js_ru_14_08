@@ -7,7 +7,7 @@ import 'react-select/dist/react-select.css'
 
 class SelectFilter extends Component {
     static propTypes = {
-        articles: PropTypes.array.isRequired
+        articles: PropTypes.object.isRequired
     };
 
     handleChange = selected => this.props.changeSelection(selected.map(option => option.value))
@@ -20,7 +20,7 @@ class SelectFilter extends Component {
         }))
 
         return <Select
-            options={options}
+            options={options.toArray()}
             value={selected}
             multi={true}
             onChange={this.handleChange}

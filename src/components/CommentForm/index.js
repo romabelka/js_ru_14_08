@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './style.css'
+import {submitNewComment} from '../../AC'
+import {connect} from 'react-redux'
 
 class CommentForm extends Component {
     static propTypes = {
@@ -27,6 +29,12 @@ class CommentForm extends Component {
 
     handleSubmit = ev => {
         ev.preventDefault()
+
+        this.props.submitNewComment({
+            articleId: this.props.articleId,
+            comment: this.state
+        })
+
         this.setState({
             user: '',
             text: ''
@@ -56,4 +64,4 @@ const limits = {
     }
 }
 
-export default CommentForm
+export default connect(null, {submitNewComment})(CommentForm)
