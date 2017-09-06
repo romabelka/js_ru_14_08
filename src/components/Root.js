@@ -62,9 +62,10 @@ class Root extends Component {
 }
 
 function mapStateToProps(state){
+  console.log(state);
   return {
-    selectedId: state.selectedID,
-    selectDate: state.selectDate,
+    selectedId: state.filter.selectedId,
+    selectDate: state.filter.selectedDate,
     articles: state.article
   }
 }

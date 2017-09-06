@@ -16,13 +16,13 @@ export function deleteArticle(id) {
 export function selectArticleId(id) {
   return {
     type: SELECT_ARTICLE_ID,
-    payload: id
+    payload: { id }
   }
 }
 
-export function selectArticleDate(id) {
+export function selectArticleDate(date) {
   return {
     type: SELECT_ARTICLE_DATE,
-    payload: id
+    payload: date
   }
 }
