@@ -16,9 +16,10 @@ export default (articles = defaultArticles, action) => {
                 [id]:articles[id]}), {});
 
         case ADD_COMMENT:
-            let newArticles=Object.assign({}, articles)
-            newArticles[payload.articleId].comments.push(payload.comment.id)
-            return newArticles
+
+            const newComments = articles[payload.articleId].comments.concat(payload.comment.id)
+            const newArticle = Object.assign({}, articles[payload.articleId], {comments: newComments})
+            return Object.assign({}, articles, {[payload.articleId]:newArticle})
     }
 
     return articles
