@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
+import {addComment} from '../../AC'
 import './style.css'
 
 class CommentForm extends Component {
@@ -14,10 +16,10 @@ class CommentForm extends Component {
     render() {
         return (
             <form onSubmit = {this.handleSubmit}>
-                user: <input value = {this.state.user}
+                user: <input value = {this.state.user} name="user"
                              onChange = {this.handleChange('user')}
                              className = {this.getClassName('user')} />
-                comment: <input value = {this.state.text}
+                comment: <input value = {this.state.text} name="comment"
                                 onChange = {this.handleChange('text')}
                                 className = {this.getClassName('text')} />
                 <input type = "submit" value = "submit"/>
@@ -28,9 +30,14 @@ class CommentForm extends Component {
     handleSubmit = ev => {
         ev.preventDefault()
         this.setState({
-            user: '',
-            text: ''
+             user: '',
+             text: ''
         })
+        
+        const { addComment } = this.props
+
+        //мы вызываем AC, но редьюсер не срабатывает, почему?
+        addComment(ev.target.user, ev.target.comment, 'articleId');
     }
 
     getClassName = type => this.state[type].length && this.state[type].length < limits[type].min
@@ -56,4 +63,4 @@ const limits = {
     }
 }
 
-export default CommentForm
+export default connect(null, {addComment})(CommentForm)
