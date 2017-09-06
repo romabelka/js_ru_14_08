@@ -9,11 +9,13 @@ export const filtratedArticlesSelector = createSelector(articlesSelector, filter
     console.log('---', 'recomputing filtrated articles')
     const {selected, dateRange: {from, to}} = filters
 
-    return articles.filter(article => {
-        const published = Date.parse(article.date)
-        return (!selected.length || selected.includes(article.id)) &&
+    return Object.keys(articles).filter(id => {
+        const published = Date.parse(articles[id].date)
+        return (!selected.length || selected.includes(id)) &&
             (!from || !to || (published > from && published < to))
-    })
+    }).reduce((acc, id) => ({
+        ...acc,
+        [id]:articles[id]}), {});
 })
 
 export const createCommentSelector = () => createSelector(commentsSelector, idSelector, (comments, id) => {
