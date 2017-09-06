@@ -8,7 +8,8 @@ class CommentList extends Component {
     static defaultProps = {
         comments: [],
         isOpen: PropTypes.bool,
-        toggleOpen: PropTypes.func
+        toggleOpen: PropTypes.func,
+        articleId: PropTypes.string
     }
 
     componentDidMount() {
@@ -35,7 +36,7 @@ class CommentList extends Component {
     }
 
     getBody() {
-        const { comments, isOpen } = this.props
+        const { comments, isOpen, articleId } = this.props
         if (!isOpen) return null
 
         const body = comments.length ? (
@@ -47,7 +48,7 @@ class CommentList extends Component {
         return (
             <div>
                 {body}
-                <CommentForm />
+                <CommentForm articleId={articleId}/>
             </div>
         )
     }
