@@ -13,7 +13,9 @@ class SelectFilter extends Component {
     handleChange = selected => this.props.changeSelection(selected.map(option => option.value))
 
     render() {
-        const { articles, selected } = this.props
+        const {selected} = this.props
+        let articles = this.props.articles
+        articles = Object.values(articles);
         const options = articles.map(article => ({
             label: article.title,
             value: article.id

@@ -1,7 +1,11 @@
+import {ADD_COMMENT} from '../constants'
+import sh from 'shortid'
+
 export default store => next => action => {
-    console.log('we are in mw');
-    //console.log('---', 'state before:', store.getState())
-    //console.log('---', 'dispatching', action)
-    //next(action)
-    //console.log('---', 'state after: ', store.getState())
+    if (action.type == ADD_COMMENT)
+    {
+        action.payload.id = sh.generate();
+    }
+
+    next(action)
 }

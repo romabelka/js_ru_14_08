@@ -9,18 +9,15 @@ const defaultComments = normalizedComments.reduce((acc, comment) => ({
 export default (state = defaultComments, action) => {
     const { type, payload, response, error } = action
     
-    
-    // почему-то мы не попадаем в этот редьюсер
-
     switch (type) {
         case ADD_COMMENT: {
-            
-            const newComment = {
+            state[payload.id] = {
+                "id":payload.id,
                 "user": payload.name,
-                "text": payload.comment
-            }
+                "text": payload.text
+            };
 
-            return {...state, newComment}
+            return state
         } break;
     }
 

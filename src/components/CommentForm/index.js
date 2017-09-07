@@ -36,8 +36,7 @@ class CommentForm extends Component {
         
         const { addComment } = this.props
 
-        //мы вызываем AC, но редьюсер не срабатывает, почему?
-        addComment(ev.target.user, ev.target.comment, 'articleId');
+        addComment(ev.target.user.value, ev.target.comment.value, this.props.articleId);
     }
 
     getClassName = type => this.state[type].length && this.state[type].length < limits[type].min

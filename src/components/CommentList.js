@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Comment from './Comment'
 import toggleOpen from '../decorators/toggleOpen'
 import CommentForm from './CommentForm'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 class CommentList extends Component {
@@ -9,18 +10,6 @@ class CommentList extends Component {
         comments: [],
         isOpen: PropTypes.bool,
         toggleOpen: PropTypes.func
-    }
-
-    componentDidMount() {
-        console.log('---', 'mounted')
-    }
-
-    componentWillUnmount() {
-        console.log('---', 'unmounting')
-    }
-
-    componentDidUpdate() {
-        console.log('---', 'updated')
     }
 
     render() {
@@ -35,23 +24,30 @@ class CommentList extends Component {
     }
 
     getBody() {
-        const { comments, isOpen } = this.props
-        if (!isOpen) return null
+        //console.log('---props----', this.props);
+        const {isOpen } = this.props
+        let comments = this.props.comments;
 
-        const body = comments.length ? (
+        
+
+        //if (!isOpen) return null
+        console.log('---props----', Object.keys(comments));
+        const body = Object.keys(comments).length ? (
             <ul>
-                {comments.map(id => <li key = {id}><Comment id = {id} /></li>)}
+                {Object.keys(comments).forEach(id => <li key = {comments[id].id}><Comment id = {comments[id].id} /></li>)}
             </ul>
         ) : <h3>No comments yet</h3>
 
         return (
             <div>
                 {body}
-                <CommentForm />
+                <CommentForm articleId/>
             </div>
         )
     }
 }
 
 
-export default toggleOpen(CommentList)
+export default connect(state => ({
+    comments: state.comments    
+}))(toggleOpen(CommentList))
