@@ -65,7 +65,7 @@ class Article extends PureComponent {
         return this.props.isOpen && (
             <div>
                 <p>{this.props.article.text}</p>
-                <CommentList comments = {this.props.article.comments} ref = {this.setCommentsRef} />
+                <CommentList article = {this.props.article} ref = {this.setCommentsRef} />
             </div>
         )
     }
