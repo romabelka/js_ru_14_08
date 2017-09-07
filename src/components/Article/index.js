@@ -62,10 +62,12 @@ class Article extends PureComponent {
 */
 
     getBody() {
+        const {id, comments} = this.props.article
+
         return this.props.isOpen && (
             <div>
                 <p>{this.props.article.text}</p>
-                <CommentList comments = {this.props.article.comments} ref = {this.setCommentsRef} />
+                <CommentList articleId = {id} comments = {comments} ref = {this.setCommentsRef} />
             </div>
         )
     }
