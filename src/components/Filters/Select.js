@@ -11,11 +11,11 @@ class SelectFilter extends Component {
 
     handleSelectionChange = selected => {      
       const {selectedArticle} = this.props
-      selectedArticle(selected)
-  }
+      selectedArticle(selected.map(option => option.value))
+    }
     render() {
         const { articles, selected } = this.props
-        
+
         const options = articles.map(article => ({
             label: article.title,
             value: article.id
@@ -32,5 +32,5 @@ class SelectFilter extends Component {
 
 export default connect(state=>({
   articles: state.articles,
-  selected: state.selected,
+  selected: state.filters.selected,
 }), {selectedArticle})(SelectFilter)
