@@ -25,8 +25,7 @@ export function selectedDate(date){
     return {
       type: SELECTED_DATE,
       payload: { 
-        from: date.from,
-        to: date.to
-        }
+        dateRange: date
     }
-  }
+    }
+}
