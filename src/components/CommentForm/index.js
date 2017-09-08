@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './style.css'
+import addComments from '../../AC'
 
 class CommentForm extends Component {
     static propTypes = {
@@ -27,10 +28,18 @@ class CommentForm extends Component {
 
     handleSubmit = ev => {
         ev.preventDefault()
+
+
+        this.props.addComments(
+            this.state.text,
+            this.state.user
+        )
+
         this.setState({
             user: '',
             text: ''
         })
+
     }
 
     getClassName = type => this.state[type].length && this.state[type].length < limits[type].min

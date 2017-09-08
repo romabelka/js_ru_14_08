@@ -2,6 +2,9 @@ import React, {Component} from 'react'
 import CommentList from './CommentList'
 import PropTypes from 'prop-types'
 import toggleOpen from '../decorators/toggleOpen'
+import {Map} from 'immutable'
+
+const defaultState = new Map(state)
 
 class Article extends Component {
     static propTypes = {
@@ -28,7 +31,7 @@ class Article extends Component {
         return this.props.isOpen && (
             <div>
                 <p>{this.props.article.text}</p>
-                <CommentList comments = {this.props.article.comments}/>
+                <CommentList article={this.props.article} comments = {this.props.article.comments}/>
             </div>
         )
     }
