@@ -75,7 +75,7 @@ class Article extends PureComponent {
         return (
             <div>
                 <p>{this.props.article.text}</p>
-                <CommentList article = {this.props.article} ref = {this.setCommentsRef} />
+                <CommentList articleId = {this.props.article.id} comments={this.props.article.comments} ref = {this.setCommentsRef} />
             </div>
         )
     }
