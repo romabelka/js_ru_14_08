@@ -1,8 +1,11 @@
 import React, {Component} from 'react'
 import Comment from './Comment'
+import Loader from './Loader'
 import toggleOpen from '../decorators/toggleOpen'
 import CommentForm from './CommentForm'
 import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
+import {loadAllComments} from '../AC'
 
 class CommentList extends Component {
     static defaultProps = {
@@ -13,6 +16,7 @@ class CommentList extends Component {
 
     componentDidMount() {
         console.log('---', 'mounted')
+        //this.props.loadAllComments(this.props.articleId)
     }
 
     componentWillUnmount() {
@@ -22,7 +26,10 @@ class CommentList extends Component {
     componentDidUpdate() {
         console.log('---', 'updated')
     }
-
+    componentWillReceiveProps(nextProps) {
+        if(this.props.comments.length) return
+        if (nextProps.isOpen && !this.props.isOpen) nextProps.loadAllComments(this.props.articleId)
+    }
     render() {
         const {isOpen, toggleOpen} = this.props
         const text = isOpen ? 'hide comments' : 'show comments'
@@ -35,23 +42,29 @@ class CommentList extends Component {
     }
 
     getBody() {
-        const { article: {id, comments = []}, isOpen } = this.props
+        const { articleId, comments, isOpen, loading } = this.props
         if (!isOpen) return null
-
+        if (loading) return <Loader/>
         const body = comments.length ? (
             <ul>
-                {comments.map(id => <li key = {id}><Comment id = {id} /></li>)}
+                {comments.map(comment => <li key = {comment.id}><Comment id = {comment.id} /></li>)}
             </ul>
         ) : <h3>No comments yet</h3>
 
         return (
             <div>
                 {body}
-                <CommentForm articleId = {id} />
+                <CommentForm articleId = {articleId} />
             </div>
         )
     }
 }
 
 
-export default toggleOpen(CommentList)
+export default connect(state => {
+
+    return {
+        comments: state.comments.entities.valueSeq().toArray(),
+        loading: state.comments.loading
+    }
+}, {loadAllComments})(toggleOpen(CommentList))

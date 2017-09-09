@@ -4,7 +4,7 @@ import {mapToArr} from '../reducer/utils'
 export const articlesSelector = state => state.articles.entities.valueSeq().toArray()
 export const filtersSelector = state => state.filters
 export const idSelector = (state, props) => props.id
-export const commentsSelector = state => state.comments
+export const commentsSelector = state => state.comments.entities.valueSeq().toArray()
 
 export const filtratedArticlesSelector = createSelector(articlesSelector, filtersSelector, (articles, filters) => {
     console.log('---', 'recomputing filtrated articles')
@@ -18,5 +18,6 @@ export const filtratedArticlesSelector = createSelector(articlesSelector, filter
 })
 
 export const createCommentSelector = () => createSelector(commentsSelector, idSelector, (comments, id) => {
-    return comments[id]
+    const result=comments.find(function(comment){return comment.get('id') === id;});
+    return result
 })
