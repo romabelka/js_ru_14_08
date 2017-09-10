@@ -1,6 +1,6 @@
 import {
     INCREMENT, DELETE_ARTICLE, CHANGE_DATE_RANGE, CHANGE_SELECTION, ADD_COMMENT, LOAD_ALL_ARTICLES, LOAD_ARTICLE,
-    START, SUCCESS, FAIL
+    START, SUCCESS, FAIL, LOAD_COMMENTS_FOR_ARTICLE
 } from '../constants'
 
 export function increment() {
@@ -75,4 +75,35 @@ export function loadArticleById(id) {
                 }))
         }, 1000)
     }
+}
+
+export function loadCommentForArticle(articleId) {
+    return {
+        type: LOAD_COMMENTS_FOR_ARTICLE,
+        callAPI: `/api/comment?article=${articleId}`,
+        payload: { articleId }
+    }
+    // return (dispatch) => {
+    //     dispatch({
+    //         type: LOAD_COMMENTS_FOR_ARTICLE + START,
+    //         payload: []
+    //     })
+
+    //     setTimeout(() => {
+    //         fetch(`/api/comment?acticle=${id}`)
+    //             .then(res => {
+    //                 res.json()
+    //                 console.log(res.json())
+    //             })
+    //             .then(response => dispatch({
+    //                 type: LOAD_COMMENTS_FOR_ARTICLE + SUCCESS,
+    //                 payload: response,
+    //             }))
+    //             .catch(error => dispatch({
+    //                 type: LOAD_COMMENTS_FOR_ARTICLE + FAIL,
+    //                 payload: [],
+    //                 error
+    //             }))
+    //     }, 1000)
+    // }
 }

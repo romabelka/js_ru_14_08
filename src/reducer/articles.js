@@ -1,4 +1,6 @@
-import { DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES, LOAD_ARTICLE, SUCCESS, START } from '../constants'
+import {
+ DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES, LOAD_COMMENTS_FOR_ARTICLE, LOAD_ARTICLE, SUCCESS, START 
+} from '../constants'
 import {arrToMap} from './utils'
 import {Map, fromJS, Record} from 'immutable'
 
@@ -8,6 +10,8 @@ const ArticleRecord = Record({
     text: null,
     date: null,
     loading: false,
+    commentsLoading: false,
+    commentsLoaded: false,
     comments: []
 })
 
@@ -28,6 +32,13 @@ export default (state = defaultState, action) => {
 
         case ADD_COMMENT:
             return state.updateIn(['entities', payload.articleId, 'comments'], comments => comments.concat(randomId))
+
+        case LOAD_COMMENTS_FOR_ARTICLE + START:
+            return state.setIn(['entities', payload.articleId, 'commentsLoading'], true)
+
+        case LOAD_COMMENTS_FOR_ARTICLE + SUCCESS:
+            return state.setIn(['entities', payload.articleId, 'commentsLoading'], false)
+                .setIn(['entities', payload.articleId, 'commentsLoaded'], true)
 
         case LOAD_ALL_ARTICLES + START:
             return state.set('loading', true)
