@@ -1,10 +1,6 @@
 import React, {Component, PureComponent} from 'react'
-<<<<<<< HEAD
-import CommentList from '../CommentList/'
-=======
 import CommentList from '../CommentList'
 import Loader from '../Loader'
->>>>>>> upstream/master
 import PropTypes from 'prop-types'
 import {findDOMNode} from 'react-dom'
 import CSSTransion from 'react-addons-css-transition-group'
@@ -55,12 +51,12 @@ class Article extends PureComponent {
     }
 
     setContainerRef = (container) => {
-        console.log('---', container)
+        // console.log('---', container)
         this.container = container
     }
 
     componentDidUpdate() {
-        console.log('---', this.container.getBoundingClientRect())
+        // console.log('---', this.container.getBoundingClientRect())
     }
 /*
 
@@ -86,7 +82,7 @@ class Article extends PureComponent {
 
     setCommentsRef = (commentsRef) => {
         this.commentsRef = commentsRef
-        console.log('---', findDOMNode(commentsRef))
+        // console.log('---', findDOMNode(commentsRef))
 //        commentsRef.forceUpdate()
 /*
         setTimeout(() => {

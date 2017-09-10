@@ -3,12 +3,17 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {createCommentSelector} from '../selectors'
 
-function Comment({comment}) {
-    return (
-        <div>
-            {comment.text} <b>by {comment.user}</b>
-        </div>
-    )
+class Comment extends React.Component {
+
+    render() {
+        let {comment} = this.props;
+        console.log('comment', comment);
+        return (
+            <div>
+                {comment.text} <b>by {comment.user}</b>
+            </div>
+        )
+    }
 }
 
 Comment.propTypes = {
@@ -18,11 +23,11 @@ Comment.propTypes = {
     }).isRequired
 }
 
-const createMapStateToProps = () => {
-    const commentSelector = createCommentSelector()
+const createMapStateToProps = (state) => {
+    const comment = createCommentSelector()
 
     return (state, ownProps) => ({
-        comment: commentSelector(state, ownProps)
+        comment: comment(state, ownProps)
     })
 }
 

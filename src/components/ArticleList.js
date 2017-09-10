@@ -20,7 +20,7 @@ class ArticleList extends Component {
     }
 
     render() {
-        console.log('---', 'rendering article list')
+        // console.log('---', 'rendering article list')
         const {openItemId, toggleOpenItem, articles, loading} = this.props
 
         if (loading) return <Loader/>
@@ -44,7 +44,7 @@ class ArticleList extends Component {
 }
 
 export default connect(state => {
-    console.log('---', 'connect')
+    // console.log('---', 'connect')
     return {
         articles: filtratedArticlesSelector(state),
         loading: state.articles.loading
