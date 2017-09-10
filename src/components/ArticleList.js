@@ -3,6 +3,7 @@ import Article from './Article'
 import accordion from '../decorators/accordion'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {filtratedArticleSelector} from './selectors'
 
 class ArticleList extends Component {
     static propTypes = {
@@ -17,46 +18,9 @@ class ArticleList extends Component {
     }
 
     render() {
-        const {openItemId, toggleOpenItem, articles, selected, from, to} = this.props        
-        console.log('from: ', from);
-        // КАК НЕ НАДО ДЕЛАТЬ
-
-        // const fromDate = +from;
-        // const toDate = +to;
-        
-        // const arrDate = articles.filter(article => {
-        //     return Date.parse(article.date) >= fromDate && Date.parse(article.date) <= toDate
-        // })
-
-        // const articlesSelected = selected.map(item =>{ return item.value })
-        // const dateRangeArray = arrDate.map(item => {return item.id})
-        // const dateSelectConcatanate = articlesSelected.filter(elem => this.findItemInArray(dateRangeArray, elem)) 
-
-        // const filteredArticles = articles.filter(article => { 
-        //     if(articlesSelected.length > 0 && fromDate > 0){
-        //       return this.findItemInArray(dateSelectConcatanate, article.id)
-        //     }
-        //     else if(articlesSelected.length > 0){
-        //       return this.findItemInArray(articlesSelected, article.id)
-        //     }else if(dateRangeArray.length > 0){
-        //         return this.findItemInArray(dateRangeArray, article.id)
-        //     }
-        //     else if(articlesSelected.length === 0 && fromDate === 0 && toDate === 0){
-        //         return article
-        //     }
-        // })
-        // КАК НАДО
-        const filteredArticles = articles.filter(article => {
-            const parsedDate = Date.parse(article.date)
-
-            return (
-                    (!selected.length || selected.includes(article.id)) && 
-                    (!from || !to || (parsedDate <= to && parsedDate >= from))   
-            )
-        })
-
-        
-        const articleElements = filteredArticles.map(article => (
+        const {openItemId, toggleOpenItem,articles} = this.props        
+    
+        const articleElements = articles.map(article => (
             <li key={article.id}>
                 <Article
                     article={article}
@@ -74,10 +38,8 @@ class ArticleList extends Component {
     }
 }
 
-export default connect(state => ({
-    articles: state.articles,
-    defaultOpenId: state.articles[0].id,
-    selected: state.filters.selected,
-    from: state.filters.dateRange.from,
-    to: state.filters.dateRange.to,
-}))(accordion(ArticleList))
+export default connect(state => {
+    return {
+        articles: filtratedArticleSelector(state)
+    }
+})(accordion(ArticleList))
