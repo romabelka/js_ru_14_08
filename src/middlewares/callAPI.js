@@ -1,9 +1,13 @@
-import {START, SUCCESS, FAIL} from '../constants'
+import {START, SUCCESS, FAIL, LOAD_COMMENTS} from '../constants'
 
 export default store => next => action => {
     const {callAPI, type, ...rest} = action
 
     if (!callAPI) return next(action)
+
+    if (action.type === LOAD_COMMENTS && store.getState().comments.loaded) {
+        return next(action)
+    }
 
     next({
         ...rest,
