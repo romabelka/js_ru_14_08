@@ -3,6 +3,8 @@ import Comment from './Comment'
 import toggleOpen from '../decorators/toggleOpen'
 import CommentForm from './CommentForm'
 import PropTypes from 'prop-types'
+import {connect} from 'react-redux';
+import {loadComments} from '../AC/index';
 
 class CommentList extends Component {
     static defaultProps = {
@@ -12,7 +14,7 @@ class CommentList extends Component {
     }
 
     componentDidMount() {
-        console.log('---', 'mounted')
+        this.props.loadComments(this.props.article.id)
     }
 
     componentWillUnmount() {
@@ -54,4 +56,4 @@ class CommentList extends Component {
 }
 
 
-export default toggleOpen(CommentList)
+export default connect(null, {loadComments})(toggleOpen(CommentList))
