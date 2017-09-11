@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 
 class CommentList extends Component {
     static defaultProps = {
-        comments: [],
+        article: PropTypes.object.isRequired,
         isOpen: PropTypes.bool,
         toggleOpen: PropTypes.func
     }
@@ -35,19 +35,19 @@ class CommentList extends Component {
     }
 
     getBody() {
-        const { comments, isOpen } = this.props
+        const { article: {id, comments = []}, isOpen } = this.props
         if (!isOpen) return null
 
         const body = comments.length ? (
             <ul>
-                {comments.map(comment => <li key = {comment.id}><Comment comment = {comment} /></li>)}
+                {comments.map(id => <li key = {id}><Comment id = {id} /></li>)}
             </ul>
         ) : <h3>No comments yet</h3>
 
         return (
             <div>
                 {body}
-                <CommentForm />
+                <CommentForm articleId = {id} />
             </div>
         )
     }
