@@ -10,17 +10,18 @@ import {deleteArticle, loadArticleById} from '../../AC'
 
 class Article extends PureComponent {
     static propTypes = {
+        id: PropTypes.string.isRequired,
         article: PropTypes.shape({
             id: PropTypes.string,
             title: PropTypes.string.isRequired,
             text: PropTypes.string
-        }).isRequired,
+        }),
         isOpen: PropTypes.bool,
         toggleOpen: PropTypes.func
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.isOpen && !this.props.isOpen) nextProps.loadArticle()
+        if (nextProps.isOpen) nextProps.loadArticle()
     }
 
 /*
@@ -31,6 +32,7 @@ class Article extends PureComponent {
 
     render() {
         const {article, toggleOpen, deleteArticle} = this.props
+        if (!article) return null
 
         return (
             <div ref={this.setContainerRef}>
@@ -101,9 +103,11 @@ class Article extends PureComponent {
 */
 }
 
-export default connect(null, (dispatch, ownProps) => ({
-    deleteArticle: () => dispatch(deleteArticle(ownProps.article.id)),
-    loadArticle: () => dispatch(loadArticleById(ownProps.article.id))
+export default connect((state, props) => ({
+    article: state.articles.entities.get(props.id)
+}), (dispatch, ownProps) => ({
+    deleteArticle: () => dispatch(deleteArticle(ownProps.id)),
+    loadArticle: () => dispatch(loadArticleById(ownProps.id))
 }))(Article)
 
 //export default connect(null, { deleteArticle })(Article)

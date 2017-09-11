@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {filtratedArticlesSelector} from '../selectors'
 import {loadAllArticles} from '../AC'
+import {Link} from 'react-router-dom'
 
 class ArticleList extends Component {
     static propTypes = {
@@ -28,11 +29,7 @@ class ArticleList extends Component {
 
         const articleElements = articles.map(article => (
             <li key={article.id}>
-                <Article
-                    article={article}
-                    isOpen={article.id === openItemId}
-                    toggleOpen={toggleOpenItem(article.id)}
-                />
+                <Link to={`/articles/${article.id}`}>{article.title}</Link>
             </li>
         ))
 

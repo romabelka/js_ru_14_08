@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import ArticleList from './ArticleList'
+import ArticlesPage from './Routes/ArticlesPage'
 import UserForm from './UserForm'
 import Filters from './Filters'
 import Counter from './Counter'
@@ -20,7 +20,7 @@ export default class Root extends Component {
                     <UserForm />
                     <Route path="/counter" component={Counter} />
                     <Route path="/filters" component={Filters} />
-                    <Route path="/articles" component={ArticleList} />
+                    <Route path="/articles" component={ArticlesPage} />
                 </div>
             </div>
         )
