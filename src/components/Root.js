@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
-import ArticleList from './ArticleList'
+import ArticlesPage from './Routes/ArticlesPage'
 import UserForm from './UserForm'
 import Filters from './Filters'
 import Counter from './Counter'
+import {Route, Link} from 'react-router-dom'
 
 export default class Root extends Component {
     render() {
@@ -10,11 +11,16 @@ export default class Root extends Component {
             <div>
                 <h2>Menu</h2>
                 <div>
+                    <div><Link to="/counter">counter</Link></div>
+                    <div><Link to="/articles">articles</Link></div>
+                    <div><Link to="/filters">filters</Link></div>
+                </div>
+                <div>
                     <h1>News App</h1>
                     <UserForm />
-                    <Counter />
-                    <Filters />
-                    <ArticleList />
+                    <Route path="/counter" component={Counter} />
+                    <Route path="/filters" component={Filters} />
+                    <Route path="/articles" component={ArticlesPage} />
                 </div>
             </div>
         )

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {filtratedArticlesSelector} from '../selectors'
 import {loadAllArticles} from '../AC'
+import {Link} from 'react-router-dom'
 
 class ArticleList extends Component {
     static propTypes = {
@@ -16,7 +17,8 @@ class ArticleList extends Component {
     }
 
     componentDidMount() {
-        this.props.loadAllArticles()
+        const {loaded, loading, loadAllArticles} = this.props
+        if (!loading && !loaded) loadAllArticles()
     }
 
     render() {
@@ -27,11 +29,7 @@ class ArticleList extends Component {
 
         const articleElements = articles.map(article => (
             <li key={article.id}>
-                <Article
-                    article={article}
-                    isOpen={article.id === openItemId}
-                    toggleOpen={toggleOpenItem(article.id)}
-                />
+                <Link to={`/articles/${article.id}`}>{article.title}</Link>
             </li>
         ))
 
@@ -47,6 +45,7 @@ export default connect(state => {
     console.log('---', 'connect')
     return {
         articles: filtratedArticlesSelector(state),
-        loading: state.articles.loading
+        loading: state.articles.loading,
+        loaded: state.articles.loaded,
     }
 }, {loadAllArticles})(accordion(ArticleList))
