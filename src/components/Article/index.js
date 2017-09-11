@@ -20,8 +20,9 @@ class Article extends PureComponent {
         toggleOpen: PropTypes.func
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.isOpen) nextProps.loadArticle()
+    componentDidMount() {
+        const {isOpen, loadArticle} = this.props
+        if (isOpen) loadArticle()
     }
 
 /*

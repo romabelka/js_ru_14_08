@@ -23,13 +23,13 @@ class ArticleList extends Component {
 
     render() {
         console.log('---', 'rendering article list')
-        const {openItemId, toggleOpenItem, articles, loading} = this.props
+        const {openItemId, toggleOpenItem, articles, loading, path} = this.props
 
         if (loading) return <Loader/>
 
         const articleElements = articles.map(article => (
             <li key={article.id}>
-                <Link to={`/articles/${article.id}`}>{article.title}</Link>
+                <Link to={`${path}/${article.id}`}>{article.title}</Link>
             </li>
         ))
 
