@@ -1,6 +1,6 @@
 import { ADD_COMMENT, LOAD_ARTICLE_COMMENTS, SUCCESS } from '../constants'
 import {arrToMap} from './utils'
-import {OrderedMap, Map, Record} from 'immutable'
+import {OrderedMap, Record, Set} from 'immutable'
 
 const CommentRecord = Record({
     id: null,
@@ -10,8 +10,6 @@ const CommentRecord = Record({
 
 const ReducerState = Record({
     entities: new OrderedMap({}),
-    pagination: new Map({}),
-    total: null
 })
 
 
