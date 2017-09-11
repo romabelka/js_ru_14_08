@@ -1,4 +1,6 @@
-export function arrToMap(arr, RecordModel) {
+import {Map} from 'immutable'
+
+export function arrToMap(arr, RecordModel = Map) {
     return arr.reduce((acc, item)=>({
         ...acc,
         [item.id]: new RecordModel(item)

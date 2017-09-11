@@ -23,11 +23,7 @@ export default (articles = defaultState, action) => {
 
     switch (type){
         case ADD_COMMENT:
-            const article = articles[payload.articleId]
-            return {...articles, [payload.articleId]: {
-                ...article,
-                comments: (articles.comments || []).concat(randomId)
-            }}
+             return state.updateIn([payload.articleId, 'comments'], comments => comments.concat(randomId))
     }
 
     return articles
