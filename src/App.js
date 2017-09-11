@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Root from './components/Root'
 import {Provider} from 'react-redux'
-import {HashRouter as Router} from 'react-router-dom'
+import {BrowserRouter as Router} from 'react-router-dom'
 import store from './store'
 
 export default class App extends Component {
