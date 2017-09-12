@@ -1,10 +1,6 @@
 import React, {Component, PureComponent} from 'react'
-<<<<<<< HEAD
-import CommentList from '../CommentList/'
-=======
 import CommentList from '../CommentList'
 import Loader from '../Loader'
->>>>>>> upstream/master
 import PropTypes from 'prop-types'
 import {findDOMNode} from 'react-dom'
 import CSSTransion from 'react-addons-css-transition-group'

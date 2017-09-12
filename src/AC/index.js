@@ -1,6 +1,6 @@
 import {
     INCREMENT, DELETE_ARTICLE, CHANGE_DATE_RANGE, CHANGE_SELECTION, ADD_COMMENT, LOAD_ALL_ARTICLES, LOAD_ARTICLE,
-    LOAD_ARTICLE_COMMENTS, START, SUCCESS, FAIL
+    LOAD_ARTICLE_COMMENTS, START, SUCCESS, FAIL, LOAD_COMMENTS_QUANTITY
 } from '../constants'
 
 export function increment() {
@@ -42,6 +42,13 @@ export function loadAllArticles() {
     return {
         type: LOAD_ALL_ARTICLES,
         callAPI: '/api/article'
+    }
+}
+
+export function loadCommentsQuantity() {
+    return {
+        type: LOAD_COMMENTS_QUANTITY,
+        callAPI: '/api/comment'
     }
 }
 
