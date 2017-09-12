@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './style.css'
 import addComment from '../../AC'
+import {connect} from "react-redux";
 
 class CommentForm extends Component {
     static propTypes = {

@@ -1,10 +1,7 @@
 import {Map} from 'immutable'
 
 export function arrToMap(arr, RecordModel = Map) {
-    return arr.reduce((acc, item)=>({
-        ...acc,
-        [item.id]: new RecordModel(item)
-    }), {})
+    return arr.reduce((acc, item) => acc.set(item.id, new RecordModel(item)), new Map({}))
 }
 
 export function mapToArr(obj) {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import toggleOpen from '../decorators/toggleOpen'
 import {Map} from 'immutable'
 
-const defaultState = new Map(state)
+// const defaultState = new Map(state)
 
 class Article extends Component {
     static propTypes = {
