@@ -4,6 +4,7 @@ import accordion from '../decorators/accordion'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {filtratedArticlesSelector} from '../selectors'
+import Loader from "./loader";
 
 class ArticleList extends Component {
     static propTypes = {
@@ -15,7 +16,10 @@ class ArticleList extends Component {
 
     render() {
         console.log('---', 'rendering article list')
-        const {openItemId, toggleOpenItem, articles} = this.props
+        const {openItemId, toggleOpenItem, articles, loading} = this.props
+
+        if(loading) return <Loader />
+
         const articleElements = articles.map(article => (
             <li key={article.id}>
                 <Article

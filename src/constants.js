@@ -7,6 +7,7 @@ export const CHANGE_DATE_RANGE = 'CHANGE_DATE_RANGE'
 
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const LOAD_ALL_ARTICLES = 'LOAD_ALL_ARTICLES'
+export const LOAD_ARTICLE = 'LOAD_ARTICLE'
 export const START = 'START'
 export const SUCCESS = 'SUCCESS'
 export const FAIL = 'FAIL'

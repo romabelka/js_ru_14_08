@@ -1,4 +1,4 @@
-import { DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES, SUCCESS, START } from '../constants'
+import {DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES, SUCCESS, START, LOAD_ARTICLE} from '../constants'
 import {normalizedArticles as defaultArticles} from '../fixtures'
 import {arrToMap}  from './utils'
 import {Map, fromJS, Record} from 'immutable'
@@ -8,6 +8,7 @@ const ArticleRecord = Record({
     title: null,
     text: null,
     date: null,
+    loading: false,
     comments: []
 })
 
@@ -36,6 +37,13 @@ export default (state = defaultState, action) => {
             return state
                 .set('entities', arrToMap(response, ArticleRecord))
                 .set('loading', false)
+                .set('loaded', true)
+
+        case LOAD_ARTICLE + START:
+            return state.setIn(['entities', payload.id, 'loading'], true)
+
+        case LOAD_ARTICLE + SUCCESS:
+            return state.setIn(['entities', payload.id], new ArticleRecord(response))
     }
 
     return state

@@ -1,5 +1,6 @@
 import React, {Component, PureComponent} from 'react'
 import CommentList from '../CommentList'
+import Loader from '../loader'
 import PropTypes from 'prop-types'
 import {findDOMNode} from 'react-dom'
 import CSSTransion from 'react-addons-css-transition-group'
@@ -16,6 +17,10 @@ class Article extends PureComponent {
         }).isRequired,
         isOpen: PropTypes.bool,
         toggleOpen: PropTypes.func
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(nextProps.isOpen && !this.props.isOpen) nextProps.loadArticle()
     }
 
 /*
@@ -62,7 +67,13 @@ class Article extends PureComponent {
 */
 
     getBody() {
-        return this.props.isOpen && (
+        const {article, isOpen} = this.props
+
+        if(!isOpen) return null
+
+        if(article.loading) return <Loader />
+
+        return (
             <div>
                 <p>{this.props.article.text}</p>
                 <CommentList comments = {this.props.article.comments} ref = {this.setCommentsRef} />
@@ -92,7 +103,8 @@ class Article extends PureComponent {
 }
 
 export default connect(null, (dispatch, ownProps) => ({
-    deleteArticle: () => dispatch(deleteArticle(ownProps.article.id))
+    deleteArticle: () => dispatch(deleteArticle(ownProps.article.id)),
+    loadArticle: () => dispatch(loadArticleById(ownProps.article.id))
 }))(Article)
 
 //export default connect(null, { deleteArticle })(Article)
