@@ -38,27 +38,35 @@ export function addComment(comment, articleId) {
     }
 }
 
-export function loadArticles() {
+export function loadAllArticles() {
     return {
         type: LOAD_ALL_ARTICLES,
-        callApi: '/api/article'
+        callAPI: '/api/article'
     }
 }
+
+/*
+export function loadArticleById(id) {
+    return {
+        type: LOAD_ARTICLE,
+        callAPI: `/api/article/${id}`
+    }
+}*/
 
 export function loadArticleById(id) {
     return (dispatch) => {
         dispatch({
             type: LOAD_ARTICLE + START,
-            payload: {id}
+            payload: { id }
         })
 
-        setTimeout(()=>{
-            fetch(`/api/article/${ id }`)
+        setTimeout(() => {
+            fetch(`/api/article/${id}`)
                 .then(res => res.json())
                 .then(response => dispatch({
-                   type: LOAD_ARTICLE + SUCCESS,
-                   response,
-                   payload: { id }
+                    type: LOAD_ARTICLE + SUCCESS,
+                    payload: { id },
+                    response
                 }))
                 .catch(error => dispatch({
                     type: LOAD_ARTICLE + FAIL,

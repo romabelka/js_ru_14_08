@@ -1,7 +1,8 @@
 import {START, SUCCESS, FAIL} from '../constants'
 
 export default store => next => action => {
-    const {callAPI, ...rest} = action
+    const {callAPI, type, ...rest} = action
+
     if (!callAPI) return next(action)
 
     next({
@@ -9,8 +10,11 @@ export default store => next => action => {
         type: type + START
     })
 
+
+    //dev only!!!!
     setTimeout(() => fetch(callAPI)
         .then(res => res.json())
-        .then(response => next({...rest, type: type + SUCCESS, response}) )
-        .catch(error => next({...rest, type: type + FAIL, error}) ), 1000)
+        .then(response => next({...rest, type: type + SUCCESS, response}))
+        .catch(error => next({...rest, type: type + FAIL, error}))
+    , 1000)
 }

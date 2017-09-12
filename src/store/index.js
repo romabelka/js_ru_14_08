@@ -1,7 +1,7 @@
 import {createStore, compose, applyMiddleware} from 'redux'
 import reducer from '../reducer'
 import logger from '../middlewares/logger'
-import randomId from '../middlewares/randomid'
+import randomId from '../middlewares/randomId'
 import callAPI from '../middlewares/callAPI'
 import thunk from 'redux-thunk'
 
