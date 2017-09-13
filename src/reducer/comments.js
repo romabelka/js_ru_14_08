@@ -1,4 +1,4 @@
-import { ADD_COMMENT, LOAD_ARTICLE_COMMENTS, SUCCESS } from '../constants'
+import { ADD_COMMENT, LOAD_ARTICLE_COMMENTS, LOAD_PART_OF_COMMENTS, SUCCESS } from '../constants'
 import {arrToMap} from './utils'
 import {OrderedMap, Record, Set} from 'immutable'
 
@@ -22,6 +22,12 @@ export default (state = new ReducerState(), action) => {
 
         case LOAD_ARTICLE_COMMENTS + SUCCESS:
             return state.mergeIn(['entities'], arrToMap(response, CommentRecord))
+
+        case LOAD_PART_OF_COMMENTS + SUCCESS: 
+            //state.set('entities', arrToMap(response.records, CommentRecord))
+            //console.log('STATE ', state.set('entities', arrToMap(response.records, CommentRecord)));
+            return state.set('entities', arrToMap(response.records, CommentRecord))
+        
     }
 
     return state
