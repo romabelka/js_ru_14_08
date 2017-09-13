@@ -9,7 +9,10 @@ export const CHANGE_DATE_RANGE = 'CHANGE_DATE_RANGE'
 
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const LOAD_ARTICLE_COMMENTS = 'LOAD_ARTICLE_COMMENTS'
+export const LOAD_COMMENTS = "COMMENTS"
 
 export const START = '_START'
 export const SUCCESS = '_SUCCESS'
 export const FAIL = '_FAIL'
+
+export const PAGE_SIZE = 4

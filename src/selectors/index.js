@@ -1,5 +1,5 @@
-import {createSelector} from 'reselect'
-import {mapToArr} from '../reducer/utils'
+import { createSelector } from 'reselect'
+import { mapToArr } from '../reducer/utils'
 
 export const articlesSelector = state => state.articles.entities.valueSeq().toArray()
 export const filtersSelector = state => state.filters
@@ -8,7 +8,7 @@ export const commentsSelector = state => state.comments.entities
 
 export const filtratedArticlesSelector = createSelector(articlesSelector, filtersSelector, (articles, filters) => {
     console.log('---', 'recomputing filtrated articles')
-    const {selected, dateRange: {from, to}} = filters
+    const { selected, dateRange: { from, to } } = filters
 
     return articles.filter(article => {
         const published = Date.parse(article.date)
@@ -20,3 +20,8 @@ export const filtratedArticlesSelector = createSelector(articlesSelector, filter
 export const createCommentSelector = () => createSelector(commentsSelector, idSelector, (comments, id) => {
     return comments.get(id)
 })
+
+export const pageSelector = (state, props) => props.match.params.pageNumber;
+
+// export const pageCommentIdsSelector = () => createSelector(static, pageSelector => (state, page) => {
+//     return comments. ) 

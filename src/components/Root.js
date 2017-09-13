@@ -1,9 +1,10 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import ArticlesPage from './Routes/ArticlesPage'
 import UserForm from './UserForm'
 import Filters from './Filters'
 import Counter from './Counter'
-import {Route, Link, Switch} from 'react-router-dom'
+import CommentsPagination from './CommentsPagination'
+import { Route, Link, Switch } from 'react-router-dom'
 
 export default class Root extends Component {
     render() {
@@ -14,6 +15,7 @@ export default class Root extends Component {
                     <div><Link to="/counter">counter</Link></div>
                     <div><Link to="/articles">articles</Link></div>
                     <div><Link to="/filters">filters</Link></div>
+                    <div><Link to="/comments">comments</Link></div>
                 </div>
                 <div>
                     <h1>News App</h1>
@@ -23,7 +25,11 @@ export default class Root extends Component {
                         <Route path="/filters" component={Filters} />
                         <Route path="/articles/new" render={this.getArticleForm} />
                         <Route path="/articles" component={ArticlesPage} />
+                        <Route path="/comments/:pageNumber?" component={CommentsPagination} />
+                        {/* <Route path="/comments/" render={this.getCommentsPagination} />
+                        <Route path="/comments/" component={CommentsPagination} /> */}
                     </Switch>
+                    
                 </div>
             </div>
         )
@@ -31,4 +37,5 @@ export default class Root extends Component {
     }
 
     getArticleForm = () => <h2>New Article form</h2>
+    getCommentsPagination = () => <CommentsPagination/>
 }
