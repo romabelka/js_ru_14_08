@@ -9,6 +9,11 @@ import {loadComments} from '../AC'
 import {loadArticleComments} from '../AC'
 
 class CommentList extends Component {
+    getPaging = (e) => {
+        const {loadComments} = this.props
+        loadComments(5, e.target.text);
+    }
+
     static defaultProps = {
         article: PropTypes.object.isRequired,
         isOpen: PropTypes.bool,
@@ -17,7 +22,7 @@ class CommentList extends Component {
 
     componentDidMount() {
         const {loaded, loading, loadComments} = this.props
-        loadComments(5,5);
+        loadComments(5,1);
     }
 
     render() {
@@ -33,7 +38,7 @@ class CommentList extends Component {
     }
 
     getBody() {
-        const {comments} = this.props
+        const {comments, total} = this.props
         // if (!isOpen) return null
         // if (commentsLoading) return <Loader />
         // if (!commentsLoaded) return null
@@ -42,10 +47,17 @@ class CommentList extends Component {
 
     
         
-        const body = comments.size() ? (
-            <ul>
-                {comments.map(comment => <li key = {comment.id}><Comment id = {comment.id} /></li>)}
-            </ul>
+        const body = comments.size ? (
+            <div>
+                <ul>
+                    {comments.map(comment => <li key = {comment.id}><Comment id = {comment.id} /></li>)}
+                </ul>
+                <h3>Paging</h3>
+                <a href="#" onClick={this.getPaging.bind(this)}>1</a>
+                <a href="#" onClick={this.getPaging.bind(this)}>2</a>
+                <a href="#" onClick={this.getPaging.bind(this)}>3</a>
+                <a href="#" onClick={this.getPaging.bind(this)}>4</a>
+            </div>
         ) : <h3>No comments yet</h3>
 
         return (
@@ -54,11 +66,16 @@ class CommentList extends Component {
             </div>
         )
     }
+
+
+    
+    
 }
 
 
 export default connect(state=> {
     return {    
-        comments: state.comments.entities
+        comments: state.comments.entities,
+        total: state.comments.total
     }
-}, { loadComments })(toggleOpen(CommentList))
+}, {loadComments})(toggleOpen(CommentList))
