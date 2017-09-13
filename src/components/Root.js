@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ArticlesPage from './Routes/ArticlesPage'
+import CommentsPage from './Routes/CommentsPage'
 import UserForm from './UserForm'
 import Filters from './Filters'
 import Counter from './Counter'
@@ -23,6 +24,7 @@ export default class Root extends Component {
                         <Route path="/filters" component={Filters} />
                         <Route path="/articles/new" render={this.getArticleForm} />
                         <Route path="/articles" component={ArticlesPage} />
+                        <Route path='/comments/:page' component={CommentsPage} />
                     </Switch>
                 </div>
             </div>

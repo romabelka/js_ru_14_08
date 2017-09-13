@@ -1,5 +1,5 @@
 import {
-    INCREMENT, DELETE_ARTICLE, CHANGE_DATE_RANGE, CHANGE_SELECTION, ADD_COMMENT, LOAD_ALL_ARTICLES, LOAD_ARTICLE,
+    INCREMENT, DELETE_ARTICLE, CHANGE_DATE_RANGE, CHANGE_SELECTION, ADD_COMMENT, LOAD_ALL_ARTICLES, LOAD_ARTICLE, LOAD_ALL_COMMENTS,
     LOAD_ARTICLE_COMMENTS, START, SUCCESS, FAIL
 } from '../constants'
 
@@ -86,3 +86,11 @@ export function loadArticleById(id) {
         }, 1000)
     }
 }
+
+    export function loadAllComments(page) {
+        return {
+            type: LOAD_ALL_COMMENTS,
+            payload: { page },
+            callAPI: `/api/comment?limit=5&offset=${(page-1)*5}`
+        }
+    }

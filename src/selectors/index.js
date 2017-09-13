@@ -4,7 +4,7 @@ import {mapToArr} from '../reducer/utils'
 export const articlesSelector = state => state.articles.entities.valueSeq().toArray()
 export const filtersSelector = state => state.filters
 export const idSelector = (state, props) => props.id
-export const commentsSelector = state => state.comments.entities
+export const commentsSelector = (state, props) => props.fromChunk? state.comments.commentsChunks.get(props.fromChunk): state.comments.entities
 
 export const filtratedArticlesSelector = createSelector(articlesSelector, filtersSelector, (articles, filters) => {
     console.log('---', 'recomputing filtrated articles')
