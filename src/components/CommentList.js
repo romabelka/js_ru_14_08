@@ -5,6 +5,7 @@ import CommentForm from './CommentForm'
 import Loader from './Loader'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {loadComments} from '../AC'
 import {loadArticleComments} from '../AC'
 
 class CommentList extends Component {
@@ -13,13 +14,14 @@ class CommentList extends Component {
         isOpen: PropTypes.bool,
         toggleOpen: PropTypes.func
     }
-    componentWillReceiveProps({ isOpen, article, loadArticleComments }) {
-        if (!this.props.isOpen && isOpen && !article.commentsLoading && !article.commentsLoaded) {
-            loadArticleComments(article.id)
-        }
+
+    componentDidMount() {
+        const {loaded, loading, loadComments} = this.props
+        loadComments(5,5);
     }
 
     render() {
+        console.log('WHAT what is our state', this.props);
         const {isOpen, toggleOpen} = this.props
         const text = isOpen ? 'hide comments' : 'show comments'
         return (
@@ -31,25 +33,32 @@ class CommentList extends Component {
     }
 
     getBody() {
-        const { article: {comments, id, commentsLoading, commentsLoaded}, isOpen } = this.props
-        if (!isOpen) return null
-        if (commentsLoading) return <Loader />
-        if (!commentsLoaded) return null
+        const {comments} = this.props
+        // if (!isOpen) return null
+        // if (commentsLoading) return <Loader />
+        // if (!commentsLoaded) return null
+        
+        console.log('COMMENTS', this.props);
 
-        const body = comments.length ? (
+    
+        
+        const body = comments.size() ? (
             <ul>
-                {comments.map(id => <li key = {id}><Comment id = {id} /></li>)}
+                {comments.map(comment => <li key = {comment.id}><Comment id = {comment.id} /></li>)}
             </ul>
         ) : <h3>No comments yet</h3>
 
         return (
             <div>
                 {body}
-                <CommentForm articleId = {id} />
             </div>
         )
     }
 }
 
 
-export default connect(null, { loadArticleComments })(toggleOpen(CommentList))
+export default connect(state=> {
+    return {    
+        comments: state.comments.entities
+    }
+}, { loadComments })(toggleOpen(CommentList))
