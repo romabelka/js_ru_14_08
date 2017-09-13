@@ -15,6 +15,7 @@ export default class Root extends Component {
                     <div><Link to="/counter">counter</Link></div>
                     <div><Link to="/articles">articles</Link></div>
                     <div><Link to="/filters">filters</Link></div>
+                    <div><Link to="/comments">comments</Link></div>
                 </div>
                 <div>
                     <h1>News App</h1>
