@@ -91,7 +91,7 @@ export function loadArticleById(id) {
                         error
                     })
                 })
-        }, 1000)
+        }, 500)
     }
 }
 
