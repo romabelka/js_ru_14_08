@@ -4,7 +4,7 @@ import {Map, fromJS, Record} from 'immutable'
 
 const ArticleRecord = Record({
     id: null,
-    title: null,
+    title: '',
     text: null,
     date: null,
     loading: false,
