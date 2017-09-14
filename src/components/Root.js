@@ -28,6 +28,7 @@ export default class Root extends Component {
                         <Route path="/article" to="/articles" />
                         <Route path="/articles" component={ArticlesPage} />
                         <Route path='/comments' component={CommentsPage}/>
+                        <Route path="/error" render={() => <h1>Error</h1>} />
                         <Route path="*" component={NotFoundPage} />
                     </Switch>
                 </div>
