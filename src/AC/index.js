@@ -54,7 +54,6 @@ export function loadArticleById(id) {
 }*/
 
 export function loadComments(count = DEFAULT_COMMENT_COUNT, offset) {
-    console.log('asddddddddd');
     offset = offset ? offset * count : count 
     // debugger
     return {
