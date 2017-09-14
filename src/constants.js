@@ -9,6 +9,8 @@ export const CHANGE_DATE_RANGE = 'CHANGE_DATE_RANGE'
 
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const LOAD_ARTICLE_COMMENTS = 'LOAD_ARTICLE_COMMENTS'
+export const LOAD_PART_OF_COMMENTS = 'LOAD_PART_OF_COMMENTS'
+export const DEFAULT_COMMENT_COUNT = 5
 
 export const START = '_START'
 export const SUCCESS = '_SUCCESS'

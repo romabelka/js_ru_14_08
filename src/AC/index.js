@@ -1,6 +1,6 @@
 import {
     INCREMENT, DELETE_ARTICLE, CHANGE_DATE_RANGE, CHANGE_SELECTION, ADD_COMMENT, LOAD_ALL_ARTICLES, LOAD_ARTICLE,
-    LOAD_ARTICLE_COMMENTS, START, SUCCESS, FAIL
+    LOAD_ARTICLE_COMMENTS, LOAD_PART_OF_COMMENTS, DEFAULT_COMMENT_COUNT, START, SUCCESS, FAIL
 } from '../constants'
 
 export function increment() {
@@ -52,6 +52,16 @@ export function loadArticleById(id) {
         callAPI: `/api/article/${id}`
     }
 }*/
+
+export function loadComments(count = DEFAULT_COMMENT_COUNT, offset) {
+    offset = offset ? offset * count : count 
+    // debugger
+    return {
+        type: LOAD_PART_OF_COMMENTS, 
+        callAPI: `/api/comment?limit=${count}&offset=${offset}`
+    }
+}
+
 export function loadArticleComments(articleId) {
     return {
         type: LOAD_ARTICLE_COMMENTS,
