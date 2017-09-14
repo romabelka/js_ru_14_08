@@ -6,17 +6,18 @@ import Counter from './Counter'
 import CommentsPage from './Routes/CommentsPage'
 import {Route, Link, NavLink, Switch, Redirect} from 'react-router-dom'
 import NotFoundPage from './Routes/NotFoundPage'
+import Menu, { MenuItem } from './Menu'
 
 export default class Root extends Component {
     render() {
         return (
             <div>
                 <h2>Menu</h2>
-                <div>
-                    <div><NavLink to="/counter" activeStyle = {{color: 'red'}}>counter</NavLink></div>
-                    <div><NavLink to="/articles" activeStyle = {{color: 'red'}}>articles</NavLink></div>
-                    <div><NavLink to="/filters" activeStyle = {{color: 'red'}}>filters</NavLink></div>
-                </div>
+                <Menu>
+                    <MenuItem link="counter" />
+                    <MenuItem link="articles" />
+                    <MenuItem link="filters" />
+                </Menu>
                 <div>
                     <h1>News App</h1>
                     <UserForm />
