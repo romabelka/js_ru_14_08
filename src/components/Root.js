@@ -4,7 +4,8 @@ import UserForm from './UserForm'
 import Filters from './Filters'
 import Counter from './Counter'
 import CommentsPage from './Routes/CommentsPage'
-import {Route, Link, Switch} from 'react-router-dom'
+import {Route, Link, Switch, Redirect} from 'react-router-dom'
+import NotFoundPage from './Routes/NotFoundPage'
 
 export default class Root extends Component {
     render() {
@@ -20,11 +21,14 @@ export default class Root extends Component {
                     <h1>News App</h1>
                     <UserForm />
                     <Switch>
+                        <Redirect from="/" exact to="/articles" />
                         <Route path="/counter" component={Counter} exact />
                         <Route path="/filters" component={Filters} />
                         <Route path="/articles/new" render={this.getArticleForm} />
+                        <Route path="/article" to="/articles" />
                         <Route path="/articles" component={ArticlesPage} />
                         <Route path='/comments' component={CommentsPage}/>
+                        <Route path="*" component={NotFoundPage} />
                     </Switch>
                 </div>
             </div>

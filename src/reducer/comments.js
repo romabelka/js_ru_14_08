@@ -1,4 +1,4 @@
-import { ADD_COMMENT, LOAD_ARTICLE_COMMENTS, LOAD_COMMENTS_FOR_PAGE, SUCCESS } from '../constants'
+import { ADD_COMMENT, LOAD_ARTICLE_COMMENTS, LOAD_COMMENTS_FOR_PAGE, START, SUCCESS } from '../constants'
 import {arrToMap} from './utils'
 import {OrderedMap, Record, Map} from 'immutable'
 
@@ -24,6 +24,9 @@ export default (state = new ReducerState(), action) => {
 
         case LOAD_ARTICLE_COMMENTS + SUCCESS:
             return state.mergeIn(['entities'], arrToMap(response, CommentRecord))
+
+        case LOAD_COMMENTS_FOR_PAGE + START:
+            return state.setIn(['pagination', payload.page, 'loading'], true)
 
         case LOAD_COMMENTS_FOR_PAGE + SUCCESS:
             return state
