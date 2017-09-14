@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, PropTypes} from 'react'
 import ArticlesPage from './Routes/ArticlesPage'
 import UserForm from './UserForm'
 import Filters from './Filters'
@@ -9,7 +9,22 @@ import NotFoundPage from './Routes/NotFoundPage'
 import Menu, { MenuItem } from './Menu'
 
 export default class Root extends Component {
+    state = {
+        username: ''
+    }
+
+    static childContextTypes = {
+        user: PropTypes.string
+    }
+
+    getChildContext() {
+        return {
+            user: this.state.username
+        }
+    }
+
     render() {
+        console.log('---', 1)
         return (
             <div>
                 <h2>Menu</h2>
@@ -20,7 +35,7 @@ export default class Root extends Component {
                 </Menu>
                 <div>
                     <h1>News App</h1>
-                    <UserForm />
+                    <UserForm value = {this.state.username} onChange = {this.handleUserChange}/>
                     <Switch>
                         <Redirect from="/" exact to="/articles" />
                         <Route path="/counter" component={Counter} exact />
@@ -37,6 +52,8 @@ export default class Root extends Component {
         )
 
     }
+
+    handleUserChange = (username) => this.setState({ username })
 
     getArticleForm = () => <h2>New Article form</h2>
 }
