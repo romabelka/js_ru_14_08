@@ -4,7 +4,7 @@ import UserForm from './UserForm'
 import Filters from './Filters'
 import Counter from './Counter'
 import CommentsPage from './Routes/CommentsPage'
-import {Route, Link, Switch, Redirect} from 'react-router-dom'
+import {Route, Link, NavLink, Switch, Redirect} from 'react-router-dom'
 import NotFoundPage from './Routes/NotFoundPage'
 
 export default class Root extends Component {
@@ -13,9 +13,9 @@ export default class Root extends Component {
             <div>
                 <h2>Menu</h2>
                 <div>
-                    <div><Link to="/counter">counter</Link></div>
-                    <div><Link to="/articles">articles</Link></div>
-                    <div><Link to="/filters">filters</Link></div>
+                    <div><NavLink to="/counter" activeStyle = {{color: 'red'}}>counter</NavLink></div>
+                    <div><NavLink to="/articles" activeStyle = {{color: 'red'}}>articles</NavLink></div>
+                    <div><NavLink to="/filters" activeStyle = {{color: 'red'}}>filters</NavLink></div>
                 </div>
                 <div>
                     <h1>News App</h1>
