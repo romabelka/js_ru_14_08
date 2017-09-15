@@ -8,7 +8,7 @@ import './style.css'
 import {connect} from 'react-redux'
 import {deleteArticle, loadArticleById} from '../../AC'
 
-class Article extends PureComponent {
+class Article extends Component {
     static propTypes = {
         id: PropTypes.string.isRequired,
         article: PropTypes.shape({
@@ -33,6 +33,7 @@ class Article extends PureComponent {
 
     render() {
         const {article, toggleOpen, deleteArticle} = this.props
+        console.log('---', 3)
         if (!article) return null
 
         return (
@@ -109,6 +110,6 @@ export default connect((state, props) => ({
 }), (dispatch, ownProps) => ({
     deleteArticle: () => dispatch(deleteArticle(ownProps.id)),
     loadArticle: () => dispatch(loadArticleById(ownProps.id))
-}))(Article)
+}), null, {pure: false})(Article)
 
 //export default connect(null, { deleteArticle })(Article)

@@ -9,7 +9,7 @@ class ArticlesPage extends Component {
     };
 
     render() {
-        console.log('---', 'ArticlePage Match', this.props.match)
+        console.log('---', 2)
         return (
             <div>
                 <ArticleList path={this.props.match.path} />
