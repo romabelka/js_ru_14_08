@@ -1,5 +1,9 @@
 import React, {Component} from 'react'
 import Article from './Article'
+<<<<<<< HEAD
+import accordion from '../decorators/accordion'
+import PropTypes from 'prop-types'
+=======
 import Loader from './Loader'
 import accordion from '../decorators/accordion'
 import PropTypes from 'prop-types'
@@ -7,6 +11,7 @@ import {connect} from 'react-redux'
 import {filtratedArticlesSelector} from '../selectors'
 import {loadAllArticles} from '../AC'
 import {NavLink, withRouter} from 'react-router-dom'
+>>>>>>> romabelka/master
 
 class ArticleList extends Component {
     static propTypes = {
@@ -16,6 +21,17 @@ class ArticleList extends Component {
         toggleOpenItem: PropTypes.func.isRequired
     }
 
+<<<<<<< HEAD
+    render() {
+        const {openItemId, toggleOpenItem, articles} = this.props
+        const articleElements = articles.map(article => (
+            <li key={article.id}>
+                <Article
+                    article={article}
+                    isOpen={article.id === openItemId}
+                    toggleOpen={toggleOpenItem(article.id)}
+                />
+=======
     componentDidMount() {
         const {loaded, loading, loadAllArticles} = this.props
         if (!loading && !loaded) loadAllArticles()
@@ -33,6 +49,7 @@ class ArticleList extends Component {
 {/*
                 <NavLink to={`${path}/${article.id}`} activeStyle = {{color: 'red'}}>{article.title}</NavLink>
 */}
+>>>>>>> romabelka/master
             </li>
         ))
 
@@ -42,6 +59,11 @@ class ArticleList extends Component {
             </ul>
         )
     }
+<<<<<<< HEAD
+}
+
+export default accordion(ArticleList)
+=======
 
     handleClick = (id) => () => {
         console.log('---', this.props.history.push(`/articles/${id}`))
@@ -56,3 +78,4 @@ export default withRouter(connect(state => {
         loaded: state.articles.loaded,
     }
 }, {loadAllArticles})(accordion(ArticleList)))
+>>>>>>> romabelka/master

@@ -1,5 +1,14 @@
 import React, {Component, PureComponent} from 'react'
 import CommentList from '../CommentList'
+<<<<<<< HEAD
+import PropTypes from 'prop-types'
+import {findDOMNode} from 'react-dom'
+import CSSTransion from 'react-transition-group/CSSTransitionGroup'
+import './style.css'
+
+class Article extends PureComponent {
+    static propTypes = {
+=======
 import Loader from '../Loader'
 import PropTypes from 'prop-types'
 import {findDOMNode} from 'react-dom'
@@ -11,18 +20,28 @@ import {deleteArticle, loadArticleById} from '../../AC'
 class Article extends Component {
     static propTypes = {
         id: PropTypes.string.isRequired,
+>>>>>>> romabelka/master
         article: PropTypes.shape({
             id: PropTypes.string,
             title: PropTypes.string.isRequired,
             text: PropTypes.string
+<<<<<<< HEAD
+        }).isRequired,
+=======
         }),
+>>>>>>> romabelka/master
         isOpen: PropTypes.bool,
         toggleOpen: PropTypes.func
     }
 
+<<<<<<< HEAD
+    state = {
+        commentsKey: 0
+=======
     componentDidMount() {
         const {isOpen, loadArticle} = this.props
         if (isOpen) loadArticle()
+>>>>>>> romabelka/master
     }
 
 /*
@@ -32,14 +51,22 @@ class Article extends Component {
 */
 
     render() {
+<<<<<<< HEAD
+        const {article, toggleOpen} = this.props
+=======
         const {article, toggleOpen, deleteArticle} = this.props
         console.log('---', 3)
         if (!article) return null
+>>>>>>> romabelka/master
 
         return (
             <div ref={this.setContainerRef}>
                 <h3 onClick = {toggleOpen}>{article.title}</h3>
+<<<<<<< HEAD
+                <button onClick={() => this.setState({commentsKey: Math.random()})}>increment</button>
+=======
                 <button onClick={deleteArticle}>delete me</button>
+>>>>>>> romabelka/master
                 <CSSTransion
                     transitionName="article"
                     transitionEnterTimeout={500}
@@ -71,6 +98,12 @@ class Article extends Component {
 */
 
     getBody() {
+<<<<<<< HEAD
+        return this.props.isOpen && (
+            <div>
+                <p>{this.props.article.text}</p>
+                <CommentList comments = {this.props.article.comments} ref = {this.setCommentsRef} key={this.state.commentsKey}/>
+=======
         const {article, isOpen} = this.props
         if (!isOpen) return null
 
@@ -80,6 +113,7 @@ class Article extends Component {
             <div>
                 <p>{this.props.article.text}</p>
                 <CommentList article = {this.props.article} ref = {this.setCommentsRef} />
+>>>>>>> romabelka/master
             </div>
         )
     }
@@ -96,6 +130,11 @@ class Article extends Component {
         }, 500)
 */
     }
+<<<<<<< HEAD
+}
+
+export default Article
+=======
 
 /*
     handleDelete = () => {
@@ -113,3 +152,4 @@ export default connect((state, props) => ({
 }), null, {pure: false})(Article)
 
 //export default connect(null, { deleteArticle })(Article)
+>>>>>>> romabelka/master
