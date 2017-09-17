@@ -22,7 +22,7 @@ class ArticleList extends Component {
     }
 
     render() {
-        console.log('---', 'rendering article list')
+        //console.log('---', 'rendering article list')
         const {openItemId, toggleOpenItem, articles, loading, path} = this.props
 
         if (loading) return <Loader/>
@@ -44,12 +44,12 @@ class ArticleList extends Component {
     }
 
     handleClick = (id) => () => {
-        console.log('---', this.props.history.push(`/articles/${id}`))
+        //console.log('---', this.props.history.push(`/articles/${id}`))
     }
 }
 
 export default withRouter(connect(state => {
-    console.log('---', 'connect')
+    //console.log('---', 'connect')
     return {
         articles: filtratedArticlesSelector(state),
         loading: state.articles.loading,
