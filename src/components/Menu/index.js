@@ -8,17 +8,17 @@ class Menu extends Component {
     };
 
     static contextTypes = {
-        store: PropTypes.object,
-        router: PropTypes.object,
-        user: PropTypes.string
+        user: PropTypes.string,
+        lang: PropTypes.string,
+        dictionary: PropTypes.object
     }
 
     render() {
-        console.log('context', this.context)
+        let {dictionary, lang} = this.context
         return (
             <div>
-                <h2>User: {this.context.user}</h2>
-                <h3>Menu:</h3>
+                <h2>{dictionary[lang].user}: {this.context.user}</h2>
+                <h3>{dictionary[lang].menu}:</h3>
                 <div>
                     {this.props.children}
                 </div>

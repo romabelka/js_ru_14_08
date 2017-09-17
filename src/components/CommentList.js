@@ -24,9 +24,15 @@ class CommentList extends Component {
         }
     }
 
+    static contextTypes = {
+        lang: PropTypes.string,
+        dictionary: PropTypes.object
+    }
+
     render() {
         const {isOpen, toggleOpen} = this.props
-        const text = isOpen ? 'hide comments' : 'show comments'
+        let {lang, dictionary} = this.context
+        const text = dictionary[lang].comments[isOpen]
         console.log('---', 4)
         return (
             <div>

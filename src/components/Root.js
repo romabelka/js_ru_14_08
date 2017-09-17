@@ -10,31 +10,43 @@ import Menu, { MenuItem } from './Menu'
 
 export default class Root extends Component {
     state = {
-        username: ''
+        username: '',
     }
 
     static childContextTypes = {
-        user: PropTypes.string
+        user: PropTypes.string,
     }
 
     getChildContext() {
         return {
-            user: this.state.username
+            user: this.state.username,
         }
     }
 
+    static contextTypes = {
+        lang: PropTypes.string,
+        dictionary: PropTypes.object
+    }
+
+
     render() {
-        console.log('---', 1)
+        let {lang, dictionary} = this.context
+
         return (
             <div>
-                <h2>Menu</h2>
+                <h2>
+                    {dictionary[lang].lang}:<br />
+                <button onClick={this.props.setLang('en')}>en</button>
+                    <button onClick={this.props.setLang('ru')}>ru</button>
+                </h2>
+                <h2>{dictionary[lang].menu}</h2>
                 <Menu>
                     <MenuItem link="counter" />
                     <MenuItem link="articles" />
                     <MenuItem link="filters" />
                 </Menu>
                 <div>
-                    <h1>News App</h1>
+                    <h1>{dictionary[lang].title}</h1>
                     <UserForm value = {this.state.username} onChange = {this.handleUserChange}/>
                     <Switch>
                         <Redirect from="/" exact to="/articles" />

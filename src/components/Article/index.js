@@ -1,10 +1,6 @@
 import React, {Component, PureComponent} from 'react'
-<<<<<<< HEAD
-import CommentList from '../CommentList/'
-=======
 import CommentList from '../CommentList'
 import Loader from '../Loader'
->>>>>>> upstream/master
 import PropTypes from 'prop-types'
 import {findDOMNode} from 'react-dom'
 import CSSTransion from 'react-addons-css-transition-group'
@@ -35,15 +31,21 @@ class Article extends Component {
     }
 */
 
+        static contextTypes = {
+            lang: PropTypes.string,
+            dictionary: PropTypes.object
+        }
+
     render() {
         const {article, toggleOpen, deleteArticle} = this.props
-        console.log('---', 3)
         if (!article) return null
+
+        let {lang, dictionary} = this.context
 
         return (
             <div ref={this.setContainerRef}>
                 <h3 onClick = {toggleOpen}>{article.title}</h3>
-                <button onClick={deleteArticle}>delete me</button>
+                <button onClick={deleteArticle}>{dictionary[lang].delete}</button>
                 <CSSTransion
                     transitionName="article"
                     transitionEnterTimeout={500}
