@@ -4,22 +4,29 @@ import UserForm from './UserForm'
 import Filters from './Filters'
 import Counter from './Counter'
 import CommentsPage from './Routes/CommentsPage'
+import LanguageSwitch from './LanguageSwitch'
 import {Route, Link, NavLink, Switch, Redirect} from 'react-router-dom'
 import NotFoundPage from './Routes/NotFoundPage'
 import Menu, { MenuItem } from './Menu'
+import {getLocalization} from './../reducer/utils'
 
 export default class Root extends Component {
     state = {
-        username: ''
+        username: '',
+        language: 'ru'
     }
 
     static childContextTypes = {
-        user: PropTypes.string
+        user: PropTypes.string,
+        language: PropTypes.string,
+        localization: PropTypes.object
     }
 
     getChildContext() {
         return {
-            user: this.state.username
+            user: this.state.username,
+            language: this.state.language,
+            localization: getLocalization()
         }
     }
 
@@ -27,6 +34,7 @@ export default class Root extends Component {
         console.log('---', 1)
         return (
             <div>
+                <LanguageSwitch onClick = {this.handleLanguageClick} />
                 <h2>Menu</h2>
                 <Menu>
                     <MenuItem link="counter" />
@@ -54,6 +62,8 @@ export default class Root extends Component {
     }
 
     handleUserChange = (username) => this.setState({ username })
+
+    handleLanguageClick = (language) => this.setState({ language })
 
     getArticleForm = () => <h2>New Article form</h2>
 }

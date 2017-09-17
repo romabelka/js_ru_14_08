@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ArticleList from '../ArticleList'
 import Article from '../Article'
 import {Route} from 'react-router-dom'
+import localization from './../../decorators/localization'
 
 class ArticlesPage extends Component {
     static propTypes = {
@@ -20,9 +21,9 @@ class ArticlesPage extends Component {
 
     getArticle = ({match}) => {
         console.log('MATCH', match)
-        if (!match) return <h2>Please select article</h2>
+        if (!match) return <h2>{this.props.__('Please select article')}</h2>
         return <Article id={match.params.id} isOpen key={match.params.id} />
     }
 }
 
-export default ArticlesPage
+export default localization(ArticlesPage)
