@@ -7,34 +7,41 @@ import CommentsPage from './Routes/CommentsPage'
 import {Route, Link, NavLink, Switch, Redirect} from 'react-router-dom'
 import NotFoundPage from './Routes/NotFoundPage'
 import Menu, { MenuItem } from './Menu'
+import {languages} from '../i18n';
+import LanguageSwitcher from './LanguageSwitcher'
+
 
 export default class Root extends Component {
     state = {
-        username: ''
+        username: '',
+        language: 'EN'
     }
 
     static childContextTypes = {
-        user: PropTypes.string
+        user: PropTypes.string,
+        language: PropTypes.object
     }
 
     getChildContext() {
         return {
-            user: this.state.username
+            user: this.state.username,
+            language: languages[this.state.language]
         }
     }
 
     render() {
-        console.log('---', 1)
+        console.log('---', 1);
+        let lang = languages[this.state.language];
         return (
             <div>
-                <h2>Menu</h2>
+                <LanguageSwitcher changeLang={this.changeLang} selected={this.state.language}/>
                 <Menu>
-                    <MenuItem link="counter" />
-                    <MenuItem link="articles" />
-                    <MenuItem link="filters" />
+                    <MenuItem link="counter" text={lang.counter}/>
+                    <MenuItem link="articles" text={lang.articles} />
+                    <MenuItem link="filters" text={lang.filters} />
                 </Menu>
                 <div>
-                    <h1>News App</h1>
+                    <h1>{lang.mainTitle}</h1>
                     <UserForm value = {this.state.username} onChange = {this.handleUserChange}/>
                     <Switch>
                         <Redirect from="/" exact to="/articles" />
@@ -54,6 +61,8 @@ export default class Root extends Component {
     }
 
     handleUserChange = (username) => this.setState({ username })
+
+    changeLang = (language) => this.setState({language})
 
     getArticleForm = () => <h2>New Article form</h2>
 }

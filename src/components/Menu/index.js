@@ -10,15 +10,17 @@ class Menu extends Component {
     static contextTypes = {
         store: PropTypes.object,
         router: PropTypes.object,
-        user: PropTypes.string
+        user: PropTypes.string,
+        language: PropTypes.object
     }
 
     render() {
-        console.log('context', this.context)
+        console.log('context', this.context);
+        const {user, menu} = this.context.language;
         return (
             <div>
-                <h2>User: {this.context.user}</h2>
-                <h3>Menu:</h3>
+                <h2>{user}: {this.context.user}</h2>
+                <h3>{menu}:</h3>
                 <div>
                     {this.props.children}
                 </div>
