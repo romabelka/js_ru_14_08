@@ -13,6 +13,11 @@ export default class Root extends Component {
         username: ''
     }
 
+    static contextTypes = {
+        language: PropTypes.string,
+        dictionary: PropTypes.object
+    }
+
     static childContextTypes = {
         user: PropTypes.string
     }
@@ -24,17 +29,19 @@ export default class Root extends Component {
     }
 
     render() {
-        console.log('---', 1)
+        // //console.log('---', 1)
+        const { language, dictionary } = this.context;
+
         return (
             <div>
-                <h2>Menu</h2>
+                <h2>{ dictionary.menu[language] }</h2>
                 <Menu>
                     <MenuItem link="counter" />
                     <MenuItem link="articles" />
                     <MenuItem link="filters" />
                 </Menu>
                 <div>
-                    <h1>News App</h1>
+                    <h1>{ dictionary.new_app[language] }</h1>
                     <UserForm value = {this.state.username} onChange = {this.handleUserChange}/>
                     <Switch>
                         <Redirect from="/" exact to="/articles" />
@@ -44,7 +51,7 @@ export default class Root extends Component {
                         <Route path="/article" to="/articles" />
                         <Route path="/articles" component={ArticlesPage} />
                         <Route path='/comments' component={CommentsPage}/>
-                        <Route path="/error" render={() => <h1>Error</h1>} />
+                        <Route path="/error" render={() => <h1>{ dictionary.error[language] }</h1>} />
                         <Route path="*" component={NotFoundPage} />
                     </Switch>
                 </div>
@@ -55,5 +62,5 @@ export default class Root extends Component {
 
     handleUserChange = (username) => this.setState({ username })
 
-    getArticleForm = () => <h2>New Article form</h2>
+    getArticleForm = () => <h2>{ dictionary.new_article_form[language] }</h2>
 }

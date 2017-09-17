@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import ArticleList from '../ArticleList'
 import Article from '../Article'
 import {Route} from 'react-router-dom'
@@ -8,8 +8,13 @@ class ArticlesPage extends Component {
 
     };
 
+    static contextTypes = {
+        language: PropTypes.string,
+        dictionary: PropTypes.object
+    }
+
     render() {
-        console.log('---', 2)
+        //console.log('---', 2)
         return (
             <div>
                 <ArticleList path={this.props.match.path} />
@@ -19,8 +24,9 @@ class ArticlesPage extends Component {
     }
 
     getArticle = ({match}) => {
-        console.log('MATCH', match)
-        if (!match) return <h2>Please select article</h2>
+        const { language, dictionary } = this.context;
+        //console.log('MATCH', match)
+        if (!match) return <h2>{ dictionary.please_select_article[language] }</h2>
         return <Article id={match.params.id} isOpen key={match.params.id} />
     }
 }
