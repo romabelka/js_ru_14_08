@@ -1,23 +1,28 @@
 import React, {Component, PureComponent} from 'react'
 import CommentList from '../CommentList'
+import Loader from '../Loader'
 import PropTypes from 'prop-types'
 import {findDOMNode} from 'react-dom'
 import CSSTransion from 'react-addons-css-transition-group'
 import './style.css'
+import {connect} from 'react-redux'
+import {deleteArticle, loadArticleById} from '../../AC'
 
-class Article extends PureComponent {
+class Article extends Component {
     static propTypes = {
+        id: PropTypes.string.isRequired,
         article: PropTypes.shape({
             id: PropTypes.string,
             title: PropTypes.string.isRequired,
             text: PropTypes.string
-        }).isRequired,
+        }),
         isOpen: PropTypes.bool,
         toggleOpen: PropTypes.func
     }
 
-    state = {
-        commentsKey: 0
+    componentDidMount() {
+        const {isOpen, loadArticle} = this.props
+        if (isOpen) loadArticle()
     }
 
 /*
@@ -27,13 +32,14 @@ class Article extends PureComponent {
 */
 
     render() {
-        const {article, toggleOpen} = this.props
-        console.log('---', 'rendering article')
+        const {article, toggleOpen, deleteArticle} = this.props
+        console.log('---', 3)
+        if (!article) return null
 
         return (
             <div ref={this.setContainerRef}>
                 <h3 onClick = {toggleOpen}>{article.title}</h3>
-                <button onClick={() => this.setState({commentsKey: Math.random()})}>increment</button>
+                <button onClick={deleteArticle}>delete me</button>
                 <CSSTransion
                     transitionName="article"
                     transitionEnterTimeout={500}
@@ -65,10 +71,15 @@ class Article extends PureComponent {
 */
 
     getBody() {
-        return this.props.isOpen && (
+        const {article, isOpen} = this.props
+        if (!isOpen) return null
+
+        if (article.loading) return <Loader />
+
+        return (
             <div>
                 <p>{this.props.article.text}</p>
-                <CommentList comments = {this.props.article.comments} ref = {this.setCommentsRef} key={this.state.commentsKey}/>
+                <CommentList article = {this.props.article} ref = {this.setCommentsRef} />
             </div>
         )
     }
@@ -85,6 +96,20 @@ class Article extends PureComponent {
         }, 500)
 */
     }
+
+/*
+    handleDelete = () => {
+        const {deleteArticle, article} = this.props
+        deleteArticle(article.id)
+    }
+*/
 }
 
-export default Article
+export default connect((state, props) => ({
+    article: state.articles.entities.get(props.id)
+}), (dispatch, ownProps) => ({
+    deleteArticle: () => dispatch(deleteArticle(ownProps.id)),
+    loadArticle: () => dispatch(loadArticleById(ownProps.id))
+}), null, {pure: false})(Article)
+
+//export default connect(null, { deleteArticle })(Article)
