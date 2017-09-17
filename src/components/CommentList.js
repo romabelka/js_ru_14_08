@@ -15,7 +15,8 @@ class CommentList extends Component {
     }
 
     static contextTypes = {
-        user: PropTypes.string
+        user: PropTypes.string,
+        localize: PropTypes.func
     }
 
     componentWillReceiveProps({ isOpen, article, loadArticleComments }) {
@@ -26,7 +27,7 @@ class CommentList extends Component {
 
     render() {
         const {isOpen, toggleOpen} = this.props
-        const text = isOpen ? 'hide comments' : 'show comments'
+        const text = isOpen ? this.context.localize('hideComments') : this.context.localize('showComments')
         console.log('---', 4)
         return (
             <div>

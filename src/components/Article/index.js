@@ -19,7 +19,9 @@ class Article extends Component {
         isOpen: PropTypes.bool,
         toggleOpen: PropTypes.func
     }
-
+    static contextTypes = {
+        localize: PropTypes.func,
+    }
     componentDidMount() {
         const {isOpen, loadArticle} = this.props
         if (isOpen) loadArticle()
@@ -39,7 +41,7 @@ class Article extends Component {
         return (
             <div ref={this.setContainerRef}>
                 <h3 onClick = {toggleOpen}>{article.title}</h3>
-                <button onClick={deleteArticle}>delete me</button>
+                <button onClick={deleteArticle}>{this.context.localize('deleteMe')}</button>
                 <CSSTransion
                     transitionName="article"
                     transitionEnterTimeout={500}

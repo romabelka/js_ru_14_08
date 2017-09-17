@@ -5,11 +5,13 @@ class UserForm extends Component {
     static propTypes = {
 
     };
-
+    static contextTypes = {
+        localize: PropTypes.func
+    }
     render() {
         return (
             <div>
-                <label>Username: </label>
+                <label>{this.context.localize('username')}: </label>
                 <input type="text" value={this.props.value} onChange={this.handleChange}/>
             </div>
         )

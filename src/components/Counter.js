@@ -7,13 +7,15 @@ class Counter extends Component {
     static propTypes = {
 
     };
-
+    static contextTypes = {
+        localize: PropTypes.func
+    }
     render() {
         return (
             <div>
                 <h1>
                     {this.props.count}
-                    <button onClick = {this.handleIncrement}>Increment</button>
+                    <button onClick = {this.handleIncrement}>{this.context.localize('increment')}</button>
                 </h1>
             </div>
         )
