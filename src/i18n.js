@@ -9,7 +9,17 @@ export const languages = {
         "increment" : "Increment",
         "articles" : "articles",
         "filters" : "filters",
-        "counter" : "counter"
+        "counter" : "counter",
+        "username" : "User name",
+        "deleteArtBtn" : "delete me",
+        "hideComments" : "hide comments",
+        "showComments" : "show comments",
+        "loading" : "Loading",
+        "comment" : "comment",
+        "submit" : "submit",
+        "noComments" : "No comments yet",
+        "noArticle" : "Please select article"
+
     },
     "RU" : {
         "mainTitle" : "Новостное приложение",
@@ -19,6 +29,16 @@ export const languages = {
         "increment" : "Увеличить",
         "articles" : "статьи",
         "filters" : "фильтры",
-        "counter" : "счётчик"
+        "counter" : "счётчик",
+        "username" : "Имя пользователя",
+        "deleteArtBtn" : "удали меня",
+        "hideComments" : "спрятать отзывы",
+        "showComments" : "показать отзывы",
+        "loading" : "Загрузка",
+        "comment" : "отзыв",
+        "submit" : "отправить",
+        "noComments": "Нет ни одного отзыва",
+        "noArticle" : "Пожалуйста выберите статью"
+
     }
 };

@@ -20,6 +20,10 @@ class Article extends Component {
         toggleOpen: PropTypes.func
     }
 
+    static contextTypes = {
+        language: PropTypes.object
+    }
+
     componentDidMount() {
         const {isOpen, loadArticle} = this.props
         if (isOpen) loadArticle()
@@ -32,14 +36,15 @@ class Article extends Component {
 */
 
     render() {
-        const {article, toggleOpen, deleteArticle} = this.props
+        const {article, toggleOpen, deleteArticle} = this.props;
+        const {deleteArtBtn} = this.context.language;
         console.log('---', 3)
         if (!article) return null
 
         return (
             <div ref={this.setContainerRef}>
                 <h3 onClick = {toggleOpen}>{article.title}</h3>
-                <button onClick={deleteArticle}>delete me</button>
+                <button onClick={deleteArticle}>{deleteArtBtn}</button>
                 <CSSTransion
                     transitionName="article"
                     transitionEnterTimeout={500}

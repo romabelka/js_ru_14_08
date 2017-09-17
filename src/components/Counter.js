@@ -8,12 +8,18 @@ class Counter extends Component {
 
     };
 
+    static contextTypes = {
+        language: PropTypes.object
+    }
+
+
     render() {
+        const {increment} = this.context.language;
         return (
             <div>
                 <h1>
                     {this.props.count}
-                    <button onClick = {this.handleIncrement}>Increment</button>
+                    <button onClick = {this.handleIncrement}>{increment}</button>
                 </h1>
             </div>
         )

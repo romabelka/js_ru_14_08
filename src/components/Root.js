@@ -19,7 +19,7 @@ export default class Root extends Component {
 
     static childContextTypes = {
         user: PropTypes.string,
-        language: PropTypes.string
+        language: PropTypes.object
     }
 
     getChildContext() {

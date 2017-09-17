@@ -15,7 +15,8 @@ class CommentList extends Component {
     }
 
     static contextTypes = {
-        user: PropTypes.string
+        user: PropTypes.string,
+        language: PropTypes.object
     }
 
     componentWillReceiveProps({ isOpen, article, loadArticleComments }) {
@@ -25,8 +26,9 @@ class CommentList extends Component {
     }
 
     render() {
-        const {isOpen, toggleOpen} = this.props
-        const text = isOpen ? 'hide comments' : 'show comments'
+        const {isOpen, toggleOpen} = this.props;
+        const {hideComments, showComments} = this.context.language;
+        const text = isOpen ? hideComments : showComments;
         console.log('---', 4)
         return (
             <div>
@@ -46,7 +48,7 @@ class CommentList extends Component {
             <ul>
                 {comments.map(id => <li key = {id}><Comment id = {id} /></li>)}
             </ul>
-        ) : <h3>No comments yet</h3>
+        ) : <h3>this.context.language.noComments</h3>
 
         return (
             <div>

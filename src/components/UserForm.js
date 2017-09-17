@@ -6,10 +6,15 @@ class UserForm extends Component {
 
     };
 
+    static contextTypes = {
+        language: PropTypes.object
+    }
+
     render() {
+        const {username} = this.context.language;
         return (
             <div>
-                <label>Username: </label>
+                <label>{username}: </label>
                 <input type="text" value={this.props.value} onChange={this.handleChange}/>
             </div>
         )
