@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import localization from './../decorators/localization'
 
 class UserForm extends Component {
     static propTypes = {
@@ -9,7 +10,7 @@ class UserForm extends Component {
     render() {
         return (
             <div>
-                <label>Username: </label>
+                <label>{this.props.__('Username')}: </label>
                 <input type="text" value={this.props.value} onChange={this.handleChange}/>
             </div>
         )
@@ -21,4 +22,4 @@ class UserForm extends Component {
 
 }
 
-export default UserForm
+export default localization(UserForm)

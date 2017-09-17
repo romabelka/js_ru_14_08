@@ -6,6 +6,7 @@ import Loader from './Loader'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {loadArticleComments} from '../AC'
+import localization from './../decorators/localization'
 
 class CommentList extends Component {
     static defaultProps = {
@@ -25,8 +26,8 @@ class CommentList extends Component {
     }
 
     render() {
-        const {isOpen, toggleOpen} = this.props
-        const text = isOpen ? 'hide comments' : 'show comments'
+        const {isOpen, toggleOpen, __} = this.props
+        const text = isOpen ? __('hide comments') : __('show comments')
         console.log('---', 4)
         return (
             <div>
@@ -59,4 +60,4 @@ class CommentList extends Component {
 }
 
 
-export default connect(null, { loadArticleComments }, null, {pure: false})(toggleOpen(CommentList))
+export default connect(null, { loadArticleComments }, null, {pure: false})(toggleOpen(localization(CommentList)))
