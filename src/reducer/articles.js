@@ -34,12 +34,12 @@ export default (state = defaultState, action) => {
         case LOAD_ALL_ARTICLES + START:
             return state.set('loading', true)
 
-        case LOAD_ALL_ARTICLES + SUCCESS:
+        case LOAD_ALL_ARTICLES + SUCCESS:    
             return state
-                .set('entities', arrToMap(response, ArticleRecord))
-                .set('loading', false)
-                .set('loaded', true)
-
+                        .set('entities', arrToMap(response, ArticleRecord).map(record => state.get('entities').has(record.id) ? state.get('entities').get(record.id) : record))
+                        .set('loading', false)                     
+                        .set('loaded', true)
+                        
         case LOAD_ARTICLE + START:
             return state.setIn(['entities', payload.id, 'loading'], true)
 

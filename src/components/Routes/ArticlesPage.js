@@ -2,12 +2,16 @@ import React, { Component } from 'react'
 import ArticleList from '../ArticleList'
 import Article from '../Article'
 import {Route} from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 class ArticlesPage extends Component {
     static propTypes = {
 
     };
 
+    static contextTypes = {
+        localize: PropTypes.func
+    }
     render() {
         console.log('---', 2)
         return (
@@ -20,7 +24,7 @@ class ArticlesPage extends Component {
 
     getArticle = ({match}) => {
         console.log('MATCH', match)
-        if (!match) return <h2>Please select article</h2>
+        if (!match) return <h2>{this.context.localize('selectArticleMessage')}</h2>
         return <Article id={match.params.id} isOpen key={match.params.id} />
     }
 }

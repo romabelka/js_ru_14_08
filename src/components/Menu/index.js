@@ -10,15 +10,16 @@ class Menu extends Component {
     static contextTypes = {
         store: PropTypes.object,
         router: PropTypes.object,
-        user: PropTypes.string
+        user: PropTypes.string,
+        localize: PropTypes.func
     }
 
     render() {
         console.log('context', this.context)
         return (
             <div>
-                <h2>User: {this.context.user}</h2>
-                <h3>Menu:</h3>
+                <h2>{this.context.localize('username')} : {this.context.user}</h2>
+                <h3>{this.context.localize('menu')}:</h3>
                 <div>
                     {this.props.children}
                 </div>
