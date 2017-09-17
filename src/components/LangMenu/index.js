@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import MenuItem from './MenuItem'
+import LangMenuItem from './LangMenuItem'
 
-class Menu extends Component {
+class LangMenu extends Component {
     static propTypes = {
 
     };
@@ -11,23 +11,20 @@ class Menu extends Component {
         store: PropTypes.object,
         router: PropTypes.object,
         user: PropTypes.string,
+        leng: PropTypes.string,
         lexicon: PropTypes.object
-
     }
 
     render() {
-        console.log('context', this.context)
+        const {leng, lexicon} = this.context
         return (
             <div>
-                <h2>{this.context.lexicon.user}: {this.context.user}</h2>
-                <h3>{this.context.lexicon.menu}:</h3>
-                <div>
                     {this.props.children}
-                </div>
             </div>
+
         )
     }
 }
 
-export { MenuItem }
-export default Menu
+export { LangMenuItem }
+export default LangMenu

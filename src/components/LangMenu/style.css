@@ -1,0 +1,14 @@
+.active-link {
+  border: 2px solid red;
+  padding: 2px;
+  margin: 6px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.link {
+  padding: 2px;
+  margin: 6px;
+  display: block;
+  cursor: pointer;
+}
