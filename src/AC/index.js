@@ -69,7 +69,7 @@ export function loadArticleById(id) {
         dispatch({
             type: LOAD_ARTICLE + START,
             payload: { id }
-        })
+        });
 
         setTimeout(() => {
             fetch(`/api/article/${id}`)
