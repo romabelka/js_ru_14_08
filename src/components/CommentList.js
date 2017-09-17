@@ -15,7 +15,8 @@ class CommentList extends Component {
     }
 
     static contextTypes = {
-        user: PropTypes.string
+        user: PropTypes.string,
+        lexicon: PropTypes.object
     }
 
     componentWillReceiveProps({ isOpen, article, loadArticleComments }) {
@@ -41,12 +42,12 @@ class CommentList extends Component {
         if (!isOpen) return null
         if (commentsLoading) return <Loader />
         if (!commentsLoaded) return null
-
+        console.log(this.context);
         const body = comments.length ? (
             <ul>
                 {comments.map(id => <li key = {id}><Comment id = {id} /></li>)}
             </ul>
-        ) : <h3>No comments yet</h3>
+        ) : <h3>{this.context.lexicon.notComentsYet}</h3>
 
         return (
             <div>

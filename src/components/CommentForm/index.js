@@ -12,14 +12,18 @@ class CommentForm extends Component {
         user: '',
         text: ''
     }
-
+    static contextTypes = {
+        user: PropTypes.string,
+        lexicon: PropTypes.object
+    }
     render() {
+      console.log(this.context.lexicon);
         return (
             <form onSubmit = {this.handleSubmit}>
-                user: <input value = {this.state.user}
+                {this.context.lexicon.labelUser} : <input value = {this.state.user}
                              onChange = {this.handleChange('user')}
                              className = {this.getClassName('user')} />
-                comment: <input value = {this.state.text}
+                {this.context.lexicon.labelComment} : <input value = {this.state.text}
                                 onChange = {this.handleChange('text')}
                                 className = {this.getClassName('text')} />
                 <input type = "submit" value = "submit"/>
