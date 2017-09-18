@@ -1,6 +1,7 @@
 import React, {Component, PureComponent} from 'react'
 import CommentList from '../CommentList'
 import Loader from '../Loader'
+import LocalizedText from '../LocalizedText'
 import PropTypes from 'prop-types'
 import {findDOMNode} from 'react-dom'
 import CSSTransion from 'react-addons-css-transition-group'
@@ -39,7 +40,9 @@ class Article extends Component {
         return (
             <div ref={this.setContainerRef}>
                 <h3 onClick = {toggleOpen}>{article.title}</h3>
-                <button onClick={deleteArticle}>delete me</button>
+                <button onClick={deleteArticle}>
+                    <LocalizedText>delete me</LocalizedText>
+                </button>
                 <CSSTransion
                     transitionName="article"
                     transitionEnterTimeout={500}
