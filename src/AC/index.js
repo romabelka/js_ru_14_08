@@ -46,11 +46,11 @@ export function loadAllArticles() {
 }
 
 export function loadComments(id) {
-    return {
+    return dispatch => dispatch({
         type: LOAD_COMMENTS,
         callAPI: '/api/comment?article=' + id,
         payload: { id }
-    }
+    });
 }
 
 /*

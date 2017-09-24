@@ -2,19 +2,23 @@ import React, {Component} from 'react'
 import Comment from './Comment'
 import toggleOpen from '../decorators/toggleOpen'
 import CommentForm from './CommentForm'
+import Loader from './Loader'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux';
 import {loadComments} from '../AC/index';
+import {COMMENTS_ARR} from '../constants';
 
 class CommentList extends Component {
     static defaultProps = {
         article: PropTypes.object.isRequired,
+        comments: PropTypes.object,
         isOpen: PropTypes.bool,
         toggleOpen: PropTypes.func
     }
 
-    componentDidMount() {
-        this.props.loadComments(this.props.article.id)
+    componentWillReceiveProps(nextProps) {
+        console.log('–––> ', 'CommentList will recieve props', this.props.article.id);
+        !this.props.isOpen && nextProps.isOpen && this.props.loadComments(this.props.article.id);
     }
 
     componentWillUnmount() {
@@ -37,23 +41,36 @@ class CommentList extends Component {
     }
 
     getBody() {
-        const { article: {id, comments = []}, isOpen } = this.props
+        const {article, article: {id}, comments, comments: {loaded, loading}, isOpen} = this.props
         if (!isOpen) return null
 
-        const body = comments.length ? (
+        const body = article.comments.length
+            ?
             <ul>
-                {comments.map(id => <li key = {id}><Comment id = {id} /></li>)}
+                {article.comments.map(id => <li key={id}><Comment id={id}/></li>)}
             </ul>
-        ) : <h3>No comments yet</h3>
+            :
+            <h3>No comments yet</h3>
 
-        return (
-            <div>
-                {body}
-                <CommentForm articleId = {id} />
-            </div>
-        )
+        if (loaded === null || loaded === false) {
+            return <Loader/>
+
+        } else {
+            return (
+                <div>
+                    {body}
+                    <CommentForm articleId={id}/>
+                </div>
+            )
+        }
     }
 }
 
 
-export default connect(null, {loadComments})(toggleOpen(CommentList))
+export default connect(
+    (state, props) => ({
+        article: state.articles.entities.get(props.article.id),
+        comments: state.comments
+    }),
+    {loadComments}
+)(toggleOpen(CommentList))

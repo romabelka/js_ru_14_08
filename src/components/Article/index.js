@@ -68,14 +68,16 @@ class Article extends PureComponent {
 
     getBody() {
         const {article, isOpen} = this.props
-        if (!isOpen) return null
+        if (!isOpen) {
+            return null;
+        }
 
         if (article.loading) return <Loader />
 
         return (
             <div>
-                <p>{this.props.article.text}</p>
-                <CommentList article = {this.props.article} ref = {this.setCommentsRef} />
+                <p>{article.text}</p>
+                <CommentList article = {article} ref = {this.setCommentsRef} />
             </div>
         )
     }
